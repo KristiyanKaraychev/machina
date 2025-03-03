@@ -34,6 +34,7 @@ function App() {
             </p>
 
             <p>CHANGED</p>
+            <p>CHANGED 2</p>
         </>
     );
 }
