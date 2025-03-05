@@ -1,0 +1,88 @@
+/* General Layout */
+.create-workout-container {
+    color: black; /* Softer white for text */
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.form-wrapper {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px gray; /* Soft orange glow */
+    width: 400px;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Form Styling */
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+input,
+textarea,
+select {
+    width: 100%;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid gray;
+    background-color: white;
+    color: black;
+}
+
+/* Exercise Input */
+.exercise-input {
+    display: flex;
+    gap: 10px;
+}
+
+.exercise-input input {
+    flex-grow: 1;
+}
+
+.exercise-input button {
+    background-color: #267fe8;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.exercise-input button:hover {
+    background-color: #267fe8;
+}
+
+.exercise-list {
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+/* Submit Button */
+.submit-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #267fe8;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.submit-btn:hover {
+    background-color: #267fe8;
+}
