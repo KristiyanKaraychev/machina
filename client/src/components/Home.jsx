@@ -1,0 +1,24 @@
+function Home() {
+    return (
+        <>
+            <section className="hero">
+                <h2>Elevate Your Training</h2>
+                <p>Discover and share workout routines</p>
+                <button>Get Started</button>
+            </section>
+
+            <section className="workout-list">
+                <div className="workout-item">
+                    <h3>Strength Training</h3>
+                    <p>45 min | Advanced</p>
+                </div>
+                <div className="workout-item">
+                    <h3>Cardio</h3>
+                    <p>30 min | Intermediate</p>
+                </div>
+            </section>
+        </>
+    );
+}
+
+export default Home;
