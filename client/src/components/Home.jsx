@@ -1,6 +1,6 @@
 import WorkoutList from "./WorkoutList.jsx";
 
-function Home() {
+export default function Home() {
     return (
         <>
             <section className="home">
@@ -13,5 +13,3 @@ function Home() {
         </>
     );
 }
-
-export default Home;

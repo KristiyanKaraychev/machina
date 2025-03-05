@@ -1,19 +1,26 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+
+import WorkoutListItem from "./WorkoutListItem.jsx";
 
 import workoutService from "../services/workoutService.js";
 
-function WorkoutList() {
+export default function WorkoutList() {
+    const [workouts, setWorkouts] = useState([]);
+
     useEffect(() => {
-        workoutService.getAll().then((data) => console.log(data));
+        workoutService.getAll().then((data) => {
+            console.log(data);
+            setWorkouts(data);
+        });
     }, []);
 
     return (
         <>
             <section className="workout-list">
-                <div className="workout-item">
-                    <h3>Strength Training</h3>
-                    <p>45 min | Advanced</p>
-                </div>
+                {workouts.map((workout) => (
+                    <WorkoutListItem key={workout._id} {...workout} />
+                ))}
+
                 <div className="workout-item">
                     <h3>Cardio</h3>
                     <p>30 min | Intermediate</p>
@@ -22,5 +29,3 @@ function WorkoutList() {
         </>
     );
 }
-
-export default WorkoutList;
