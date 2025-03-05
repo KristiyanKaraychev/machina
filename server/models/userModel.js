@@ -40,16 +40,16 @@ const userSchema = new mongoose.Schema(
                     `${props.value} must contains only latin letters and digits!`,
             },
         },
-        themes: [
+        workouts: [
             {
                 type: ObjectId,
-                ref: "Theme",
+                ref: "Workout",
             },
         ],
-        posts: [
+        comments: [
             {
                 type: ObjectId,
-                ref: "Post",
+                ref: "Comment",
             },
         ],
         description: {

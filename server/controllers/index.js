@@ -1,9 +1,9 @@
-const authController = require('./auth');
-const themeController = require('./themeController');
-const postController = require('./postController');
+const authController = require("./auth");
+const workoutController = require("./workoutController");
+const commentController = require("./commentController");
 
 module.exports = {
     authController,
-    themeController,
-    postController,
-}
+    workoutController,
+    commentController,
+};

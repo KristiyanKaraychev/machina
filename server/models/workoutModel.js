@@ -1,9 +1,9 @@
 const mongoose = require("mongoose");
 const { ObjectId } = mongoose.Schema.Types;
 
-const themeSchema = new mongoose.Schema(
+const workoutSchema = new mongoose.Schema(
     {
-        themeName: {
+        workoutName: {
             type: String,
             required: true,
         },
@@ -17,10 +17,10 @@ const themeSchema = new mongoose.Schema(
             type: ObjectId,
             ref: "User",
         },
-        posts: [
+        comments: [
             {
                 type: ObjectId,
-                ref: "Post",
+                ref: "Comment",
             },
         ],
         imgURL: {
@@ -32,4 +32,4 @@ const themeSchema = new mongoose.Schema(
     { timestamps: { createdAt: "created_at" } }
 );
 
-module.exports = mongoose.model("Theme", themeSchema);
+module.exports = mongoose.model("Workout", workoutSchema);

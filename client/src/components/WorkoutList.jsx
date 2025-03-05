@@ -1,7 +1,10 @@
+import { useEffect } from "react";
+
 function WorkoutList() {
+    useEffect(() => {}, []);
+
     return (
         <>
-            {" "}
             <section className="workout-list">
                 <div className="workout-item">
                     <h3>Strength Training</h3>
