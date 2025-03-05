@@ -140,10 +140,18 @@ function editProfileInfo(req, res, next) {
         .catch(next);
 }
 
+function getUsers(req, res, next) {
+    userModel
+        .find()
+        .then((users) => res.json(users))
+        .catch(next);
+}
+
 module.exports = {
     login,
     register,
     logout,
     getProfileInfo,
     editProfileInfo,
+    getUsers,
 };

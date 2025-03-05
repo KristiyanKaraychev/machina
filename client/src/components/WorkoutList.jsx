@@ -1,7 +1,11 @@
 import { useEffect } from "react";
 
+import workoutService from "../services/workoutService.js";
+
 function WorkoutList() {
-    useEffect(() => {}, []);
+    useEffect(() => {
+        workoutService.getAll().then((data) => console.log(data));
+    }, []);
 
     return (
         <>
