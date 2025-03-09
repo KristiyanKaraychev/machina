@@ -24,6 +24,13 @@ export default function WorkoutList() {
         setShowCreateWorkout(false);
     };
 
+    const workoutDeleteHandler = async (userId) => {
+        //set userId
+        await workoutService.delete(userId);
+
+        //delete from local state?
+    };
+
     const saveCreateWorkoutClickHandler = async (e) => {
         e.preventDefault();
         const formData = new FormData(e.target);

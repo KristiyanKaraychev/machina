@@ -7,6 +7,15 @@ export default {
 
         return result;
     },
+    async getOne(workoutId) {
+        const response = await fetch(
+            `${environment.apiURL}/workouts/${workoutId}`
+        );
+
+        const result = await response.json();
+
+        return result;
+    },
     async create(workoutData) {
         const response = await fetch(`${environment.apiURL}/workouts`, {
             method: "POST",
@@ -15,6 +24,18 @@ export default {
             },
             body: JSON.stringify(workoutData),
         });
+
+        const result = await response.json();
+
+        return result;
+    },
+    async delete(workoutId) {
+        const response = await fetch(
+            `${environment.apiURL}/workouts/${workoutId}`,
+            {
+                method: "DELETE",
+            }
+        );
 
         const result = await response.json();
 

@@ -1,0 +1,51 @@
+[] Update server
+    [] Workout Model
+    [] Workout Services
+    [] ADD EDIT WORKOUT !!!!
+        [] Watch again  edit functionality from Workshop: Components, 3:09:50
+    [] ADD DELETE WORKOUT !!!!
+        [] Are you sure you want to delete?
+        [] Double check comments on delete functionality
+[]
+
+[] 
+[] 
+[] 
+
+[] posts page
+[] rest api
+[] authentication
+[] add images
+[] view posts and comments
+[] delete comment if owner
+[] create comment
+[] like comment
+[] edit comment
+[] error messages when invalid data
+[] pipes
+[] likes when editing should be on the right
+[] edit profile functionality		!!!
+[] add avatar picures
+[] profile photo
+[] 1 more dynamic page? (my posts)	!!!
+[] handle errors when loggin in and registering
+[] add default images
+[] check if user is logged in
+[] page not found
+[] add "no posts yet" to my posts
+[] upload REST API to GITHUB		!!!!!!!!!!!!!!!!!!!
+[] welcome page (add img)
+[] change colors/layout
+[] add max lenght to text boxes
+[] mobile friendly (sandwich nav)
+[] add a text file with link to animal pictures
+[] fix error message position for small screens
+[] README
+		
+[] authenticate ?????????? (used for loader)
+[] state management ?????
+[] main component useless?
+[] lazy load components?
+[] recent posts (fix in profile) (removed for now)
+[] update time when commenting (to show last updated time, not created)	\\\ it looks weird
+
