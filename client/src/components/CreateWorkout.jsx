@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+
 import "./CreateWorkout.css";
 
-export default function CreateWorkout() {
+export default function CreateWorkout({ onClose }) {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [difficulty, setDifficulty] = useState("Beginner");
@@ -36,6 +37,9 @@ export default function CreateWorkout() {
                 <div className="backdrop"></div>
                 <div className="modal">
                     <div className="form-wrapper">
+                        <button className="close-btn" onClick={onClose}>
+                            &times;
+                        </button>
                         <h2>Create a Workout</h2>
                         <form onSubmit={handleSubmit}>
                             <div className="form-group">
@@ -66,8 +70,8 @@ export default function CreateWorkout() {
                             <div className="form-group">
                                 <label htmlFor="difficulty">Difficulty</label>
                                 <select
-                                    id="description"
-                                    name="description"
+                                    id="difficulty"
+                                    name="difficulty"
                                     value={difficulty}
                                     onChange={(e) =>
                                         setDifficulty(e.target.value)

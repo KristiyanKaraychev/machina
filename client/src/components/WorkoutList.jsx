@@ -7,7 +7,7 @@ import workoutService from "../services/workoutService.js";
 
 export default function WorkoutList() {
     const [workouts, setWorkouts] = useState([]);
-    const [showCreateWorkout, setShowCreateWorkout] = useState(false);
+    const [showCreateWorkout, setShowCreateWorkout] = useState(true);
 
     useEffect(() => {
         workoutService.getAll().then((data) => {
@@ -16,9 +16,19 @@ export default function WorkoutList() {
         });
     }, []);
 
+    const createWorkoutClickHandler = () => {
+        setShowCreateWorkout(true);
+    };
+
+    const closeCreateWorkoutClickHandler = () => {
+        setShowCreateWorkout(false);
+    };
+
     return (
         <>
-            {showCreateWorkout && <CreateWorkout />}
+            {showCreateWorkout && (
+                <CreateWorkout onClose={closeCreateWorkoutClickHandler} />
+            )}
 
             <section className="workout-list">
                 {workouts.map((workout) => (

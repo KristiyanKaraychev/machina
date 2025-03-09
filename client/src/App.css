@@ -217,6 +217,18 @@ form {
     margin-top: 50px;
 }
 
+.close-btn {
+    position: absolute;
+    top: 0px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 30px;
+    cursor: pointer;
+    color: black;
+    margin-top: 16px;
+}
+
 @media (min-width: 930px) {
     .modal {
         width: 45rem;
