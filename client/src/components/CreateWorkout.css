@@ -1,18 +1,9 @@
-.create-workout-container {
-    color: black;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-}
-
 .form-wrapper {
     background-color: white;
     padding: 30px;
     border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    width: 400px;
+    /* box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); */
+    /* width: 400px; */
 }
 
 .form-group {

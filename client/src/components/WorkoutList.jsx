@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 
 import WorkoutListItem from "./WorkoutListItem.jsx";
+import CreateWorkout from "./CreateWorkout.jsx";
 
 import workoutService from "../services/workoutService.js";
 
 export default function WorkoutList() {
     const [workouts, setWorkouts] = useState([]);
+    const [showCreateWorkout, setShowCreateWorkout] = useState(false);
 
     useEffect(() => {
         workoutService.getAll().then((data) => {
@@ -16,6 +18,8 @@ export default function WorkoutList() {
 
     return (
         <>
+            {showCreateWorkout && <CreateWorkout />}
+
             <section className="workout-list">
                 {workouts.map((workout) => (
                     <WorkoutListItem key={workout._id} {...workout} />
