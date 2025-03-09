@@ -17,18 +17,29 @@ const RegisterForm = () => {
             <h2>Sign Up</h2>
             <p>Create your account.</p>
             <form onSubmit={handleSubmit}>
-                <label>Email</label>
+                <label htmlFor="email">Email</label>
                 <input
+                    id="email"
+                    name="email"
                     type="email"
-                    value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
                 />
 
-                <label>Password</label>
+                <label htmlFor="password">Password</label>
                 <input
+                    id="password"
+                    name="password"
                     type="password"
-                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                />
+
+                <label htmlFor="confirmPassword">Confirm Password</label>
+                <input
+                    id="confirmPassword"
+                    name="confirmPassword"
+                    type="confirmPassword"
                     onChange={(e) => setPassword(e.target.value)}
                     required
                 />
