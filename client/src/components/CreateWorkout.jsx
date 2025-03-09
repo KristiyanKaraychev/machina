@@ -2,12 +2,12 @@ import React, { useState } from "react";
 
 import "./CreateWorkout.css";
 
-export default function CreateWorkout({ onClose }) {
+export default function CreateWorkout({ onClose, onSave }) {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [difficulty, setDifficulty] = useState("Beginner");
     const [time, setTime] = useState("");
-    const [image, setImage] = useState(null);
+    // const [image, setImage] = useState(null);
     const [exercises, setExercises] = useState([]);
     const [exerciseInput, setExerciseInput] = useState("");
 
@@ -18,30 +18,30 @@ export default function CreateWorkout({ onClose }) {
         }
     };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        const workoutData = {
-            title,
-            description,
-            difficulty,
-            time,
-            exercises,
-            image,
-        };
-        console.log("Workout Created:", workoutData);
-    };
+    // const handleSubmit = (e) => {
+    //     e.preventDefault();
+    //     const workoutData = {
+    //         title,
+    //         description,
+    //         difficulty,
+    //         time,
+    //         exercises,
+    //         image,
+    //     };
+    //     console.log("Workout Created:", workoutData);
+    // };
 
     return (
         <>
             <div className="overlay">
-                <div className="backdrop"></div>
+                <div className="backdrop" onClick={onClose}></div>
                 <div className="modal">
                     <div className="form-wrapper">
                         <button className="close-btn" onClick={onClose}>
                             &times;
                         </button>
                         <h2>Create a Workout</h2>
-                        <form onSubmit={handleSubmit}>
+                        <form onSubmit={onSave}>
                             <div className="form-group">
                                 <label htmlFor="title">Workout Title</label>
                                 <input

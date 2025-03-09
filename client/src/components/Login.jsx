@@ -26,7 +26,7 @@ const LoginForm = () => {
                     required
                 />
 
-                <label>Password</label>
+                <label htmlFor="password">Password</label>
                 <input
                     id="password"
                     name="password"

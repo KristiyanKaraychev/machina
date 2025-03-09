@@ -24,10 +24,27 @@ export default function WorkoutList() {
         setShowCreateWorkout(false);
     };
 
+    const saveCreateWorkoutClickHandler = async (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        const workoutData = Object.fromEntries(formData);
+        console.log(workoutData);
+
+        const newWorkout = await workoutService.create(workoutData);
+        console.log(newWorkout);
+
+        setWorkouts((state) => [...state, newWorkout]);
+
+        setShowCreateWorkout(false);
+    };
+
     return (
         <>
             {showCreateWorkout && (
-                <CreateWorkout onClose={closeCreateWorkoutClickHandler} />
+                <CreateWorkout
+                    onClose={closeCreateWorkoutClickHandler}
+                    onSave={saveCreateWorkoutClickHandler}
+                />
             )}
 
             <section className="workout-list">
