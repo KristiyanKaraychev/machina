@@ -6,7 +6,7 @@ const { workoutController, commentController } = require("../controllers");
 // middleware that is specific to this router
 
 router.get("/", workoutController.getWorkouts);
-router.post("/", auth(), workoutController.createWorkout);
+router.post("/", workoutController.createWorkout);
 
 router.get("/:workoutId", workoutController.getWorkout);
 router.post("/:workoutId", auth(), commentController.createComment);

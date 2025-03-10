@@ -7,6 +7,27 @@ const workoutSchema = new mongoose.Schema(
             type: String,
             required: true,
         },
+        // description: {
+        //     type: String,
+        //     required: true,
+        // },
+        difficulty: {
+            type: String,
+            required: true,
+        },
+        length: {
+            type: String,
+            required: true,
+        },
+        exercises: {
+            type: String,
+            required: true,
+        },
+        imgURL: {
+            type: String,
+            default: "",
+            required: true,
+        },
         subscribers: [
             {
                 type: ObjectId,
@@ -23,11 +44,6 @@ const workoutSchema = new mongoose.Schema(
                 ref: "Comment",
             },
         ],
-        imgURL: {
-            type: String,
-            default: "",
-            required: true,
-        },
     },
     { timestamps: { createdAt: "created_at" } }
 );

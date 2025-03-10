@@ -37,7 +37,10 @@ export default function WorkoutList() {
         const workoutData = Object.fromEntries(formData);
         console.log(workoutData);
 
-        const newWorkout = await workoutService.create(workoutData);
+        const newWorkout = await workoutService.create({
+            ...workoutData,
+            user: { _id: "1231231" },
+        });
         console.log(newWorkout);
 
         setWorkouts((state) => [...state, newWorkout]);
@@ -58,11 +61,6 @@ export default function WorkoutList() {
                 {workouts.map((workout) => (
                     <WorkoutListItem key={workout._id} {...workout} />
                 ))}
-
-                <div className="workout-item">
-                    <h3>Cardio</h3>
-                    <p>30 min | Intermediate</p>
-                </div>
             </section>
         </>
     );

@@ -6,8 +6,9 @@
     [] ADD DELETE WORKOUT !!!!
         [] Are you sure you want to delete?
         [] Double check comments on delete functionality
-[]
-
+[] !!!!! REVERT
+    [] // const { _id: userId } = req.user;
+    [] router.post("/", auth(), workoutController.createWorkout);
 [] 
 [] 
 [] 

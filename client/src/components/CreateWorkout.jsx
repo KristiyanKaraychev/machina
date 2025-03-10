@@ -3,16 +3,17 @@ import React, { useState } from "react";
 import "./CreateWorkout.css";
 
 export default function CreateWorkout({ onClose, onSave }) {
-    const [title, setTitle] = useState("");
+    const [workoutName, setWorkoutName] = useState("");
     const [description, setDescription] = useState("");
     const [difficulty, setDifficulty] = useState("Beginner");
     const [time, setTime] = useState("");
-    // const [image, setImage] = useState(null);
-    const [exercises, setExercises] = useState([]);
-    const [exerciseInput, setExerciseInput] = useState("");
+    const [imgURL, setImgURL] = useState("");
+    const [exercises, setExercises] = useState("");
+    // const [exercises, setExercises] = useState([]);
+    // const [exerciseInput, setExerciseInput] = useState("");
 
-    const titleChangeHandler = (e) => {
-        setTitle(e.target.value);
+    const workoutNameChangeHandler = (e) => {
+        setWorkoutName(e.target.value);
     };
 
     const descriptionChangeHandler = (e) => {
@@ -27,20 +28,20 @@ export default function CreateWorkout({ onClose, onSave }) {
         setTime(e.target.value);
     };
 
-    // const imageChangeHandler = (e) => {
-    //     setImage(e.target.value);
-    // };
+    const imgURLChangeHandler = (e) => {
+        setImgURL(e.target.value);
+    };
 
     const exercisesChangeHandler = (e) => {
         setExercises(e.target.value);
     };
 
-    const handleAddExercise = () => {
-        if (exerciseInput.trim()) {
-            setExercises([...exercises, exerciseInput]);
-            setExerciseInput("");
-        }
-    };
+    // const handleAddExercise = () => {
+    //     if (exerciseInput.trim()) {
+    //         setExercises([...exercises, exerciseInput]);
+    //         setExerciseInput("");
+    //     }
+    // };
 
     // const handleSubmit = (e) => {
     //     e.preventDefault();
@@ -67,13 +68,15 @@ export default function CreateWorkout({ onClose, onSave }) {
                         <h2>Create a Workout</h2>
                         <form onSubmit={onSave}>
                             <div className="form-group">
-                                <label htmlFor="title">Workout Title</label>
+                                <label htmlFor="workoutName">
+                                    Workout Title
+                                </label>
                                 <input
-                                    id="title"
-                                    name="title"
+                                    id="workoutName"
+                                    name="workoutName"
                                     type="text"
-                                    value={title}
-                                    onChange={titleChangeHandler}
+                                    value={workoutName}
+                                    onChange={workoutNameChangeHandler}
                                     required
                                 />
                             </div>
@@ -119,38 +122,37 @@ export default function CreateWorkout({ onClose, onSave }) {
 
                             <div className="form-group">
                                 <label htmlFor="exercises">Exercises</label>
-                                <div className="exercise-input">
+                                <div>
+                                    {/* className="exercise-input" */}
                                     <input
                                         id="exercises"
                                         name="exercises"
                                         type="text"
-                                        value={exerciseInput}
+                                        value={exercises}
                                         onChange={exercisesChangeHandler}
                                     />
-                                    <button
+                                    {/* <button
                                         type="button"
                                         onClick={handleAddExercise}
                                     >
                                         Add
-                                    </button>
+                                    </button> */}
                                 </div>
-                                <ul className="exercise-list">
+                                {/* <ul className="exercise-list">
                                     {exercises.map((exercise, index) => (
                                         <li key={index}>- {exercise}</li>
                                     ))}
-                                </ul>
+                                </ul> */}
                             </div>
 
                             <div className="form-group">
-                                <label htmlFor="image">Workout Image</label>
+                                <label htmlFor="imgURL">Workout Image</label>
                                 <input
-                                    id="image"
-                                    name="image"
-                                    type="file"
-                                    accept="image/*"
-                                    // onChange={(e) =>
-                                    //     setImage(e.target.files[0])
-                                    // }
+                                    id="imgURL"
+                                    name="imgURL"
+                                    type="url"
+                                    value={imgURL}
+                                    onChange={imgURLChangeHandler}
                                 />
                             </div>
 

@@ -1,9 +1,11 @@
-export default function WorkoutListItem({ title }) {
+export default function WorkoutListItem({ workoutName, difficulty, length }) {
     return (
         <>
             <div className="workout-item">
-                <h3>{title}</h3>
-                <p>45 min | Advanced</p>
+                <h3>{workoutName}</h3>
+                <p>
+                    {length} min | {difficulty}
+                </p>
             </div>
         </>
     );
