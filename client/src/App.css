@@ -158,17 +158,72 @@ form {
 }
 
 .workout-list {
-    padding: 40px 20px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 28px;
+    width: 90%;
+    margin: auto;
+}
+
+@media (min-width: 320px) {
+    .workout-list {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+@media (min-width: 640px) {
+    .workout-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1120px) {
+    .workout-list {
+        grid-template-columns: repeat(3, 1fr);
+    }
 }
 
 .workout-item {
-    color: white;
-    background: #267fe8;
-    padding: 15px;
-    margin: 10px auto;
-    width: 90%;
-    max-width: 400px;
-    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 12px;
+    border: 1px solid #ccc;
+    overflow: hidden;
+    transition: transform 0.2s ease-in-out;
+    height: 100%;
+    background-color: white;
+}
+
+.workout-item:hover {
+    transform: scale(1.03);
+}
+
+.workout-item a {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    gap: 5px;
+    padding: 5px 0px;
+}
+
+.workout-item img {
+    object-fit: cover;
+    width: 100%;
+    min-height: 60%;
+    height: auto;
+}
+
+.workout-item h3 {
+    font-size: 1.5rem;
+    padding: 12px;
+}
+
+.workout-item p {
+    padding: 12px;
+    font-size: 20px;
+    color: #444;
 }
 
 .home {
