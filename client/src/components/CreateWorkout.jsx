@@ -11,6 +11,30 @@ export default function CreateWorkout({ onClose, onSave }) {
     const [exercises, setExercises] = useState([]);
     const [exerciseInput, setExerciseInput] = useState("");
 
+    const titleChangeHandler = (e) => {
+        setTitle(e.target.value);
+    };
+
+    const descriptionChangeHandler = (e) => {
+        setDescription(e.target.value);
+    };
+
+    const difficultyChangeHandler = (e) => {
+        setDifficulty(e.target.value);
+    };
+
+    const timeChangeHandler = (e) => {
+        setTime(e.target.value);
+    };
+
+    // const imageChangeHandler = (e) => {
+    //     setImage(e.target.value);
+    // };
+
+    const exercisesChangeHandler = (e) => {
+        setExercises(e.target.value);
+    };
+
     const handleAddExercise = () => {
         if (exerciseInput.trim()) {
             setExercises([...exercises, exerciseInput]);
@@ -49,7 +73,7 @@ export default function CreateWorkout({ onClose, onSave }) {
                                     name="title"
                                     type="text"
                                     value={title}
-                                    onChange={(e) => setTitle(e.target.value)}
+                                    onChange={titleChangeHandler}
                                     required
                                 />
                             </div>
@@ -60,9 +84,7 @@ export default function CreateWorkout({ onClose, onSave }) {
                                     id="description"
                                     name="description"
                                     value={description}
-                                    onChange={(e) =>
-                                        setDescription(e.target.value)
-                                    }
+                                    onChange={descriptionChangeHandler}
                                     required
                                 />
                             </div>
@@ -73,9 +95,7 @@ export default function CreateWorkout({ onClose, onSave }) {
                                     id="difficulty"
                                     name="difficulty"
                                     value={difficulty}
-                                    onChange={(e) =>
-                                        setDifficulty(e.target.value)
-                                    }
+                                    onChange={difficultyChangeHandler}
                                 >
                                     <option>Beginner</option>
                                     <option>Intermediate</option>
@@ -92,7 +112,7 @@ export default function CreateWorkout({ onClose, onSave }) {
                                     name="length"
                                     type="number"
                                     value={time}
-                                    onChange={(e) => setTime(e.target.value)}
+                                    onChange={timeChangeHandler}
                                     required
                                 />
                             </div>
@@ -105,9 +125,7 @@ export default function CreateWorkout({ onClose, onSave }) {
                                         name="exercises"
                                         type="text"
                                         value={exerciseInput}
-                                        onChange={(e) =>
-                                            setExerciseInput(e.target.value)
-                                        }
+                                        onChange={exercisesChangeHandler}
                                     />
                                     <button
                                         type="button"

@@ -6,7 +6,15 @@ const LoginForm = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    const handleSubmit = (e) => {
+    const emailChangeHandler = (e) => {
+        setEmail(e.target.value);
+    };
+
+    const passwordChangeHandler = (e) => {
+        setPassword(e.target.value);
+    };
+
+    const submitHandler = (e) => {
         e.preventDefault();
         console.log("Logging in with:", { email, password });
         // Handle authentication logic here
@@ -15,14 +23,14 @@ const LoginForm = () => {
     return (
         <div className="auth-container">
             <h2>Login</h2>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={submitHandler}>
                 <label htmlFor="email">Email</label>
                 <input
                     id="email"
                     name="email"
                     type="email"
                     value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    onChange={emailChangeHandler}
                     required
                 />
 
@@ -32,7 +40,7 @@ const LoginForm = () => {
                     name="password"
                     type="password"
                     value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                    onChange={passwordChangeHandler}
                     required
                 />
 

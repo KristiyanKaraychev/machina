@@ -5,8 +5,21 @@ import "./Auth.css";
 const RegisterForm = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
 
-    const handleSubmit = (e) => {
+    const emailChangeHandler = (e) => {
+        setEmail(e.target.value);
+    };
+
+    const passwordChangeHandler = (e) => {
+        setPassword(e.target.value);
+    };
+
+    const confirmPasswordChangeHandler = (e) => {
+        setConfirmPassword(e.target.value);
+    };
+
+    const submitHandler = (e) => {
         e.preventDefault();
         console.log("Registering with:", { email, password });
         // Handle registration logic here
@@ -16,13 +29,14 @@ const RegisterForm = () => {
         <div className="auth-container">
             <h2>Sign Up</h2>
             <p>Create your account.</p>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={submitHandler}>
                 <label htmlFor="email">Email</label>
                 <input
                     id="email"
                     name="email"
                     type="email"
-                    onChange={(e) => setEmail(e.target.value)}
+                    value={email}
+                    onChange={emailChangeHandler}
                     required
                 />
 
@@ -31,7 +45,8 @@ const RegisterForm = () => {
                     id="password"
                     name="password"
                     type="password"
-                    onChange={(e) => setPassword(e.target.value)}
+                    value={password}
+                    onChange={passwordChangeHandler}
                     required
                 />
 
@@ -40,7 +55,8 @@ const RegisterForm = () => {
                     id="confirmPassword"
                     name="confirmPassword"
                     type="confirmPassword"
-                    onChange={(e) => setPassword(e.target.value)}
+                    value={confirmPassword}
+                    onChange={confirmPasswordChangeHandler}
                     required
                 />
 
