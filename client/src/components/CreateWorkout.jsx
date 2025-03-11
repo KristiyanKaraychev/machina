@@ -156,7 +156,7 @@ export default function CreateWorkout({ onClose, onSave }) {
                                 />
                             </div>
 
-                            <button type="submit" className="submit-btn">
+                            <button type="submit" className="btn">
                                 Create Workout
                             </button>
                         </form>

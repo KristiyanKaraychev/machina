@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import WorkoutList from "./WorkoutList.jsx";
 
 export default function Home() {
@@ -6,10 +7,12 @@ export default function Home() {
             <section className="home">
                 <h2>Elevate Your Training</h2>
                 <p>Discover and share workout routines</p>
-                <button>Get Started</button>
+                <Link key="/workouts" to="/workouts" className="btn">
+                    Get Started
+                </Link>
             </section>
 
-            <WorkoutList />
+            {/* <WorkoutList /> */}
         </>
     );
 }

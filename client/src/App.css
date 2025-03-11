@@ -83,12 +83,17 @@ body {
     text-align: center;
 }
 
+main {
+    min-height: 85vh;
+}
+
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 20px;
     background: white;
+    height: 7.5vh;
 }
 
 header h1 {
@@ -113,21 +118,13 @@ textarea {
     resize: none;
 }
 
-button {
-    background: #267fe8;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    margin-top: 20px;
-    border-radius: 5px;
-}
-
 footer {
+    height: 7.5vh;
+    bottom: 0;
     padding: 20px;
     opacity: 0.5;
     font-size: 14px;
+    background-color: white;
 }
 
 label {
@@ -162,12 +159,80 @@ form {
     flex-direction: column;
 }
 
+.btn {
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 100;
+}
+
+.backdrop {
+    background-color: rgba(0, 0, 0, 0.75);
+    height: 100vh;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 20;
+}
+
+.modal {
+    width: 45rem;
+    position: absolute;
+    max-height: 90vh;
+    margin: auto;
+    border-radius: 20px;
+    background-color: white;
+    padding: 1rem;
+    box-shadow: 0 2px 8px rgb(0 0 0 / 25%);
+    z-index: 30;
+    margin-top: 50px;
+}
+
+.close-btn {
+    position: absolute;
+    top: 0px;
+    right: 6px;
+    background: none;
+    border: none;
+    font-size: 35px;
+    cursor: pointer;
+    color: black;
+    margin: 16px;
+}
+
+@media (min-width: 930px) {
+    .modal {
+        width: 45rem;
+        left: calc(50% - 20rem);
+        border-radius: 14px;
+    }
+}
+
+/*-------------------------------------------------*/
+
 .workout-list {
     display: grid;
     grid-template-columns: 1fr;
     gap: 28px;
     width: 90%;
-    margin: auto;
+    margin: 80px auto;
 }
 
 @media (min-width: 320px) {
@@ -231,7 +296,14 @@ form {
     color: #444;
 }
 
+/*-------------------------------------------------*/
+
 .home {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
     padding: 80px 20px;
 }
 
@@ -243,56 +315,28 @@ form {
 .home p {
     font-size: 18px;
     opacity: 0.7;
+    margin-bottom: 20px;
 }
 
-.overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 100;
+/*-------------------------------------------*/
+
+.not-found-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 85vh;
+    margin: 0px 30px;
 }
 
-.backdrop {
-    background-color: rgba(0, 0, 0, 0.75);
-    height: 100vh;
-    left: 0;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 20;
+.not-found-heading {
+    font-size: 6rem;
+    font-weight: bold;
+    color: #dc3545;
 }
 
-.modal {
-    width: 45rem;
-    position: absolute;
-    max-height: 90vh;
-    margin: auto;
-    border-radius: 20px;
-    background-color: white;
-    padding: 1rem;
-    box-shadow: 0 2px 8px rgb(0 0 0 / 25%);
-    z-index: 30;
-    margin-top: 50px;
-}
-
-.close-btn {
-    position: absolute;
-    top: 0px;
-    right: 15px;
-    background: none;
-    border: none;
-    font-size: 30px;
-    cursor: pointer;
-    color: black;
-    margin-top: 16px;
-}
-
-@media (min-width: 930px) {
-    .modal {
-        width: 45rem;
-        left: calc(50% - 20rem);
-        border-radius: 14px;
-    }
+.not-found-text {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
 }

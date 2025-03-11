@@ -26,47 +26,49 @@ const RegisterForm = () => {
     };
 
     return (
-        <div className="auth-container">
-            <h2>Sign Up</h2>
-            <p>Create your account.</p>
-            <form onSubmit={submitHandler}>
-                <label htmlFor="email">Email</label>
-                <input
-                    id="email"
-                    name="email"
-                    type="email"
-                    value={email}
-                    onChange={emailChangeHandler}
-                    required
-                />
+        <div className="auth-wrapper">
+            <div className="auth-container">
+                <h2>Sign Up</h2>
+                <p>Create your account.</p>
+                <form onSubmit={submitHandler}>
+                    <label htmlFor="email">Email</label>
+                    <input
+                        id="email"
+                        name="email"
+                        type="email"
+                        value={email}
+                        onChange={emailChangeHandler}
+                        required
+                    />
 
-                <label htmlFor="password">Password</label>
-                <input
-                    id="password"
-                    name="password"
-                    type="password"
-                    value={password}
-                    onChange={passwordChangeHandler}
-                    required
-                />
+                    <label htmlFor="password">Password</label>
+                    <input
+                        id="password"
+                        name="password"
+                        type="password"
+                        value={password}
+                        onChange={passwordChangeHandler}
+                        required
+                    />
 
-                <label htmlFor="confirmPassword">Confirm Password</label>
-                <input
-                    id="confirmPassword"
-                    name="confirmPassword"
-                    type="confirmPassword"
-                    value={confirmPassword}
-                    onChange={confirmPasswordChangeHandler}
-                    required
-                />
+                    <label htmlFor="confirmPassword">Confirm Password</label>
+                    <input
+                        id="confirmPassword"
+                        name="confirmPassword"
+                        type="confirmPassword"
+                        value={confirmPassword}
+                        onChange={confirmPasswordChangeHandler}
+                        required
+                    />
 
-                <button type="submit" className="submit-btn">
-                    Sign Up
-                </button>
-            </form>
-            <p className="auth-footer">
-                Already have an account? <a href="/login">Login</a>
-            </p>
+                    <button type="submit" className="btn">
+                        Sign Up
+                    </button>
+                </form>
+                <p className="auth-footer">
+                    Already have an account? <a href="/login">Login</a>
+                </p>
+            </div>
         </div>
     );
 };

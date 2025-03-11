@@ -1,3 +1,5 @@
+import { Link } from "react-router";
+
 const navigation = [
     { name: "Home", path: "/" },
     { name: "Workouts", path: "/workouts" },
@@ -11,16 +13,16 @@ export default function Header() {
         <>
             <header>
                 <h1>
-                    <a key="/" href="/">
+                    <Link key="/home" to="/">
                         MACHINA
-                    </a>
+                    </Link>
                 </h1>
 
                 <nav>
                     {navigation.map((item) => (
-                        <a key={item.name} href={item.path}>
+                        <Link key={item.name} to={item.path}>
                             {item.name}
-                        </a>
+                        </Link>
                     ))}
                 </nav>
             </header>

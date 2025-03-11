@@ -36,18 +36,3 @@
     font-size: 14px;
     margin-top: 10px;
 }
-
-.submit-btn {
-    width: 100%;
-    padding: 10px;
-    background-color: #267fe8;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-.submit-btn:hover {
-    background-color: #267fe8;
-}
