@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 import "./Auth.css";
+import { Link } from "react-router";
 
 const LoginForm = () => {
     const [email, setEmail] = useState("");
@@ -50,7 +51,10 @@ const LoginForm = () => {
                     </button>
                 </form>
                 <p className="auth-footer">
-                    Don't have an account? <a href="/register">Sign Up</a>
+                    Don't have an account?{" "}
+                    <Link key="Register" to="/register">
+                        Sign Up
+                    </Link>
                 </p>
             </div>
         </div>

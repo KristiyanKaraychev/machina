@@ -1,4 +1,7 @@
+import { Link } from "react-router";
+
 export default function WorkoutListItem({
+    _id,
     workoutName,
     difficulty,
     length,
@@ -7,13 +10,13 @@ export default function WorkoutListItem({
     return (
         <>
             <li className="workout-item">
-                <a href="/">
+                <Link key={_id} to={`/workouts/${_id}`}>
                     <h3>{workoutName}</h3>
                     <img src={imgURL} alt={workoutName}></img>
                     <p>
                         {length} min | {difficulty}
                     </p>
-                </a>
+                </Link>
             </li>
 
             {/* <a href="/" className="workout-item">

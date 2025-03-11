@@ -7,7 +7,7 @@ import workoutService from "../services/workoutService.js";
 
 export default function WorkoutList() {
     const [workouts, setWorkouts] = useState([]);
-    const [showCreateWorkout, setShowCreateWorkout] = useState(true);
+    const [showCreateWorkout, setShowCreateWorkout] = useState(false);
 
     useEffect(() => {
         workoutService.getAll().then((data) => {

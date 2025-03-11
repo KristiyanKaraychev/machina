@@ -13,7 +13,7 @@ export default function Header() {
         <>
             <header>
                 <h1>
-                    <Link key="/home" to="/">
+                    <Link key="Home" to="/">
                         MACHINA
                     </Link>
                 </h1>

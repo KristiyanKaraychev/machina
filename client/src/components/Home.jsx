@@ -7,8 +7,8 @@ export default function Home() {
             <section className="home">
                 <h2>Elevate Your Training</h2>
                 <p>Discover and share workout routines</p>
-                <Link key="/workouts" to="/workouts" className="btn">
-                    Get Started
+                <Link key="Workouts" to="/workouts" className="btn">
+                    GET TO WORK
                 </Link>
             </section>
 

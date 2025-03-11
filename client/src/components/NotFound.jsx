@@ -8,7 +8,7 @@ export default function NotFound() {
                 <p className="not-found-text">
                     Oops! The page you're looking for doesn't exist.
                 </p>
-                <Link key="/home" to="/" className="btn">
+                <Link key="Home" to="/" className="btn">
                     Go Back Home
                 </Link>
             </div>

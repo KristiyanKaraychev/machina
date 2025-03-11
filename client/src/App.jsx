@@ -9,6 +9,8 @@ import Workouts from "./components/Workouts.jsx";
 import Login from "./components/Login.jsx";
 import Register from "./components/Register.jsx";
 import NotFound from "./components/NotFound.jsx";
+import WorkoutList from "./components/WorkoutList.jsx";
+import WorkoutDetails from "./components/WorkoutDetails.jsx";
 
 function App() {
     return (
@@ -18,7 +20,11 @@ function App() {
             <main>
                 <Routes>
                     <Route path="/" element={<Home />} />
-                    <Route path="/workouts" element={<Workouts />} />
+                    <Route path="/workouts" element={<WorkoutList />} />
+                    <Route
+                        path="/workouts/:workoutId"
+                        element={<WorkoutDetails />}
+                    />
                     <Route path="/register" element={<Register />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/*" element={<NotFound />} />
