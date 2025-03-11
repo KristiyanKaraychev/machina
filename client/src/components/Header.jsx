@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+import { Link, NavLink } from "react-router";
 
 const navigation = [
     { name: "Home", path: "/" },
@@ -20,9 +20,15 @@ export default function Header() {
 
                 <nav>
                     {navigation.map((item) => (
-                        <Link key={item.name} to={item.path}>
+                        <NavLink
+                            key={item.name}
+                            to={item.path}
+                            style={({ isActive }) =>
+                                isActive ? { color: "#007bff" } : {}
+                            }
+                        >
                             {item.name}
-                        </Link>
+                        </NavLink>
                     ))}
                 </nav>
             </header>

@@ -1,19 +1,18 @@
 import { useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router";
+import { ChevronDownIcon } from "@heroicons/react/solid";
 
 import WorkoutListItem from "./WorkoutListItem.jsx";
 import CreateWorkout from "./CreateWorkout.jsx";
 
 import workoutService from "../services/workoutService.js";
 
-import { ChevronDownIcon } from "@heroicons/react/solid";
-
 export default function WorkoutList() {
     const [searchParams] = useSearchParams();
     const [workouts, setWorkouts] = useState([]);
     const [displayWorkouts, setDisplayWorkouts] = useState([]);
     const [isOpen, setIsOpen] = useState(false);
-    const [showCreateWorkout, setShowCreateWorkout] = useState(false);
+    const [showCreateWorkout, setShowCreateWorkout] = useState(true);
 
     const sortOptions = [
         {
@@ -69,7 +68,12 @@ export default function WorkoutList() {
         } else {
             setDisplayWorkouts([...workouts]);
         }
+        setIsOpen(false);
     }, [workouts, searchParams]);
+
+    const toggleDropDrownHandler = () => {
+        setIsOpen(!isOpen);
+    };
 
     const createWorkoutClickHandler = () => {
         setShowCreateWorkout(true);
@@ -115,9 +119,16 @@ export default function WorkoutList() {
             <div className="menu-container">
                 <button
                     className="menu-button"
-                    onClick={() => setIsOpen(!isOpen)}
+                    onClick={toggleDropDrownHandler}
                 >
-                    Sort
+                    <span style={{ fontWeight: "bold" }}>
+                        Sort:{" "}
+                        {
+                            sortOptions.find(
+                                (option) => option.current === true
+                            )?.name
+                        }
+                    </span>
                     <ChevronDownIcon className="chevron-icon" />
                 </button>
 
