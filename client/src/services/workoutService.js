@@ -1,15 +1,16 @@
 import { environment } from "../environment/environment.js";
 
 export default {
-    async getAll() {
-        const response = await fetch(`${environment.apiURL}/workouts`);
+    async getAll(signal) {
+        const response = await fetch(`${environment.apiURL}/workouts`, signal);
         const result = await response.json();
 
         return result;
     },
-    async getOne(workoutId) {
+    async getOne(workoutId, signal) {
         const response = await fetch(
-            `${environment.apiURL}/workouts/${workoutId}`
+            `${environment.apiURL}/workouts/${workoutId}`,
+            signal
         );
 
         const result = await response.json();

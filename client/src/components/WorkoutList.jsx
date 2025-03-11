@@ -34,10 +34,16 @@ export default function WorkoutList() {
     ];
 
     useEffect(() => {
-        workoutService.getAll().then((data) => {
+        const abortController = new AbortController();
+
+        workoutService.getAll(abortController).then((data) => {
             console.log(data);
             setWorkouts(data);
         });
+
+        return () => {
+            abortController.abort();
+        };
     }, []);
 
     useEffect(() => {

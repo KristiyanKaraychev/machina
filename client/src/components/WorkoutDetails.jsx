@@ -8,10 +8,16 @@ export default function WorkoutDetails() {
     const [workout, setWorkout] = useState({});
 
     useEffect(() => {
-        workoutService.getOne(workoutId).then((data) => {
+        const abortController = new AbortController();
+
+        workoutService.getOne(workoutId, abortController).then((data) => {
             console.log(data);
             setWorkout(data);
         });
+
+        return () => {
+            abortController.abort();
+        };
     }, [workoutId]);
 
     return (
