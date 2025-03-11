@@ -98,7 +98,6 @@ header h1 {
 
 nav a {
     color: black;
-    text-decoration: none;
     margin: 0 15px;
     font-size: 16px;
 }
@@ -106,6 +105,12 @@ nav a {
 h2 {
     text-align: center;
     margin-bottom: 20px;
+}
+
+textarea {
+    min-height: 100px;
+    font-family: inherit;
+    resize: none;
 }
 
 button {
