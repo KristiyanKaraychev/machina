@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import "./CreateWorkout.css";
-import exerciseService from "../services/exerciseService.js";
+import exerciseService from "../../services/exerciseService.js";
 
 export default function CreateWorkout({ onClose, onSave }) {
     const [workoutName, setWorkoutName] = useState("");

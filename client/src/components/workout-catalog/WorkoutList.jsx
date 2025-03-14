@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router";
 import { ChevronDownIcon } from "@heroicons/react/solid";
 
-import WorkoutListItem from "./WorkoutListItem.jsx";
-import CreateWorkout from "./CreateWorkout.jsx";
+import CreateWorkout from "../workout-catalog-create/CreateWorkout.jsx";
+import WorkoutListItem from "./workout-catalog-item/WorkoutListItem.jsx";
 
-import workoutService from "../services/workoutService.js";
+import workoutService from "../../services/workoutService.js";
 
 export default function WorkoutList() {
     const [searchParams] = useSearchParams();

@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import WorkoutList from "./WorkoutList.jsx";
+import WorkoutList from "../workout-catalog/WorkoutList.jsx";
 
 export default function Home() {
     return (

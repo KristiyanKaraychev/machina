@@ -2,15 +2,14 @@ import "./App.css";
 
 import { Route, Routes } from "react-router";
 
-import Header from "./components/Header.jsx";
-import Footer from "./components/Footer.jsx";
-import Home from "./components/Home.jsx";
-import Workouts from "./components/Workouts.jsx";
-import Login from "./components/Login.jsx";
-import Register from "./components/Register.jsx";
-import NotFound from "./components/NotFound.jsx";
-import WorkoutList from "./components/WorkoutList.jsx";
-import WorkoutDetails from "./components/WorkoutDetails.jsx";
+import Header from "./components/header/Header.jsx";
+import Footer from "./components/footer/Footer.jsx";
+import Home from "./components/home/Home.jsx";
+import Login from "./components/auth/login/Login.jsx";
+import Register from "./components/auth/register/Register.jsx";
+import NotFound from "./components/404/NotFound.jsx";
+import WorkoutList from "./components/workout-catalog/WorkoutList.jsx";
+import WorkoutDetails from "./components/workout-catalog-details/WorkoutDetails.jsx";
 
 function App() {
     return (

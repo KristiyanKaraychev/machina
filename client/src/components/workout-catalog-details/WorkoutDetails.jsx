@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 
-import workoutService from "../services/workoutService.js";
+import workoutService from "../../services/workoutService.js";
 
 export default function WorkoutDetails() {
     const { workoutId } = useParams();

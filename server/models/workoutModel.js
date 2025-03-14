@@ -19,10 +19,12 @@ const workoutSchema = new mongoose.Schema(
             type: String,
             required: true,
         },
-        exercises: {
-            type: String,
-            required: true,
-        },
+        exercises: [
+            {
+                type: ObjectId,
+                ref: "Exercise",
+            },
+        ],
         imgURL: {
             type: String,
             default: "",
