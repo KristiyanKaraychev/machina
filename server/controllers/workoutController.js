@@ -1,3 +1,4 @@
+const { model, Types } = require("mongoose");
 const { workoutModel } = require("../models");
 const { newComment } = require("./commentController");
 
@@ -20,6 +21,10 @@ function getWorkout(req, res, next) {
                 path: "userId",
             },
         })
+        .populate({
+            path: "exercises",
+            model: "Exercise",
+        })
         .then((workout) => res.json(workout))
         .catch(next);
 }
@@ -36,7 +41,7 @@ function createWorkout(req, res, next) {
             description,
             difficulty,
             length,
-            exercises,
+            exercises: exercises.map((exercise) => exercise._id),
             imgURL,
             userId,
             subscribers: [userId],

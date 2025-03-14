@@ -64,21 +64,27 @@ export default function CreateWorkout({ onClose, onSave }) {
         setImgURL(e.target.value);
     };
 
-    // const handleSubmit = (e) => {
-    //     e.preventDefault();
+    const onSubmitHandler = (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        const workoutData = {
+            ...Object.fromEntries(formData),
+            exercises: selectedExercises,
+        };
 
-    //     const workoutData = {
-    //         workoutName,
-    //         description,
-    //         difficulty,
-    //         length: time, // Ensure consistency in naming
-    //         imgURL,
-    //         exercises: selectedExercises.map((exercise) => exercise.id), // Send only IDs
-    //     };
+        // const workoutData = {
+        //     workoutName,
+        //     description,
+        //     difficulty,
+        //     length: time, // Ensure consistency in naming
+        //     imgURL,
+        //     exercises: selectedExercises.map((exercise) => exercise.id), // Send only IDs
+        // };
 
-    //     console.log("Workout Data:", workoutData);
-    //     onSave(workoutData);
-    // };
+        console.log("Workout Data:");
+        console.log(workoutData);
+        onSave(workoutData);
+    };
 
     return (
         <>
@@ -90,7 +96,7 @@ export default function CreateWorkout({ onClose, onSave }) {
                             &times;
                         </button>
                         <h2>Create a Workout</h2>
-                        <form onSubmit={onSave}>
+                        <form onSubmit={onSubmitHandler}>
                             <div className="form-group">
                                 <label htmlFor="workoutName">
                                     Workout Title

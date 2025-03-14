@@ -96,21 +96,19 @@ export default function WorkoutList() {
         //delete from local state?
     };
 
-    const saveCreateWorkoutClickHandler = async (e) => {
-        e.preventDefault();
-        const formData = new FormData(e.target);
-        const workoutData = Object.fromEntries(formData);
-        console.log(workoutData);
+    const saveCreateWorkoutClickHandler = async (workoutData) => {
+        // e.preventDefault();
+        // const formData = new FormData(e.target);
+        // const workoutData = Object.fromEntries(formData);
+        // console.log(workoutData);
 
-        // const newWorkout = await workoutService.create({
-        //     ...workoutData,
-        //     user: { _id: "1231231" },
-        // });
-        // console.log(newWorkout);
-
-        // setWorkouts((state) => [...state, newWorkout]);
-
-        // setShowCreateWorkout(false);
+        const newWorkout = await workoutService.create({
+            ...workoutData,
+            user: { _id: "1231231" },
+        });
+        console.log(newWorkout);
+        setWorkouts((state) => [...state, newWorkout]);
+        setShowCreateWorkout(false);
     };
 
     return (
