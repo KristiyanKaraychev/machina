@@ -102,15 +102,15 @@ export default function WorkoutList() {
         const workoutData = Object.fromEntries(formData);
         console.log(workoutData);
 
-        const newWorkout = await workoutService.create({
-            ...workoutData,
-            user: { _id: "1231231" },
-        });
-        console.log(newWorkout);
+        // const newWorkout = await workoutService.create({
+        //     ...workoutData,
+        //     user: { _id: "1231231" },
+        // });
+        // console.log(newWorkout);
 
-        setWorkouts((state) => [...state, newWorkout]);
+        // setWorkouts((state) => [...state, newWorkout]);
 
-        setShowCreateWorkout(false);
+        // setShowCreateWorkout(false);
     };
 
     return (

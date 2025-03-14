@@ -200,12 +200,15 @@ form {
     position: absolute;
     max-height: 90vh;
     margin: auto;
-    border-radius: 20px;
+    /* border-radius: 20px; */
     background-color: white;
     padding: 1rem;
     box-shadow: 0 2px 8px rgb(0 0 0 / 25%);
     z-index: 30;
     margin-top: 50px;
+
+    height: auto;
+    overflow-y: auto;
 }
 
 .close-btn {
@@ -224,7 +227,7 @@ form {
     .modal {
         width: 45rem;
         left: calc(50% - 20rem);
-        border-radius: 14px;
+        /* border-radius: 14px; */
     }
 }
 

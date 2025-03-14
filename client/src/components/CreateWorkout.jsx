@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import "./CreateWorkout.css";
+import exerciseService from "../services/exerciseService.js";
 
 export default function CreateWorkout({ onClose, onSave }) {
     const [workoutName, setWorkoutName] = useState("");
@@ -8,9 +9,40 @@ export default function CreateWorkout({ onClose, onSave }) {
     const [difficulty, setDifficulty] = useState("Beginner");
     const [time, setTime] = useState("");
     const [imgURL, setImgURL] = useState("");
-    const [exercises, setExercises] = useState("");
-    // const [exercises, setExercises] = useState([]);
-    // const [exerciseInput, setExerciseInput] = useState("");
+    const [exercises, setExercises] = useState([]);
+
+    const [searchTerm, setSearchTerm] = useState("");
+    const [selectedExercises, setSelectedExercises] = useState([]);
+
+    let filteredExercises = [];
+
+    if (searchTerm !== "") {
+        filteredExercises = exercises.filter((exercise) =>
+            exercise.name.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+    }
+
+    useEffect(() => {
+        exerciseService.getExercise().then((data) => {
+            console.log(data);
+            setExercises(data);
+        });
+    }, []);
+
+    const addExercise = (exercise) => {
+        setSelectedExercises((prev) => [...prev, exercise]);
+        setExercises((prev) => prev.filter((e) => e._id !== exercise._id));
+    };
+
+    const removeExercise = (exercise) => {
+        const removedExercise = selectedExercises.find(
+            (e) => e._id === exercise._id
+        );
+        setExercises((prev) => [...prev, removedExercise]);
+        setSelectedExercises((prev) =>
+            prev.filter((e) => e._id !== exercise._id)
+        );
+    };
 
     const workoutNameChangeHandler = (e) => {
         setWorkoutName(e.target.value);
@@ -32,28 +64,20 @@ export default function CreateWorkout({ onClose, onSave }) {
         setImgURL(e.target.value);
     };
 
-    const exercisesChangeHandler = (e) => {
-        setExercises(e.target.value);
-    };
-
-    // const handleAddExercise = () => {
-    //     if (exerciseInput.trim()) {
-    //         setExercises([...exercises, exerciseInput]);
-    //         setExerciseInput("");
-    //     }
-    // };
-
     // const handleSubmit = (e) => {
     //     e.preventDefault();
+
     //     const workoutData = {
-    //         title,
+    //         workoutName,
     //         description,
     //         difficulty,
-    //         time,
-    //         exercises,
-    //         image,
+    //         length: time, // Ensure consistency in naming
+    //         imgURL,
+    //         exercises: selectedExercises.map((exercise) => exercise.id), // Send only IDs
     //     };
-    //     console.log("Workout Created:", workoutData);
+
+    //     console.log("Workout Data:", workoutData);
+    //     onSave(workoutData);
     // };
 
     return (
@@ -121,28 +145,48 @@ export default function CreateWorkout({ onClose, onSave }) {
                             </div>
 
                             <div className="form-group">
-                                <label htmlFor="exercises">Exercises</label>
-                                <div>
-                                    {/* className="exercise-input" */}
-                                    <input
-                                        id="exercises"
-                                        name="exercises"
-                                        type="text"
-                                        value={exercises}
-                                        onChange={exercisesChangeHandler}
-                                    />
-                                    {/* <button
-                                        type="button"
-                                        onClick={handleAddExercise}
-                                    >
-                                        Add
-                                    </button> */}
-                                </div>
-                                {/* <ul className="exercise-list">
-                                    {exercises.map((exercise, index) => (
-                                        <li key={index}>- {exercise}</li>
+                                <label>Search Exercises:</label>
+                                <input
+                                    type="text"
+                                    placeholder="Search exercises..."
+                                    value={searchTerm}
+                                    onChange={(e) =>
+                                        setSearchTerm(e.target.value)
+                                    }
+                                />
+
+                                <ul className="exercise-list">
+                                    {filteredExercises.map((exercise) => (
+                                        <li key={exercise._id}>
+                                            {exercise.name}
+                                            <button
+                                                type="button"
+                                                onClick={() =>
+                                                    addExercise(exercise)
+                                                }
+                                            >
+                                                Add
+                                            </button>
+                                        </li>
                                     ))}
-                                </ul> */}
+                                </ul>
+
+                                <h3>Selected Exercises:</h3>
+                                <ul className="selected-exercises">
+                                    {selectedExercises.map((exercise) => (
+                                        <li key={exercise._id}>
+                                            {exercise.name}
+                                            <button
+                                                type="button"
+                                                onClick={() =>
+                                                    removeExercise(exercise)
+                                                }
+                                            >
+                                                Remove
+                                            </button>
+                                        </li>
+                                    ))}
+                                </ul>
                             </div>
 
                             <div className="form-group">
