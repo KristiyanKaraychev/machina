@@ -56,7 +56,7 @@ const RegisterForm = () => {
                     <input
                         id="confirmPassword"
                         name="confirmPassword"
-                        type="confirmPassword"
+                        type="password"
                         value={confirmPassword}
                         onChange={confirmPasswordChangeHandler}
                         required

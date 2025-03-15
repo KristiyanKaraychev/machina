@@ -1,11 +1,36 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
+
+import { Avatar, List, Space } from "antd";
+import { LikeOutlined } from "@ant-design/icons";
 
 import workoutService from "../../services/workoutService.js";
 
 export default function WorkoutDetails() {
     const { workoutId } = useParams();
     const [workout, setWorkout] = useState({});
+
+    const commentData = [
+        {
+            title: "Ant Design Title 1",
+        },
+        {
+            title: "Ant Design Title 2",
+        },
+        {
+            title: "Ant Design Title 3",
+        },
+        {
+            title: "Ant Design Title 4",
+        },
+    ];
+
+    const IconText = ({ icon, text }) => (
+        <Space>
+            {React.createElement(icon)}
+            {text}
+        </Space>
+    );
 
     useEffect(() => {
         const abortController = new AbortController();
@@ -47,6 +72,37 @@ export default function WorkoutDetails() {
                         <p>No exercises found for this workout.</p>
                     )}
                 </ul> */}
+            </div>
+            <h2>Comments</h2>
+            <div className="workout-details comment-list">
+                <List
+                    itemLayout="horizontal"
+                    dataSource={commentData}
+                    renderItem={(item, index) => (
+                        <List.Item
+                            actions={[
+                                <a>
+                                    <IconText
+                                        icon={LikeOutlined}
+                                        text="99"
+                                        key="list-vertical-like-o"
+                                    />
+                                </a>,
+                                <a key="list-loadmore-delete">delete</a>,
+                            ]}
+                        >
+                            <List.Item.Meta
+                                avatar={
+                                    <Avatar
+                                        src={`https://api.dicebear.com/7.x/miniavs/svg?seed=${index}`}
+                                    />
+                                }
+                                title={item.title}
+                                description="Ant Design, a design language for background applications, is refined by Ant UED asdasd asdas asdas dasda sdasdasd asd asssssssasssssssasssssssasssssssasssssssasssssssasssssssasssssssasssssssasssssssasssssssasssssssasssssssasssssssasssssssSSSSSSSSsss"
+                            />
+                        </List.Item>
+                    )}
+                />
             </div>
         </>
     );

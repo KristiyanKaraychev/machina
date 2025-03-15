@@ -352,7 +352,7 @@ form {
 
 .workout-details {
     max-width: 800px;
-    margin: 40px auto;
+    margin: 30px auto;
     padding: 20px;
     background: #fff;
     border-radius: 8px;
@@ -459,4 +459,13 @@ form {
 .menu-item.active {
     font-weight: bold;
     color: #007bff;
+}
+
+/*-------------------------------------------*/
+.comment-list {
+    text-align: left;
+}
+
+.ant-list-item-meta-description {
+    overflow-wrap: break-word;
 }

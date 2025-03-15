@@ -10,8 +10,15 @@ import Register from "./components/auth/register/Register.jsx";
 import NotFound from "./components/404/NotFound.jsx";
 import WorkoutList from "./components/workout-catalog/WorkoutList.jsx";
 import WorkoutDetails from "./components/workout-catalog-details/WorkoutDetails.jsx";
+import { useState } from "react";
 
 function App() {
+    const [user, setUser] = useState();
+
+    const userLoginHandler = (user) => {
+        setUser(user);
+    };
+
     return (
         <>
             <Header />
@@ -25,7 +32,10 @@ function App() {
                         element={<WorkoutDetails />}
                     />
                     <Route path="/register" element={<Register />} />
-                    <Route path="/login" element={<Login />} />
+                    <Route
+                        path="/login"
+                        element={<Login onLogin={userLoginHandler} />}
+                    />
                     <Route path="/*" element={<NotFound />} />
                 </Routes>
             </main>

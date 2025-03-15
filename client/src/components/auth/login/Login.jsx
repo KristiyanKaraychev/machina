@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 
 import "../Auth.css";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 
-const LoginForm = () => {
+const LoginForm = ({ onLogin }) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const navigate = useNavigate();
 
     const emailChangeHandler = (e) => {
         setEmail(e.target.value);
@@ -15,17 +16,20 @@ const LoginForm = () => {
         setPassword(e.target.value);
     };
 
-    const submitHandler = (e) => {
+    const loginSubmitHandler = (e) => {
         e.preventDefault();
         console.log("Logging in with:", { email, password });
         // Handle authentication logic here
+
+        onLogin({ email, password });
+        navigate("/workouts");
     };
 
     return (
         <div className="auth-wrapper">
             <div className="auth-container">
                 <h2>Login</h2>
-                <form onSubmit={submitHandler}>
+                <form onSubmit={loginSubmitHandler}>
                     <label htmlFor="email">Email</label>
                     <input
                         id="email"
