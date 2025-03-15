@@ -466,6 +466,17 @@ form {
     text-align: left;
 }
 
+.comment-list h3 {
+    text-align: center;
+    margin: 20px auto;
+}
+
+.comment-list .submit-btn {
+    text-align: right;
+    margin-top: 25px;
+    margin-bottom: 5px;
+}
+
 .ant-list-item-meta-description {
     overflow-wrap: break-word;
 }

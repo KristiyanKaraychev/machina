@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 
-import { Avatar, List, Space } from "antd";
+import { Avatar, List, Space, Input } from "antd";
 import { LikeOutlined } from "@ant-design/icons";
 
 import workoutService from "../../services/workoutService.js";
@@ -31,6 +31,8 @@ export default function WorkoutDetails() {
             {text}
         </Space>
     );
+
+    const { TextArea } = Input;
 
     useEffect(() => {
         const abortController = new AbortController();
@@ -98,11 +100,18 @@ export default function WorkoutDetails() {
                                     />
                                 }
                                 title={item.title}
-                                description="Ant Design, a design language for background applications, is refined by Ant UED asdasd asdas asdas dasda sdasdasd asd asssssssasssssssasssssssasssssssasssssssasssssssasssssssasssssssasssssssasssssssasssssssasssssssasssssssasssssssasssssssSSSSSSSSsss"
+                                description="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ab, expedita?"
                             />
                         </List.Item>
                     )}
                 />
+                <h3>Leave a Comment Here:</h3>
+                <TextArea rows={3} />
+                <div className="submit-btn">
+                    <a key="submit-comments" className="btn">
+                        Comment
+                    </a>
+                </div>
             </div>
         </>
     );
