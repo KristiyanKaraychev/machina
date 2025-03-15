@@ -11,6 +11,7 @@ import NotFound from "./components/404/NotFound.jsx";
 import WorkoutList from "./components/workout-catalog/WorkoutList.jsx";
 import WorkoutDetails from "./components/workout-catalog-details/WorkoutDetails.jsx";
 import { useState } from "react";
+import useFetch from "./components/hooks/useFetch.js";
 
 function App() {
     const [user, setUser] = useState();
@@ -18,6 +19,8 @@ function App() {
     const userLoginHandler = (user) => {
         setUser(user);
     };
+
+    // const [pending, data] = useFetch(url)
 
     return (
         <>

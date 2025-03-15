@@ -10,7 +10,7 @@ export default function WorkoutDetails() {
     const { workoutId } = useParams();
     const [workout, setWorkout] = useState({});
 
-    const commentData = [
+    const comments = [
         {
             title: "Ant Design Title 1",
         },
@@ -47,15 +47,29 @@ export default function WorkoutDetails() {
         };
     }, [workoutId]);
 
+    const onSubmitHandler = async (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(e.target);
+        const comment = formData.get("comment");
+
+        //implement POST
+
+        console.log(comment);
+
+        //update comment state
+    };
+
     return (
         <>
             <div className="workout-details">
+                <h1 className="workout-title">{workout.workoutName}</h1>
                 <img
                     src={workout.imgURL}
                     alt={workout.workoutName}
                     className="workout-image"
                 />
-                <h1 className="workout-title">{workout.workoutName}</h1>
+
                 <p className="workout-description">{workout.description}</p>
                 <p className="workout-meta">
                     <strong>Difficulty:</strong> {workout.difficulty} |{" "}
@@ -79,7 +93,7 @@ export default function WorkoutDetails() {
             <div className="workout-details comment-list">
                 <List
                     itemLayout="horizontal"
-                    dataSource={commentData}
+                    dataSource={comments}
                     renderItem={(item, index) => (
                         <List.Item
                             actions={[
@@ -106,12 +120,21 @@ export default function WorkoutDetails() {
                     )}
                 />
                 <h3>Leave a Comment Here:</h3>
-                <TextArea rows={3} />
-                <div className="submit-btn">
-                    <a key="submit-comments" className="btn">
+                <form
+                    className="submit-comment-form"
+                    onSubmit={onSubmitHandler}
+                >
+                    <TextArea
+                        id="comment"
+                        name="comment"
+                        ty
+                        rows={3}
+                        required
+                    />{" "}
+                    <button type="submit" className="btn ">
                         Comment
-                    </a>
-                </div>
+                    </button>
+                </form>
             </div>
         </>
     );

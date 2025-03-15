@@ -369,7 +369,7 @@ form {
 
 .workout-title {
     font-size: 2rem;
-    margin-top: 10px;
+    margin-bottom: 20px;
     color: #333;
 }
 
@@ -468,13 +468,12 @@ form {
 
 .comment-list h3 {
     text-align: center;
-    margin: 20px auto;
+    margin: 30px auto 15px auto;
 }
 
-.comment-list .submit-btn {
+.submit-comment-form .btn {
     text-align: right;
-    margin-top: 25px;
-    margin-bottom: 5px;
+    margin: 20px auto 0px auto;
 }
 
 .ant-list-item-meta-description {
