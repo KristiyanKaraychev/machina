@@ -2,15 +2,22 @@
     [] Workout Model
     [] Workout Services
     [] ADD EDIT WORKOUT !!!!
-        [] Watch again  edit functionality from Workshop: Components, 3:09:50
+        [] Watch again  edit functionality from Workshop: Components -> 3:09:50 or Workshop: Routing -> 2:40:00
     [] ADD DELETE WORKOUT !!!!
         [] Are you sure you want to delete?
+            [] const hasConfirmed = confirm("Are you sure you want to delete?")
         [] Double check comments on delete functionality
 [] !!!!! REVERT
     [] // const { _id: userId } = req.user;
     [] router.post("/", auth(), workoutController.createWorkout);
-[] 
-[] 
+[] async/await syntax for getAll:
+    [] useEffect(() => {
+        (async () => {
+            const result = await workoutService.getAll(abortController);
+            setWorkouts(result);
+        })();
+    }.[])
+[] Comments: watch Workshop: Routing -> 2:52:00
 [] 
 
 [] posts page
@@ -26,10 +33,10 @@
 [] pipes
 [] likes when editing should be on the right
 [] edit profile functionality		!!!
-[] add avatar picures
+[] add avatar pictures
 [] profile photo
 [] 1 more dynamic page? (my posts)	!!!
-[] handle errors when loggin in and registering
+[] handle errors when logging in and registering
 [] add default images
 [] check if user is logged in
 [] page not found
@@ -37,7 +44,7 @@
 [] upload REST API to GITHUB		!!!!!!!!!!!!!!!!!!!
 [] welcome page (add img)
 [] change colors/layout
-[] add max lenght to text boxes
+[] add max length to text boxes
 [] mobile friendly (sandwich nav)
 [] add a text file with link to animal pictures
 [] fix error message position for small screens

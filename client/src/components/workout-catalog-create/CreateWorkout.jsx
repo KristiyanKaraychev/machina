@@ -72,15 +72,6 @@ export default function CreateWorkout({ onClose, onSave }) {
             exercises: selectedExercises,
         };
 
-        // const workoutData = {
-        //     workoutName,
-        //     description,
-        //     difficulty,
-        //     length: time, // Ensure consistency in naming
-        //     imgURL,
-        //     exercises: selectedExercises.map((exercise) => exercise.id), // Send only IDs
-        // };
-
         console.log("Workout Data:");
         console.log(workoutData);
         onSave(workoutData);

@@ -153,11 +153,15 @@ export default function WorkoutList() {
                 )}
             </div>
 
-            <section className="workout-list">
-                {displayWorkouts.map((workout) => (
-                    <WorkoutListItem key={workout._id} {...workout} />
-                ))}
-            </section>
+            {displayWorkouts.length > 0 ? (
+                <section className="workout-list">
+                    {displayWorkouts.map((workout) => (
+                        <WorkoutListItem key={workout._id} {...workout} />
+                    ))}
+                </section>
+            ) : (
+                <h1>No Workouts Yet!</h1>
+            )}
         </>
     );
 }
