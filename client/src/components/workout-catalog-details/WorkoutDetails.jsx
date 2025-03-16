@@ -80,7 +80,7 @@ export default function WorkoutDetails() {
                 <div className="exercise-container">
                     {workout.exercises?.length > 0 ? (
                         workout.exercises.map((exercise, index) => (
-                            <div key={index} className="exercise-card">
+                            <div key={index} className={`exercise-card `}>
                                 <span
                                     className={`badge ${exercise.difficulty.toLowerCase()}`}
                                 >

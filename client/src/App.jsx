@@ -8,7 +8,6 @@ import Home from "./components/home/Home.jsx";
 import Login from "./components/auth/login/Login.jsx";
 import Register from "./components/auth/register/Register.jsx";
 import NotFound from "./components/404/NotFound.jsx";
-import WorkoutList from "./components/workout-list/WorkoutList.jsx";
 import WorkoutCatalog from "./components/workout-catalog/WorkoutCatalog.jsx";
 import WorkoutDetails from "./components/workout-catalog-details/WorkoutDetails.jsx";
 import { useState } from "react";

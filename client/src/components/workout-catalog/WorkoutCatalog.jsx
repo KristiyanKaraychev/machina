@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router";
 import workoutService from "../../services/workoutService.js";
-import CreateWorkout from "../workout-catalog-create/CreateWorkout.jsx";
 import WorkoutList from "../workout-list/WorkoutList.jsx";
 import { ChevronDownIcon } from "@heroicons/react/solid";
 
@@ -10,7 +9,6 @@ export default function WorkoutCatalog() {
     const [workouts, setWorkouts] = useState([]);
     const [displayWorkouts, setDisplayWorkouts] = useState([]);
     const [isOpen, setIsOpen] = useState(false);
-    const [showCreateWorkout, setShowCreateWorkout] = useState(true);
 
     const sortOptions = [
         {
@@ -79,45 +77,8 @@ export default function WorkoutCatalog() {
         setIsOpen(!isOpen);
     };
 
-    const createWorkoutClickHandler = () => {
-        setShowCreateWorkout(true);
-    };
-
-    const closeCreateWorkoutClickHandler = () => {
-        setShowCreateWorkout(false);
-    };
-
-    const workoutDeleteHandler = async (userId) => {
-        //set userId
-        await workoutService.delete(userId);
-
-        //delete from local state?
-    };
-
-    const saveCreateWorkoutClickHandler = async (workoutData) => {
-        // e.preventDefault();
-        // const formData = new FormData(e.target);
-        // const workoutData = Object.fromEntries(formData);
-        // console.log(workoutData);
-
-        const newWorkout = await workoutService.create({
-            ...workoutData,
-            user: { _id: "1231231" },
-        });
-        console.log(newWorkout);
-        setWorkouts((state) => [...state, newWorkout]);
-        setShowCreateWorkout(false);
-    };
-
     return (
         <>
-            {showCreateWorkout && (
-                <CreateWorkout
-                    onClose={closeCreateWorkoutClickHandler}
-                    onSave={saveCreateWorkoutClickHandler}
-                />
-            )}
-
             <div className="menu-container">
                 <button
                     className="menu-button"

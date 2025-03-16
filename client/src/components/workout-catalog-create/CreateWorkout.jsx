@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 
 import "./CreateWorkout.css";
 import exerciseService from "../../services/exerciseService.js";
+import workoutService from "../../services/workoutService.js";
+import { useNavigate } from "react-router";
 
 export default function CreateWorkout({ onClose, onSave }) {
     const [workoutName, setWorkoutName] = useState("");
@@ -10,9 +12,10 @@ export default function CreateWorkout({ onClose, onSave }) {
     const [time, setTime] = useState("");
     const [imgURL, setImgURL] = useState("");
     const [exercises, setExercises] = useState([]);
-
     const [searchTerm, setSearchTerm] = useState("");
     const [selectedExercises, setSelectedExercises] = useState([]);
+
+    const navigate = useNavigate();
 
     let filteredExercises = [];
 
@@ -24,7 +27,9 @@ export default function CreateWorkout({ onClose, onSave }) {
 
     useEffect(() => {
         exerciseService.getExercise().then((data) => {
+            console.log("exercises:");
             console.log(data);
+
             setExercises(data);
         });
     }, []);
@@ -64,7 +69,14 @@ export default function CreateWorkout({ onClose, onSave }) {
         setImgURL(e.target.value);
     };
 
-    const onSubmitHandler = (e) => {
+    const workoutDeleteHandler = async (userId) => {
+        //set userId
+        await workoutService.delete(userId);
+
+        //delete from local state?
+    };
+
+    const onSubmitHandler = async (e) => {
         e.preventDefault();
         const formData = new FormData(e.target);
         const workoutData = {
@@ -74,7 +86,14 @@ export default function CreateWorkout({ onClose, onSave }) {
 
         console.log("Workout Data:");
         console.log(workoutData);
-        onSave(workoutData);
+
+        const newWorkout = await workoutService.create({
+            ...workoutData,
+            user: { _id: "1231231" },
+        });
+        console.log(newWorkout);
+        onSave();
+        navigate("/workouts");
     };
 
     return (
