@@ -7,6 +7,14 @@ export default {
 
         return result;
     },
+    async getLastThree() {
+        const response = await fetch(`${environment.apiURL}/workouts`);
+        const result = await response.json();
+
+        result.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+
+        return result.slice(0, 3);
+    },
     async getOne(workoutId, signal) {
         const response = await fetch(
             `${environment.apiURL}/workouts/${workoutId}`,

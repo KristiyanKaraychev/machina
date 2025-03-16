@@ -311,7 +311,12 @@ form {
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 80px 20px;
+    padding: 50px 20px;
+}
+
+.home h1 {
+    font-size: 46px;
+    margin-bottom: 10px;
 }
 
 .home h2 {
@@ -323,6 +328,11 @@ form {
     font-size: 18px;
     opacity: 0.7;
     margin-bottom: 20px;
+}
+
+.home-workout-list {
+    font-size: 24px;
+    opacity: 0.7;
 }
 
 /*-------------------------------------------*/

@@ -8,7 +8,8 @@ import Home from "./components/home/Home.jsx";
 import Login from "./components/auth/login/Login.jsx";
 import Register from "./components/auth/register/Register.jsx";
 import NotFound from "./components/404/NotFound.jsx";
-import WorkoutList from "./components/workout-catalog/WorkoutList.jsx";
+import WorkoutList from "./components/workout-list/WorkoutList.jsx";
+import WorkoutCatalog from "./components/workout-catalog/WorkoutCatalog.jsx";
 import WorkoutDetails from "./components/workout-catalog-details/WorkoutDetails.jsx";
 import { useState } from "react";
 import useFetch from "./components/hooks/useFetch.js";
@@ -29,7 +30,7 @@ function App() {
             <main>
                 <Routes>
                     <Route path="/" element={<Home />} />
-                    <Route path="/workouts" element={<WorkoutList />} />
+                    <Route path="/workouts" element={<WorkoutCatalog />} />
                     <Route
                         path="/workouts/:workoutId"
                         element={<WorkoutDetails />}

@@ -1,13 +1,11 @@
 import { useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router";
+import workoutService from "../../services/workoutService.js";
+import CreateWorkout from "../workout-catalog-create/CreateWorkout.jsx";
+import WorkoutList from "../workout-list/WorkoutList.jsx";
 import { ChevronDownIcon } from "@heroicons/react/solid";
 
-import CreateWorkout from "../workout-catalog-create/CreateWorkout.jsx";
-import WorkoutListItem from "./workout-catalog-item/WorkoutListItem.jsx";
-
-import workoutService from "../../services/workoutService.js";
-
-export default function WorkoutList() {
+export default function WorkoutCatalog() {
     const [searchParams] = useSearchParams();
     const [workouts, setWorkouts] = useState([]);
     const [displayWorkouts, setDisplayWorkouts] = useState([]);
@@ -153,15 +151,7 @@ export default function WorkoutList() {
                 )}
             </div>
 
-            {displayWorkouts.length > 0 ? (
-                <section className="workout-list">
-                    {displayWorkouts.map((workout) => (
-                        <WorkoutListItem key={workout._id} {...workout} />
-                    ))}
-                </section>
-            ) : (
-                <h1>No Workouts Yet!</h1>
-            )}
+            <WorkoutList workouts={displayWorkouts} />
         </>
     );
 }
