@@ -11,6 +11,8 @@ router.post("/", workoutController.createWorkout);
 router.get("/:workoutId", workoutController.getWorkout);
 router.post("/:workoutId", auth(), commentController.createComment);
 router.put("/:workoutId", auth(), workoutController.subscribe);
+router.put("/:workoutId/edit", auth(), workoutController.editWorkout);
+router.delete("/:workoutId", auth(), workoutController.deleteWorkout);
 router.put(
     "/:workoutId/comments/:commentId",
     auth(),
