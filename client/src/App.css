@@ -238,7 +238,7 @@ form {
     grid-template-columns: 1fr;
     gap: 28px;
     width: 90%;
-    margin: 80px auto;
+    margin: 0px auto 50px auto;
 }
 
 @media (min-width: 320px) {
@@ -352,7 +352,7 @@ form {
 
 .workout-details {
     max-width: 800px;
-    margin: 30px auto;
+    margin: 20px auto;
     padding: 20px;
     background: #fff;
     border-radius: 8px;
@@ -369,7 +369,6 @@ form {
 
 .workout-title {
     font-size: 2rem;
-    margin-bottom: 20px;
     color: #333;
 }
 
@@ -377,33 +376,133 @@ form {
     font-size: 1.2rem;
     color: #666;
     margin-top: 10px;
+    overflow-wrap: break-word;
 }
 
 .workout-meta {
     font-size: 1rem;
     color: #444;
+    margin: 10px 0px 10px 0px;
+}
+
+.exercise-heading {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.exercises-details {
+    max-width: 800px;
+    margin: 20px auto;
+    text-align: center;
+}
+
+.exercise-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
+}
+
+.exercise-card {
+    background: linear-gradient(135deg, #f9f9f9, #ffffff);
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    transition: transform 0.2s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+}
+
+.exercise-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 12px;
+    padding: 6px 10px;
+    border-radius: 15px;
+    color: #fff;
+    font-weight: bold;
+}
+
+.beginner {
+    background-color: #4caf50;
+}
+
+.intermediate {
+    background-color: #ff9800;
+}
+
+.advanced {
+    background-color: #f44336;
+}
+
+.exercise-name {
+    font-size: 20px;
+    font-weight: bold;
+    color: #222;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.exercise-card p {
+    font-size: 15px;
+    color: #444;
+    margin: 5px 0;
+    text-align: center;
+}
+
+.exercise-details {
     margin-top: 10px;
+    font-size: 14px;
 }
 
-.exercise-list {
-    list-style: none;
-    padding: 0;
-    margin-top: 20px;
+.exercise-details summary {
+    cursor: pointer;
+    font-weight: bold;
+    color: #007bff;
+    transition: color 0.3s;
 }
 
-.exercise-item {
-    background: #f8f9fa;
-    padding: 10px;
-    border-radius: 5px;
-    margin-bottom: 5px;
+.exercise-details summary:hover {
+    color: #0056b3;
+}
+
+.exercise-instructions {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #666;
+    margin-top: 10px;
+    padding-left: 10px;
+    border-left: 3px solid #007bff;
+}
+
+.no-exercises {
+    font-size: 18px;
+    color: #888;
+    text-align: center;
+    font-style: italic;
+    padding: 20px;
 }
 
 /*-------------------------------------------*/
 
 .menu-container {
     position: relative;
-    display: inline-block;
+    left: 5vw;
     text-align: left;
+    margin: 30px 0px 10px 0px;
+    display: block;
+    width: 200px;
 }
 
 .menu-button {

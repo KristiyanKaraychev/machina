@@ -63,31 +63,57 @@ export default function WorkoutDetails() {
     return (
         <>
             <div className="workout-details">
-                <h1 className="workout-title">{workout.workoutName}</h1>
+                <h1 className="workout-title">{workout.workoutName}</h1>{" "}
+                <p className="workout-meta">
+                    <strong>Difficulty:</strong> {workout.difficulty} |{" "}
+                    <strong>Length:</strong> {workout.length} min
+                </p>
                 <img
                     src={workout.imgURL}
                     alt={workout.workoutName}
                     className="workout-image"
                 />
-
                 <p className="workout-description">{workout.description}</p>
-                <p className="workout-meta">
-                    <strong>Difficulty:</strong> {workout.difficulty} |{" "}
-                    <strong>Length:</strong> {workout.length} min
-                </p>
-
-                <h2>Exercises</h2>
-                {/* <ul className="exercise-list">
-                    {workout.exercises.length > 0 ? (
+            </div>
+            <h2>Exercises</h2>
+            <div className="exercises-details">
+                <div className="exercise-container">
+                    {workout.exercises?.length > 0 ? (
                         workout.exercises.map((exercise, index) => (
-                            <li key={index} className="exercise-item">
-                                {exercise.name}
-                            </li>
+                            <div key={index} className="exercise-card">
+                                <span
+                                    className={`badge ${exercise.difficulty.toLowerCase()}`}
+                                >
+                                    {exercise.difficulty}
+                                </span>
+                                <h3 className="exercise-name">
+                                    {exercise.name}
+                                </h3>
+                                <p>
+                                    <strong>Muscle Group:</strong>{" "}
+                                    {exercise.muscle}
+                                </p>
+                                <p>
+                                    <strong>Type:</strong> {exercise.type}
+                                </p>
+                                <p>
+                                    <strong>Equipment:</strong>{" "}
+                                    {exercise.equipment}
+                                </p>
+                                <details className="exercise-details">
+                                    <summary>Instructions</summary>
+                                    <p className="exercise-instructions">
+                                        {exercise.instructions}
+                                    </p>
+                                </details>
+                            </div>
                         ))
                     ) : (
-                        <p>No exercises found for this workout.</p>
+                        <p className="no-exercises">
+                            No exercises found for this workout.
+                        </p>
                     )}
-                </ul> */}
+                </div>
             </div>
             <h2>Comments</h2>
             <div className="workout-details comment-list">
@@ -124,13 +150,7 @@ export default function WorkoutDetails() {
                     className="submit-comment-form"
                     onSubmit={onSubmitHandler}
                 >
-                    <TextArea
-                        id="comment"
-                        name="comment"
-                        ty
-                        rows={3}
-                        required
-                    />{" "}
+                    <TextArea id="comment" name="comment" rows={3} required />{" "}
                     <button type="submit" className="btn ">
                         Comment
                     </button>
