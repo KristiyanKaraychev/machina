@@ -5,6 +5,7 @@ import { Avatar, List, Space, Input } from "antd";
 import { LikeOutlined } from "@ant-design/icons";
 
 import workoutService from "../../services/workoutService.js";
+import SubscribeStar from "../workout-catalog-subscribe-star/SubscribeStar.jsx";
 
 export default function WorkoutDetails() {
     const { workoutId } = useParams();
@@ -63,6 +64,7 @@ export default function WorkoutDetails() {
     return (
         <>
             <div className="workout-details">
+                <SubscribeStar />
                 <h1 className="workout-title">{workout.workoutName}</h1>{" "}
                 <p className="workout-meta">
                     <strong>Difficulty:</strong> {workout.difficulty} |{" "}

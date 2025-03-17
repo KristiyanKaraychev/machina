@@ -20,6 +20,33 @@
 [] Comments: watch Workshop: Routing -> 2:52:00
 [] 
 
+//// must do ////
+[] Login
+[] Register
+[] Logout
+[] Route Guard
+[] Filter Navigation
+[] Edit Workout
+[] Delete Workout
+[] Subscribe
+[] Comment
+[] Display comments dynamically
+[] Like comment
+[] Delete comment
+[] Load user profile dynamically
+[] Edit user profile
+[] Error Handling
+[] Add validation to forms
+//// less important ////
+[] Add default avatar images
+[] Set default workout image
+[] Mobile friendly?
+[] Add difficulty to workout cards
+//// done ////
+
+
+
+'''''''''''''''
 [] posts page
 [] rest api
 [] authentication

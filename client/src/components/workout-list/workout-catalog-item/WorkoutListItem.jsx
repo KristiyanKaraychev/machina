@@ -1,4 +1,5 @@
 import { Link } from "react-router";
+import SubscribeStar from "../../workout-catalog-subscribe-star/SubscribeStar.jsx";
 
 export default function WorkoutListItem({
     _id,
@@ -11,6 +12,7 @@ export default function WorkoutListItem({
         <>
             <li className="workout-item">
                 <Link key={_id} to={`/workouts/${_id}`}>
+                    <SubscribeStar />
                     <h3>{workoutName}</h3>
                     <img src={imgURL} alt={workoutName}></img>
                     <p>
@@ -18,14 +20,6 @@ export default function WorkoutListItem({
                     </p>
                 </Link>
             </li>
-
-            {/* <a href="/" className="workout-item">
-                <h3>{workoutName}</h3>
-                <img src={imgURL}></img>
-                <p>
-                    {length} min | {difficulty}
-                </p>
-            </a> */}
         </>
     );
 }
