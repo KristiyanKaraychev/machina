@@ -10,6 +10,7 @@ import Register from "./components/auth/register/Register.jsx";
 import NotFound from "./components/404/NotFound.jsx";
 import WorkoutCatalog from "./components/workout-catalog/WorkoutCatalog.jsx";
 import WorkoutDetails from "./components/workout-catalog-details/WorkoutDetails.jsx";
+import Subscriptions from "./components/Subscriptions/Subscriptions.jsx";
 import { useState } from "react";
 import useFetch from "./components/hooks/useFetch.js";
 import Profile from "./components/profile/Profile.jsx";
@@ -35,6 +36,8 @@ function App() {
                         path="/workouts/:workoutId"
                         element={<WorkoutDetails />}
                     />
+                    <Route path="/subscriptions" element={<Subscriptions />} />
+                    <Route path="/profile" element={<Profile />} />
                     <Route path="/profile" element={<Profile />} />
                     <Route path="/register" element={<Register />} />
                     <Route

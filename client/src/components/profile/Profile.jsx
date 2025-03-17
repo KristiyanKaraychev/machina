@@ -20,6 +20,7 @@ export default function Profile() {
     return (
         <>
             <div className="profile-wrapper">
+                <h1>Your Profile</h1>
                 <div className="profile-container">
                     <div className="profile-header">
                         <img

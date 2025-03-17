@@ -617,11 +617,18 @@ form {
 .profile-wrapper {
     height: 85vh;
     display: flex;
+    flex-direction: column;
+}
+
+.profile-wrapper h1 {
+    margin-top: 60px;
+    margin-bottom: 40px;
 }
 
 .profile-container {
-    width: 40vw;
+    width: 500px;
     margin: auto;
+    margin-top: 0px;
     padding: 30px;
     background: #fff;
     border-radius: 10px;
