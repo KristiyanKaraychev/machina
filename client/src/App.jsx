@@ -12,6 +12,7 @@ import WorkoutCatalog from "./components/workout-catalog/WorkoutCatalog.jsx";
 import WorkoutDetails from "./components/workout-catalog-details/WorkoutDetails.jsx";
 import { useState } from "react";
 import useFetch from "./components/hooks/useFetch.js";
+import Profile from "./components/profile/Profile.jsx";
 
 function App() {
     const [user, setUser] = useState();
@@ -34,6 +35,7 @@ function App() {
                         path="/workouts/:workoutId"
                         element={<WorkoutDetails />}
                     />
+                    <Route path="/profile" element={<Profile />} />
                     <Route path="/register" element={<Register />} />
                     <Route
                         path="/login"

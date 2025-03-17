@@ -10,7 +10,7 @@
 [] !!!!! REVERT
     [] // const { _id: userId } = req.user;
     [] router.post("/", auth(), workoutController.createWorkout);
-[] async/await syntax for getAll:
+[] BONUS: async/await syntax for getAll:
     [] useEffect(() => {
         (async () => {
             const result = await workoutService.getAll(abortController);
