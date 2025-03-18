@@ -1,19 +1,28 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link, NavLink } from "react-router";
+
 import CreateWorkout from "../workout-catalog-create/CreateWorkout.jsx";
 
-const navigation = [
-    { name: "Home", path: "/" },
-    { name: "Workouts", path: "/workouts" },
-    { name: "Subscriptions", path: "/subscriptions" },
-    { name: "Profile", path: "/profile" },
-    { name: "Register", path: "/register" },
-    { name: "Login", path: "/login" },
-    { name: "Logout", path: "/logout" },
-];
+import { UserContext } from "../../contexts/UserContext.js";
 
 export default function Header() {
     const [showCreateWorkout, setShowCreateWorkout] = useState(false);
+    const { _id } = useContext(UserContext);
+    const isLoggedIn = !!_id;
+
+    const navigation = isLoggedIn
+        ? [
+              { name: "Home", path: "/" },
+              { name: "Workouts", path: "/workouts" },
+              { name: "Profile", path: "/profile" },
+              { name: "Logout", path: "/logout" },
+          ]
+        : [
+              { name: "Home", path: "/" },
+              { name: "Workouts", path: "/workouts" },
+              { name: "Login", path: "/login" },
+              { name: "Register", path: "/register" },
+          ];
 
     const createWorkoutClickHandler = () => {
         setShowCreateWorkout(true);
@@ -44,7 +53,7 @@ export default function Header() {
                 </h1>
 
                 <nav className="nav-left">
-                    {navigation.slice(0, 3).map((item) => (
+                    {navigation.slice(0, 2).map((item) => (
                         <NavLink
                             key={item.name}
                             to={item.path}
@@ -55,17 +64,30 @@ export default function Header() {
                             {item.name}
                         </NavLink>
                     ))}
-                    <NavLink
-                        className={"btn"}
-                        key={"Create"}
-                        onClick={createWorkoutClickHandler}
-                    >
-                        + Create Workout
-                    </NavLink>
+                    {isLoggedIn && (
+                        <>
+                            <NavLink
+                                key={"Subscriptions"}
+                                to={"/subscriptions"}
+                                style={({ isActive }) =>
+                                    isActive ? { color: "#007bff" } : {}
+                                }
+                            >
+                                Subscriptions
+                            </NavLink>
+                            <NavLink
+                                className={"btn"}
+                                key={"Create"}
+                                onClick={createWorkoutClickHandler}
+                            >
+                                + Create Workout
+                            </NavLink>
+                        </>
+                    )}
                 </nav>
 
                 <nav className="nav-right">
-                    {navigation.slice(3).map((item) => (
+                    {navigation.slice(2).map((item) => (
                         <NavLink
                             key={item.name}
                             to={item.path}

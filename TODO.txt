@@ -7,9 +7,9 @@
         [] Are you sure you want to delete?
             [] const hasConfirmed = confirm("Are you sure you want to delete?")
         [] Double check comments on delete functionality
-[] !!!!! REVERT
-    [] // const { _id: userId } = req.user;
-    [] router.post("/", auth(), workoutController.createWorkout);
+[X] !!!!! REVERT
+    [X] // const { _id: userId } = req.user;
+    [X] router.post("/", auth(), workoutController.createWorkout);
 [] BONUS: async/await syntax for getAll:
     [] useEffect(() => {
         (async () => {
@@ -21,7 +21,6 @@
 [] 
 
 //// must do ////
-
 [] Route Guard - in future lecture
 [] Filter Navigation
 [] Edit Workout
@@ -36,6 +35,7 @@
 [] Error Handling (catch and handle each request)
 [] Add validation to forms
 [] README
+[] Check issue: catalog not updating when new workout is created
 //// less important ////
 [] Add default avatar images
 [] Set default workout image
