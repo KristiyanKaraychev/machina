@@ -1,54 +1,65 @@
-import React, { useState } from "react";
-
 import "../Auth.css";
-import { Link } from "react-router";
+
+import React, { useActionState, useContext } from "react";
+import { Link, useNavigate } from "react-router";
+
+import { useRegister } from "../../../api/userApi.js";
+import { UserContext } from "../../../contexts/UserContext.js";
 
 const RegisterForm = () => {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [confirmPassword, setConfirmPassword] = useState("");
+    const navigate = useNavigate();
+    const { register } = useRegister();
+    const { userLoginHandler } = useContext(UserContext);
 
-    const emailChangeHandler = (e) => {
-        setEmail(e.target.value);
+    const registerHandler = async (_, formData) => {
+        const { username, email, password, confirmPassword } =
+            Object.fromEntries(formData);
+
+        if (password !== confirmPassword) {
+            console.log("Password miss-match!");
+            return;
+        }
+
+        const authData = await register(
+            username,
+            email,
+            password,
+            confirmPassword
+        );
+
+        console.log(authData);
+
+        if (authData.message) {
+            console.log(authData.message);
+            return;
+        }
+
+        userLoginHandler(authData);
+        navigate("/");
     };
 
-    const passwordChangeHandler = (e) => {
-        setPassword(e.target.value);
-    };
-
-    const confirmPasswordChangeHandler = (e) => {
-        setConfirmPassword(e.target.value);
-    };
-
-    const submitHandler = (e) => {
-        e.preventDefault();
-        console.log("Registering with:", { email, password });
-        // Handle registration logic here
-    };
+    const [_, registerAction, isPending] = useActionState(registerHandler, {
+        email: "",
+        password: "",
+    });
 
     return (
         <div className="auth-wrapper">
             <div className="auth-container">
                 <h2>Sign Up</h2>
                 <p>Create your account.</p>
-                <form onSubmit={submitHandler}>
+                <form action={registerAction}>
+                    <label htmlFor="username">Username</label>
+                    <input id="username" name="username" type="text" required />
+
                     <label htmlFor="email">Email</label>
-                    <input
-                        id="email"
-                        name="email"
-                        type="email"
-                        value={email}
-                        onChange={emailChangeHandler}
-                        required
-                    />
+                    <input id="email" name="email" type="email" required />
 
                     <label htmlFor="password">Password</label>
                     <input
                         id="password"
                         name="password"
                         type="password"
-                        value={password}
-                        onChange={passwordChangeHandler}
                         required
                     />
 
@@ -57,12 +68,10 @@ const RegisterForm = () => {
                         id="confirmPassword"
                         name="confirmPassword"
                         type="password"
-                        value={confirmPassword}
-                        onChange={confirmPasswordChangeHandler}
                         required
                     />
 
-                    <button type="submit" className="btn">
+                    <button type="submit" className="btn" disabled={isPending}>
                         Sign Up
                     </button>
                 </form>

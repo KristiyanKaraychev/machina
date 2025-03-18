@@ -1,42 +1,71 @@
-import React, { useState } from "react";
+import React, { useActionState, useContext } from "react";
 
 import "../Auth.css";
+
 import { Link, useNavigate } from "react-router";
+import { useLogin } from "../../../api/userApi.js";
+import { UserContext } from "../../../contexts/UserContext.js";
 
-const LoginForm = ({ onLogin }) => {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+const LoginForm = () => {
+    // const [email, setEmail] = useState("");
+    // const [password, setPassword] = useState("");
+
+    // const emailChangeHandler = (e) => {
+    //     setEmail(e.target.value);
+    // };
+
+    // const passwordChangeHandler = (e) => {
+    //     setPassword(e.target.value);
+    // };
+
+    // const loginSubmitHandler = (e) => {
+    //     e.preventDefault();
+    //     console.log("Logging in with:", { email, password });
+    //     // Handle authentication logic here
+
+    //     onLogin({ email, password });
+    //     navigate("/workouts");
+    // };
+
     const navigate = useNavigate();
+    const { login } = useLogin();
+    const { userLoginHandler } = useContext(UserContext);
 
-    const emailChangeHandler = (e) => {
-        setEmail(e.target.value);
+    const loginHandler = async (_, formData) => {
+        const fromValues = Object.fromEntries(formData);
+
+        console.log("Logging in with:", fromValues);
+
+        const authData = await login(fromValues.email, fromValues.password);
+
+        console.log(authData);
+
+        if (authData.message) {
+            console.log(authData.message);
+            return;
+        }
+
+        userLoginHandler(authData);
+        navigate("/");
     };
 
-    const passwordChangeHandler = (e) => {
-        setPassword(e.target.value);
-    };
-
-    const loginSubmitHandler = (e) => {
-        e.preventDefault();
-        console.log("Logging in with:", { email, password });
-        // Handle authentication logic here
-
-        onLogin({ email, password });
-        navigate("/workouts");
-    };
+    const [_, loginAction, isPending] = useActionState(loginHandler, {
+        email: "",
+        password: "",
+    });
 
     return (
         <div className="auth-wrapper">
             <div className="auth-container">
                 <h2>Login</h2>
-                <form onSubmit={loginSubmitHandler}>
+                <form action={loginAction}>
                     <label htmlFor="email">Email</label>
                     <input
                         id="email"
                         name="email"
                         type="email"
-                        value={email}
-                        onChange={emailChangeHandler}
+                        // value={email}
+                        // onChange={emailChangeHandler}
                         required
                     />
 
@@ -45,12 +74,12 @@ const LoginForm = ({ onLogin }) => {
                         id="password"
                         name="password"
                         type="password"
-                        value={password}
-                        onChange={passwordChangeHandler}
+                        // value={password}
+                        // onChange={passwordChangeHandler}
                         required
                     />
 
-                    <button type="submit" className="btn">
+                    <button type="submit" className="btn" disabled={isPending}>
                         Login
                     </button>
                 </form>
