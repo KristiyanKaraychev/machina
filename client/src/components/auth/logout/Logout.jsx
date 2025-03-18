@@ -4,5 +4,5 @@ import { useLogout } from "../../../api/userApi.js";
 export default function Logout() {
     const { isLoggedOut } = useLogout();
 
-    return isLoggedOut ? <Navigate to="/" /> : null;
+    return isLoggedOut ? <Navigate key="Home" to="/" /> : null;
 }

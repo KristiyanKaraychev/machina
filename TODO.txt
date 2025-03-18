@@ -21,10 +21,8 @@
 [] 
 
 //// must do ////
-[] Login
-[] Register
-[] Logout
-[] Route Guard
+
+[] Route Guard - in future lecture
 [] Filter Navigation
 [] Edit Workout
 [] Delete Workout
@@ -37,14 +35,19 @@
 [] Edit user profile
 [] Error Handling (catch and handle each request)
 [] Add validation to forms
+[] README
 //// less important ////
 [] Add default avatar images
 [] Set default workout image
 [] Mobile friendly?
 [] Add difficulty to workout cards
 [] Remove AccessToken?
+[] Remove Vite icon
+[] Change tab names
 //// done ////
-
+[X] Login
+[X] Register
+[X] Logout
 
 
 '''''''''''''''

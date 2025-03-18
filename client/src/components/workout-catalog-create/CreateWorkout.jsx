@@ -89,7 +89,6 @@ export default function CreateWorkout({ onClose, onSave }) {
 
         const newWorkout = await workoutService.create({
             ...workoutData,
-            user: { _id: "1231231" },
         });
         console.log(newWorkout);
         onSave();

@@ -32,8 +32,8 @@ function getWorkout(req, res, next) {
 function createWorkout(req, res, next) {
     const { workoutName, description, difficulty, length, exercises, imgURL } =
         req.body;
-    // const { _id: userId } = req.user;
-    const { _id: userId } = "test";
+
+    const { _id: userId } = req.user;
 
     workoutModel
         .create({
@@ -50,6 +50,27 @@ function createWorkout(req, res, next) {
             // newComment(commentText, userId, workout._id).then(
             //     ([_, updatedWorkout]) => res.status(200).json(updatedWorkout)
             // );
+
+            // res.status(200).json(workout);
+
+            Promise.all([
+                userModel.updateOne(
+                    { _id: userId },
+                    {
+                        $addToSet: { workouts: workout._id },
+                    }
+                ),
+                workoutModel.findByIdAndUpdate(
+                    { _id: workout._id },
+                    {
+                        $addToSet: { subscribers: userId },
+                    },
+                    { new: true }
+                ),
+            ]).then(([_, updatedWorkout]) =>
+                res.status(200).json(updatedWorkout)
+            );
+
             res.status(200).json(workout);
         })
         .catch(next);

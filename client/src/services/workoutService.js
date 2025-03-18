@@ -31,6 +31,7 @@ export default {
             headers: {
                 "Content-Type": "application/json",
             },
+            credentials: "include",
             body: JSON.stringify(workoutData),
         });
 
@@ -43,6 +44,9 @@ export default {
             `${environment.apiURL}/workouts/${workoutId}`,
             {
                 method: "DELETE",
+            },
+            {
+                credentials: "include",
             }
         );
 

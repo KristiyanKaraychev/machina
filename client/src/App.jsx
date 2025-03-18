@@ -31,6 +31,7 @@ function App() {
         setAuthData({});
     };
 
+    //check local storage for user
     useEffect(() => {
         console.log("Initial load.");
 
