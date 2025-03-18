@@ -18,6 +18,7 @@ import Profile from "./components/profile/Profile.jsx";
 import Logout from "./components/auth/logout/Logout.jsx";
 
 import AuthGuard from "./guards/AuthGuard.jsx";
+import GuestGuard from "./guards/GuestGuard.jsx";
 
 function App() {
     const [authData, setAuthData] = useState(null);
@@ -82,8 +83,22 @@ function App() {
                                 </AuthGuard>
                             }
                         />
-                        <Route path="/login" element={<Login />} />
-                        <Route path="/register" element={<Register />} />
+                        <Route
+                            path="/login"
+                            element={
+                                <GuestGuard>
+                                    <Login />
+                                </GuestGuard>
+                            }
+                        />
+                        <Route
+                            path="/register"
+                            element={
+                                <GuestGuard>
+                                    <Register />
+                                </GuestGuard>
+                            }
+                        />
                         <Route
                             path="/logout"
                             element={

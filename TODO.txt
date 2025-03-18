@@ -21,8 +21,7 @@
 [] 
 
 //// must do ////
-[] Route Guard - in future lecture
-[] Filter Navigation
+
 [] Edit Workout
 [] Delete Workout
 [] Subscribe
@@ -48,7 +47,8 @@
 [X] Login
 [X] Register
 [X] Logout
-
+[X] Route Guard - in future lecture
+[X] Filter Navigation
 
 '''''''''''''''
 [] posts page
