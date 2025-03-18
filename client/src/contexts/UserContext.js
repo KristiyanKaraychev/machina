@@ -5,4 +5,5 @@ export const UserContext = createContext({
     username: "",
     userLoginHandler: () => null,
     userLogoutHandler: () => null,
+    isLoggedIn: () => null,
 });

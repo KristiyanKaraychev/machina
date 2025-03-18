@@ -7,10 +7,9 @@ import { UserContext } from "../../contexts/UserContext.js";
 
 export default function Header() {
     const [showCreateWorkout, setShowCreateWorkout] = useState(false);
-    const { _id } = useContext(UserContext);
-    const isLoggedIn = !!_id;
+    const { isLoggedIn } = useContext(UserContext);
 
-    const navigation = isLoggedIn
+    const navigation = isLoggedIn()
         ? [
               { name: "Home", path: "/" },
               { name: "Workouts", path: "/workouts" },
@@ -64,7 +63,7 @@ export default function Header() {
                             {item.name}
                         </NavLink>
                     ))}
-                    {isLoggedIn && (
+                    {isLoggedIn() && (
                         <>
                             <NavLink
                                 key={"Subscriptions"}

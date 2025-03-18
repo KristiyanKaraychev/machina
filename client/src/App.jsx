@@ -17,19 +17,11 @@ import Subscriptions from "./components/Subscriptions/Subscriptions.jsx";
 import Profile from "./components/profile/Profile.jsx";
 import Logout from "./components/auth/logout/Logout.jsx";
 
+import AuthGuard from "./guards/AuthGuard.jsx";
+
 function App() {
     const [authData, setAuthData] = useState(null);
     const userKey = "[user]";
-
-    const userLoginHandler = (resultData) => {
-        localStorage.setItem(userKey, JSON.stringify(resultData));
-        setAuthData(resultData);
-    };
-
-    const userLogoutHandler = () => {
-        localStorage.removeItem(userKey);
-        setAuthData({});
-    };
 
     //check local storage for user
     useEffect(() => {
@@ -42,10 +34,27 @@ function App() {
         }
     }, []);
 
+    const isLoggedIn = () => !!authData?._id;
+
+    const userLoginHandler = (resultData) => {
+        localStorage.setItem(userKey, JSON.stringify(resultData));
+        setAuthData(resultData);
+    };
+
+    const userLogoutHandler = () => {
+        localStorage.removeItem(userKey);
+        setAuthData({});
+    };
+
     return (
         <>
             <UserContext.Provider
-                value={{ ...authData, userLoginHandler, userLogoutHandler }}
+                value={{
+                    ...authData,
+                    userLoginHandler,
+                    userLogoutHandler,
+                    isLoggedIn,
+                }}
             >
                 <Header />
 
@@ -59,13 +68,30 @@ function App() {
                         />
                         <Route
                             path="/subscriptions"
-                            element={<Subscriptions />}
+                            element={
+                                <AuthGuard>
+                                    <Subscriptions />
+                                </AuthGuard>
+                            }
                         />
-                        <Route path="/profile" element={<Profile />} />
-                        <Route path="/profile" element={<Profile />} />
+                        <Route
+                            path="/profile"
+                            element={
+                                <AuthGuard>
+                                    <Profile />
+                                </AuthGuard>
+                            }
+                        />
                         <Route path="/login" element={<Login />} />
                         <Route path="/register" element={<Register />} />
-                        <Route path="/logout" element={<Logout />} />
+                        <Route
+                            path="/logout"
+                            element={
+                                <AuthGuard>
+                                    <Logout />
+                                </AuthGuard>
+                            }
+                        />
                         <Route path="/*" element={<NotFound />} />
                     </Routes>
                 </main>
