@@ -87,11 +87,16 @@ export default function CreateWorkout({ onClose, onSave }) {
         console.log("Workout Data:");
         console.log(workoutData);
 
-        const newWorkout = await workoutService.create({
-            ...workoutData,
-        });
-        console.log(newWorkout);
-        onSave();
+        try {
+            const newWorkout = await workoutService.create({
+                ...workoutData,
+            });
+            console.log(newWorkout);
+            onSave();
+        } catch (error) {
+            console.log(error);
+        }
+
         navigate("/workouts");
     };
 
