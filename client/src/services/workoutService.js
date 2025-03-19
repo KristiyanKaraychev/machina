@@ -54,4 +54,20 @@ export default {
 
         return result;
     },
+    async subscribe(workoutId) {
+        const response = await fetch(
+            `${environment.apiURL}/workouts/${workoutId}`,
+            {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                credentials: "include",
+            }
+        );
+
+        const result = await response.json();
+
+        return result;
+    },
 };

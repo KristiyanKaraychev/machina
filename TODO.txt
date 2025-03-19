@@ -21,14 +21,9 @@
 [] 
 
 //// must do ////
-
 [] Edit Workout
 [] Delete Workout
-[] Subscribe
-[] Comment
-[] Display comments dynamically
 [] Like comment
-[] Delete comment
 [] Load user profile dynamically
 [] Edit user profile
 [] Error Handling (catch and handle each request)
@@ -43,12 +38,19 @@
 [] Remove AccessToken?
 [] Remove Vite icon
 [] Change tab names
+[] Delete comment
+[] clear console logs
+[] re-order css
 //// done ////
 [X] Login
 [X] Register
 [X] Logout
 [X] Route Guard - in future lecture
 [X] Filter Navigation
+[X] Comment
+[X] Display comments dynamically
+[X] Subscribe
+
 
 '''''''''''''''
 [] posts page

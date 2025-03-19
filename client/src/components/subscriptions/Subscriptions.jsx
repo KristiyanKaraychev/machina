@@ -1,26 +1,31 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import "./Subscriptions.css";
 
 import workoutService from "../../services/workoutService.js";
 
 import WorkoutList from "../workout-list/WorkoutList.jsx";
+import { UserContext } from "../../contexts/UserContext.js";
 
 export default function Subscriptions() {
     const [workouts, setWorkouts] = useState([]);
+    const { _id } = useContext(UserContext);
+    const userId = _id;
 
     useEffect(() => {
         const abortController = new AbortController();
 
         workoutService.getAll(abortController).then((data) => {
-            console.log(data);
-            setWorkouts(data);
+            let filteredData = data.filter((workout) =>
+                workout.subscribers.includes(userId)
+            );
+
+            setWorkouts(filteredData);
         });
 
         return () => {
             abortController.abort();
         };
-    }, []);
-
+    }, [userId]);
     return (
         <>
             <div className="subscriptions-wrapper">

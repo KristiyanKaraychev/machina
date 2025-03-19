@@ -14,7 +14,9 @@ export default function WorkoutDetails() {
     const { workoutId } = useParams();
     const [workout, setWorkout] = useState({});
     const [comment, setComment] = useState([]);
-    const { isLoggedIn } = useContext(UserContext);
+    const [isSubscribed, setIsSubscribed] = useState(false);
+    const { isLoggedIn, _id } = useContext(UserContext);
+    const userId = _id;
 
     const IconText = ({ icon, text }) => (
         <Space>
@@ -63,10 +65,17 @@ export default function WorkoutDetails() {
         }
     };
 
+    useEffect(() => {
+        setIsSubscribed(workout.subscribers?.includes(userId));
+    }, [workout, userId]);
+
     return (
         <>
             <div className="workout-details">
-                <SubscribeStar />
+                <SubscribeStar
+                    alreadySubscribed={isSubscribed}
+                    workoutId={workoutId}
+                />
                 <h1 className="workout-title">{workout.workoutName}</h1>{" "}
                 <p className="workout-meta">
                     <strong>Difficulty:</strong> {workout.difficulty} |{" "}
