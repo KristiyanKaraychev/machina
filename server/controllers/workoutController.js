@@ -67,11 +67,9 @@ function createWorkout(req, res, next) {
                     },
                     { new: true }
                 ),
-            ]).then(([_, updatedWorkout]) =>
-                res.status(200).json(updatedWorkout)
-            );
-
-            res.status(200).json(workout);
+            ]).then(([_, updatedWorkout]) => {
+                res.status(200).json(updatedWorkout);
+            });
         })
         .catch(next);
 }

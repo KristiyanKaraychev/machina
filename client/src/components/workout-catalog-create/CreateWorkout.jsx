@@ -92,12 +92,12 @@ export default function CreateWorkout({ onClose, onSave }) {
                 ...workoutData,
             });
             console.log(newWorkout);
+
+            navigate(`/workouts/${newWorkout._id}`);
             onSave();
         } catch (error) {
             console.log(error);
         }
-
-        navigate("/workouts");
     };
 
     return (
