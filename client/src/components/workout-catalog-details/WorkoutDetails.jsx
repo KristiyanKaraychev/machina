@@ -1,15 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router";
 
 import { Avatar, List, Space, Input } from "antd";
 import { LikeOutlined } from "@ant-design/icons";
 
 import workoutService from "../../services/workoutService.js";
+import { UserContext } from "../../contexts/UserContext.js";
+
 import SubscribeStar from "../workout-catalog-subscribe-star/SubscribeStar.jsx";
 
 export default function WorkoutDetails() {
     const { workoutId } = useParams();
     const [workout, setWorkout] = useState({});
+    const { isLoggedIn } = useContext(UserContext);
 
     const comments = [
         {
@@ -147,16 +150,25 @@ export default function WorkoutDetails() {
                         </List.Item>
                     )}
                 />
-                <h3>Leave a Comment Here:</h3>
-                <form
-                    className="submit-comment-form"
-                    onSubmit={onSubmitHandler}
-                >
-                    <TextArea id="comment" name="comment" rows={3} required />{" "}
-                    <button type="submit" className="btn ">
-                        Comment
-                    </button>
-                </form>
+                {isLoggedIn() && (
+                    <>
+                        <h3>Leave a Comment Here:</h3>
+                        <form
+                            className="submit-comment-form"
+                            onSubmit={onSubmitHandler}
+                        >
+                            <TextArea
+                                id="comment"
+                                name="comment"
+                                rows={3}
+                                required
+                            />{" "}
+                            <button type="submit" className="btn ">
+                                Comment
+                            </button>
+                        </form>
+                    </>
+                )}
             </div>
         </>
     );
