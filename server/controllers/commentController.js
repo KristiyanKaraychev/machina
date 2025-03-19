@@ -10,14 +10,25 @@ function newComment(text, userId, workoutId) {
                     $addToSet: { workouts: workoutId },
                 }
             ),
-            workoutModel.findByIdAndUpdate(
-                { _id: workoutId },
-                {
-                    $push: { comments: comment._id },
-                    $addToSet: { subscribers: userId },
-                },
-                { new: true }
-            ),
+            workoutModel
+                .findByIdAndUpdate(
+                    { _id: workoutId },
+                    {
+                        $push: { comments: comment._id },
+                        $addToSet: { subscribers: userId },
+                    },
+                    { new: true }
+                )
+                .populate({
+                    path: "comments",
+                    populate: {
+                        path: "userId",
+                    },
+                })
+                .populate({
+                    path: "exercises",
+                    model: "Exercise",
+                }),
         ]);
     });
 }

@@ -1,33 +1,20 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router";
 
-import { Avatar, List, Space, Input } from "antd";
+import { Avatar, List, Space, Input, Empty, Typography } from "antd";
 import { LikeOutlined } from "@ant-design/icons";
 
 import workoutService from "../../services/workoutService.js";
 import { UserContext } from "../../contexts/UserContext.js";
 
 import SubscribeStar from "../workout-catalog-subscribe-star/SubscribeStar.jsx";
+import commentService from "../../services/commentService.js";
 
 export default function WorkoutDetails() {
     const { workoutId } = useParams();
     const [workout, setWorkout] = useState({});
+    const [comment, setComment] = useState([]);
     const { isLoggedIn } = useContext(UserContext);
-
-    const comments = [
-        {
-            title: "Ant Design Title 1",
-        },
-        {
-            title: "Ant Design Title 2",
-        },
-        {
-            title: "Ant Design Title 3",
-        },
-        {
-            title: "Ant Design Title 4",
-        },
-    ];
 
     const IconText = ({ icon, text }) => (
         <Space>
@@ -44,6 +31,7 @@ export default function WorkoutDetails() {
         workoutService.getOne(workoutId, abortController).then((data) => {
             console.log(data);
             setWorkout(data);
+            // setComments(data.comments);
         });
 
         return () => {
@@ -55,13 +43,24 @@ export default function WorkoutDetails() {
         e.preventDefault();
 
         const formData = new FormData(e.target);
-        const comment = formData.get("comment");
+        const commentText = formData.get("comment");
+
+        console.log(commentText);
 
         //implement POST
-
-        console.log(comment);
-
-        //update comment state
+        try {
+            const updatedWorkout = await commentService.createComment(
+                commentText,
+                workoutId
+            );
+            console.log(updatedWorkout);
+            //update comment state
+            setWorkout(updatedWorkout);
+            //clear formData
+            setComment("");
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     return (
@@ -122,34 +121,49 @@ export default function WorkoutDetails() {
             </div>
             <h2>Comments</h2>
             <div className="workout-details comment-list">
-                <List
-                    itemLayout="horizontal"
-                    dataSource={comments}
-                    renderItem={(item, index) => (
-                        <List.Item
-                            actions={[
-                                <a>
-                                    <IconText
-                                        icon={LikeOutlined}
-                                        text="99"
-                                        key="list-vertical-like-o"
-                                    />
-                                </a>,
-                                <a key="list-loadmore-delete">delete</a>,
-                            ]}
-                        >
-                            <List.Item.Meta
-                                avatar={
-                                    <Avatar
-                                        src={`https://api.dicebear.com/7.x/miniavs/svg?seed=${index}`}
-                                    />
-                                }
-                                title={item.title}
-                                description="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ab, expedita?"
-                            />
-                        </List.Item>
-                    )}
-                />
+                {workout.comments?.length > 0 ? (
+                    <List
+                        itemLayout="horizontal"
+                        dataSource={workout.comments}
+                        renderItem={(item, index) => (
+                            <List.Item
+                                actions={[
+                                    <a>
+                                        <IconText
+                                            icon={LikeOutlined}
+                                            text="99"
+                                            key="list-vertical-like-o"
+                                        />
+                                    </a>,
+                                    <a key="list-loadmore-delete">delete</a>,
+                                ]}
+                            >
+                                <List.Item.Meta
+                                    avatar={
+                                        <Avatar
+                                            src={`https://api.dicebear.com/7.x/miniavs/svg?seed=${index}`}
+                                        />
+                                    }
+                                    title={item.userId.username}
+                                    description={item.text}
+                                />
+                            </List.Item>
+                        )}
+                    />
+                ) : (
+                    <>
+                        <Empty
+                            image="https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg"
+                            styles={{ image: { height: 60 } }}
+                            description={
+                                <Typography.Text>
+                                    No Comments Yet!
+                                </Typography.Text>
+                            }
+                        ></Empty>
+                    </>
+                )}
+
                 {isLoggedIn() && (
                     <>
                         <h3>Leave a Comment Here:</h3>
@@ -161,8 +175,10 @@ export default function WorkoutDetails() {
                                 id="comment"
                                 name="comment"
                                 rows={3}
+                                value={comment}
+                                onChange={(e) => setComment(e.target.value)}
                                 required
-                            />{" "}
+                            />
                             <button type="submit" className="btn ">
                                 Comment
                             </button>
