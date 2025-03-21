@@ -21,15 +21,12 @@
 [] 
 
 //// must do ////
-[] Edit Workout
-    [] add styling buttons and validation
-[] Delete Workout
-    [] add validation for when non-owner tries to delete!
-[] hide/show edit and delete
 
+[] add styling buttons and validation for edit and delete
+[] add styling buttons and validation for edit profile
+[] add validation for when non-owner tries to delete!
 [] Like comment
-[] Load user profile dynamically
-[] Edit user profile
+[] add validation and styling to edit profile
 [] Error Handling (catch and handle each request)
 [] Add validation to forms
 [] README
@@ -59,7 +56,11 @@
 [X] Comment
 [X] Display comments dynamically
 [X] Subscribe
-
+[X] Edit Workout
+[X] Delete Workout
+[X] hide/show edit and delete
+[X] Load user profile dynamically
+[X] Edit user profile
 
 '''''''''''''''
 [] posts page

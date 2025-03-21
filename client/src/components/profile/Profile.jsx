@@ -1,56 +1,84 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+
+import userService from "../../services/userService.js";
+
+import ProfileEdit from "../profile-edit/ProfileEdit.jsx";
 
 export default function Profile() {
-    useEffect(() => {}, []);
+    const [profile, setProfile] = useState({});
+    const [showEditProfile, setShowEditProfile] = useState(false);
 
-    const user = {
-        _id: "1",
-        tel: "1231231231",
-        workouts: [],
-        comments: [],
-        description:
-            " Consequatur aliquid autem neConsequatur aliquid autem neConsequatur aliquid autem neConsequatur aliquid autem necessitatibus iusto? Culpa?",
-        location: "Sofia, Bulgaria",
-        avatarImgURL: "",
-        email: "kk@abv.bg",
-        username: "kk2",
-        password: "aaa",
+    useEffect(() => {
+        userService
+            .getProfile()
+            .then((userData) => {
+                console.log(userData);
+                setProfile(userData);
+            })
+            .catch((err) => console.log(err.message));
+    }, []);
+
+    const closeEditProfileClickHandler = () => {
+        setShowEditProfile(false);
+    };
+
+    const saveEditProfileClickHandler = async () => {
+        setShowEditProfile(false);
+    };
+
+    const editProfileClickHandler = () => {
+        setShowEditProfile(true);
     };
 
     return (
         <>
+            {showEditProfile && (
+                <ProfileEdit
+                    onClose={closeEditProfileClickHandler}
+                    onSave={saveEditProfileClickHandler}
+                    setProfile={setProfile}
+                />
+            )}
+
             <div className="profile-wrapper">
                 <h1>Your Profile</h1>
                 <div className="profile-container">
                     <div className="profile-header">
                         <img
                             src={
-                                user.avatarImgURL ||
+                                profile.avatarImgURL ||
                                 "https://i.imgur.com/CzXTtJV.jpg"
                             }
-                            alt={user.username}
+                            alt={profile.username}
                             className="profile-avatar"
                         />
-                        <h2 className="profile-username">{user.username}</h2>
-                        <p className="profile-email">{user.email}</p>
+                        <h2 className="profile-username">{profile.username}</h2>
+                        <p className="profile-email">{profile.email}</p>
                     </div>
 
                     <div className="profile-info">
-                        <p className="description">{user.description}</p>
-                        <p>
-                            <strong>Location:</strong>{" "}
-                            {user.location || "Not specified"}
+                        <p className="description">
+                            {profile.description || "No bio yet."}
                         </p>
                         <p>
-                            <strong>Phone:</strong> {user.tel || "Not provided"}
+                            <strong>Location:</strong>{" "}
+                            {profile.location || "Not specified."}
+                        </p>
+                        <p>
+                            <strong>Phone:</strong>{" "}
+                            {profile.tel || "Not provided."}
                         </p>
                     </div>
 
                     <div className="profile-stats">
                         <div className="workout-box">
-                            <h3>{user.workouts.length}</h3>
+                            <h3>{profile.workouts?.length}</h3>
                             <p>Workouts</p>
                         </div>
+                    </div>
+
+                    <div>
+                        <button onClick={editProfileClickHandler}>Edit</button>
                     </div>
                 </div>
             </div>

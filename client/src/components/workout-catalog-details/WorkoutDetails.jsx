@@ -184,7 +184,7 @@ export default function WorkoutDetails() {
                     <List
                         itemLayout="horizontal"
                         dataSource={workout.comments}
-                        renderItem={(item, index) => (
+                        renderItem={(item) => (
                             <List.Item
                                 actions={[
                                     <a>
@@ -194,13 +194,16 @@ export default function WorkoutDetails() {
                                             key="list-vertical-like-o"
                                         />
                                     </a>,
-                                    <a key="list-loadmore-delete">delete</a>,
+                                    // <a key="list-loadmore-delete">delete</a>,
                                 ]}
                             >
                                 <List.Item.Meta
                                     avatar={
                                         <Avatar
-                                            src={`https://api.dicebear.com/7.x/miniavs/svg?seed=${index}`}
+                                            src={
+                                                item.userId.avatarImgURL ||
+                                                "default"
+                                            }
                                         />
                                     }
                                     title={item.userId.username}
