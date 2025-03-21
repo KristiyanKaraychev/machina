@@ -22,25 +22,34 @@
 
 //// must do ////
 [] Edit Workout
+    [] add styling buttons and validation
 [] Delete Workout
+    [] add validation for when non-owner tries to delete!
+[] hide/show edit and delete
+
 [] Like comment
 [] Load user profile dynamically
 [] Edit user profile
 [] Error Handling (catch and handle each request)
 [] Add validation to forms
 [] README
-[] Check issue: catalog not updating when new workout is created
-//// less important ////
+
+//// low priority ////
 [] Add default avatar images
 [] Set default workout image
-[] Mobile friendly?
-[] Add difficulty to workout cards
 [] Remove AccessToken?
 [] Remove Vite icon
 [] Change tab names
-[] Delete comment
 [] clear console logs
 [] re-order css
+[] add owner of posts?
+[?] Check issue: catalog not updating when new workout is created (find better solution?)
+
+////bonus
+[] Mobile friendly?
+[] Add difficulty to workout cards
+[] Delete comment
+
 //// done ////
 [X] Login
 [X] Register

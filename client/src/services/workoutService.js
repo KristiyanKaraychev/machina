@@ -39,18 +39,45 @@ export default {
 
         return result;
     },
+    async edit(workoutId, workoutData) {
+        const response = await fetch(
+            `${environment.apiURL}/workouts/${workoutId}/edit`,
+            {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                credentials: "include",
+                body: JSON.stringify(workoutData),
+            }
+        );
+
+        const result = await response.json();
+
+        if (!response.ok) {
+            throw new Error(
+                result.message || "You don't have permission to edit this!"
+            );
+        }
+
+        return result;
+    },
     async delete(workoutId) {
         const response = await fetch(
             `${environment.apiURL}/workouts/${workoutId}`,
             {
                 method: "DELETE",
-            },
-            {
                 credentials: "include",
             }
         );
 
         const result = await response.json();
+
+        if (!response.ok) {
+            throw new Error(
+                result.message || "You don't have permission to delete this!"
+            );
+        }
 
         return result;
     },

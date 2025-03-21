@@ -109,6 +109,16 @@ function editWorkout(req, res, next) {
             },
             { new: true }
         )
+        .populate({
+            path: "comments",
+            populate: {
+                path: "userId",
+            },
+        })
+        .populate({
+            path: "exercises",
+            model: "Exercise",
+        })
         .then((updatedWorkout) => {
             if (updatedWorkout) {
                 res.status(200).json(updatedWorkout);

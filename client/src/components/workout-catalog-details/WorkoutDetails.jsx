@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 
 import { Avatar, List, Space, Input, Empty, Typography } from "antd";
 import { LikeOutlined } from "@ant-design/icons";
@@ -9,14 +9,31 @@ import { UserContext } from "../../contexts/UserContext.js";
 
 import SubscribeStar from "../workout-catalog-subscribe-star/SubscribeStar.jsx";
 import commentService from "../../services/commentService.js";
+import EditWorkout from "../workout-catalog-edit/WorkoutEdit.jsx";
 
 export default function WorkoutDetails() {
     const { workoutId } = useParams();
     const [workout, setWorkout] = useState({});
     const [comment, setComment] = useState([]);
     const [isSubscribed, setIsSubscribed] = useState(false);
-    const { isLoggedIn, _id } = useContext(UserContext);
-    const userId = _id;
+    const [showEditWorkout, setShowEditWorkout] = useState(false);
+
+    const { isLoggedIn, _id: userId } = useContext(UserContext);
+    const isOwner = userId === workout.userId;
+
+    const navigate = useNavigate();
+
+    const editWorkoutClickHandler = () => {
+        setShowEditWorkout(true);
+    };
+
+    const closeEditWorkoutClickHandler = () => {
+        setShowEditWorkout(false);
+    };
+
+    const saveEditWorkoutClickHandler = async () => {
+        setShowEditWorkout(false);
+    };
 
     const IconText = ({ icon, text }) => (
         <Space>
@@ -65,12 +82,45 @@ export default function WorkoutDetails() {
         }
     };
 
+    const deleteWorkoutClickHandler = async () => {
+        const hasConfirm = confirm(
+            `Are you sure you want to delete ${workout.workoutName}?`
+        );
+
+        if (!hasConfirm) {
+            return;
+        }
+
+        try {
+            await workoutService.delete(workoutId);
+            navigate("/workouts");
+        } catch (error) {
+            console.log(error.message);
+        }
+    };
+
     useEffect(() => {
         setIsSubscribed(workout.subscribers?.includes(userId));
     }, [workout, userId]);
 
     return (
         <>
+            {showEditWorkout && (
+                <EditWorkout
+                    workoutId={workoutId}
+                    onClose={closeEditWorkoutClickHandler}
+                    onSave={saveEditWorkoutClickHandler}
+                    setWorkout={setWorkout}
+                />
+            )}
+
+            {isOwner && (
+                <div>
+                    <button onClick={editWorkoutClickHandler}>Edit</button>
+                    <button onClick={deleteWorkoutClickHandler}>Delete</button>
+                </div>
+            )}
+
             <div className="workout-details">
                 <SubscribeStar
                     alreadySubscribed={isSubscribed}
