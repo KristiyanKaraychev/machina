@@ -24,4 +24,20 @@ export default {
 
         return result;
     },
+    async likeComment(workoutId) {
+        const response = await fetch(
+            `${environment.apiURL}/likes/${workoutId}`,
+            {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                credentials: "include",
+            }
+        );
+
+        const result = await response.json();
+
+        return result;
+    },
 };

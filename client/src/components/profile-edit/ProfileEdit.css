@@ -10,57 +10,6 @@
     margin-bottom: 15px;
 }
 
-.exercise-list,
-.selected-exercises {
-    list-style: none;
-    padding: 0;
-    margin-top: 10px;
-    max-height: 200px;
-    overflow-y: auto;
-    /* border: 1px solid #ccc; */
-    border-radius: 5px;
-    background-color: #f9f9f9;
-}
-
-.exercise-list li,
-.selected-exercises li {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
-}
-
-.exercise-list li:last-child,
-.selected-exercises li:last-child {
-    border-bottom: none;
-}
-
-.exercise-list button,
-.selected-exercises button {
-    background-color: #267fe8;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
-}
-
-.exercise-list button:hover,
-.selected-exercises button:hover {
-    background-color: #1d5fb7;
-}
-
-.form-group input[type="text"] {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: white;
-    color: black;
-}
-
 h3 {
     margin-top: 15px;
     font-size: 16px;

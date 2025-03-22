@@ -1,0 +1,9 @@
+.like-button.disabled {
+    color: #888;
+    cursor: default;
+    pointer-events: none;
+}
+
+.like-button.liked .ant-space-item:nth-child(1) {
+    color: #007bff;
+}

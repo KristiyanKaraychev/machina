@@ -22,13 +22,12 @@
 
 //// must do ////
 
-[] add styling buttons and validation for edit and delete
-[] add styling buttons and validation for edit profile
-[] add validation for when non-owner tries to delete!
+[] add styling buttons for edit and delete
+[] add styling buttons for edit profile
 [] Like comment
-[] add validation and styling to edit profile
+[] add styling to edit profile
 [] Error Handling (catch and handle each request)
-[] Add validation to forms
+[] Add validation to forms !!!
 [] README
 
 //// low priority ////
@@ -41,6 +40,7 @@
 [] re-order css
 [] add owner of posts?
 [?] Check issue: catalog not updating when new workout is created (find better solution?)
+[] add validation for when non-owner tries to delete?
 
 ////bonus
 [] Mobile friendly?

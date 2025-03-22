@@ -73,7 +73,11 @@ export default function Profile() {
                     <div className="profile-stats">
                         <div className="workout-box">
                             <h3>{profile.workouts?.length}</h3>
-                            <p>Workouts</p>
+                            <p>
+                                {profile.workouts?.length > 1
+                                    ? "Workouts"
+                                    : "Workout"}
+                            </p>
                         </div>
                     </div>
 

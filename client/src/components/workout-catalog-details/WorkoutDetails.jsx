@@ -1,8 +1,10 @@
+import "./WorkoutDetails.css";
+
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 
 import { Avatar, List, Space, Input, Empty, Typography } from "antd";
-import { LikeOutlined } from "@ant-design/icons";
+import { LikeFilled, LikeOutlined } from "@ant-design/icons";
 
 import workoutService from "../../services/workoutService.js";
 import { UserContext } from "../../contexts/UserContext.js";
@@ -17,11 +19,21 @@ export default function WorkoutDetails() {
     const [comment, setComment] = useState([]);
     const [isSubscribed, setIsSubscribed] = useState(false);
     const [showEditWorkout, setShowEditWorkout] = useState(false);
+    const [likeAction, setLikeAction] = useState(false);
 
     const { isLoggedIn, _id: userId } = useContext(UserContext);
     const isOwner = userId === workout.userId;
 
     const navigate = useNavigate();
+
+    const IconText = ({ icon, text }) => (
+        <Space>
+            {React.createElement(icon)}
+            {text}
+        </Space>
+    );
+
+    const { TextArea } = Input;
 
     const editWorkoutClickHandler = () => {
         setShowEditWorkout(true);
@@ -35,28 +47,19 @@ export default function WorkoutDetails() {
         setShowEditWorkout(false);
     };
 
-    const IconText = ({ icon, text }) => (
-        <Space>
-            {React.createElement(icon)}
-            {text}
-        </Space>
-    );
+    const commentChangeHandler = (e) => {
+        setComment(e.target.value);
+    };
 
-    const { TextArea } = Input;
-
-    useEffect(() => {
-        const abortController = new AbortController();
-
-        workoutService.getOne(workoutId, abortController).then((data) => {
-            console.log(data);
-            setWorkout(data);
-            // setComments(data.comments);
-        });
-
-        return () => {
-            abortController.abort();
-        };
-    }, [workoutId]);
+    const likeCommentClickHandler = (commentId) => {
+        commentService
+            .likeComment(commentId)
+            .then((data) => {
+                console.log(data);
+                setLikeAction((prev) => !prev);
+            })
+            .catch((err) => console.log(err));
+    };
 
     const onSubmitHandler = async (e) => {
         e.preventDefault();
@@ -98,6 +101,19 @@ export default function WorkoutDetails() {
             console.log(error.message);
         }
     };
+
+    useEffect(() => {
+        const abortController = new AbortController();
+
+        workoutService.getOne(workoutId, abortController).then((data) => {
+            console.log(data);
+            setWorkout(data);
+        });
+
+        return () => {
+            abortController.abort();
+        };
+    }, [workoutId, likeAction]);
 
     useEffect(() => {
         setIsSubscribed(workout.subscribers?.includes(userId));
@@ -187,10 +203,34 @@ export default function WorkoutDetails() {
                         renderItem={(item) => (
                             <List.Item
                                 actions={[
-                                    <a>
+                                    <a
+                                        onClick={
+                                            isLoggedIn() &&
+                                            !item.likes.includes(userId)
+                                                ? () =>
+                                                      likeCommentClickHandler(
+                                                          item._id
+                                                      )
+                                                : undefined
+                                        }
+                                        className={`like-button ${
+                                            !isLoggedIn() ||
+                                            item.likes.includes(userId)
+                                                ? "disabled"
+                                                : ""
+                                        } ${
+                                            item.likes.includes(userId)
+                                                ? "liked"
+                                                : ""
+                                        }`}
+                                    >
                                         <IconText
-                                            icon={LikeOutlined}
-                                            text="99"
+                                            icon={
+                                                item.likes.includes(userId)
+                                                    ? LikeFilled
+                                                    : LikeOutlined
+                                            }
+                                            text={item.likes?.length}
                                             key="list-vertical-like-o"
                                         />
                                     </a>,
@@ -238,7 +278,7 @@ export default function WorkoutDetails() {
                                 name="comment"
                                 rows={3}
                                 value={comment}
-                                onChange={(e) => setComment(e.target.value)}
+                                onChange={commentChangeHandler}
                                 required
                             />
                             <button type="submit" className="btn ">
