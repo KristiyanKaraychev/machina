@@ -130,13 +130,6 @@ export default function WorkoutDetails() {
                 />
             )}
 
-            {isOwner && (
-                <div>
-                    <button onClick={editWorkoutClickHandler}>Edit</button>
-                    <button onClick={deleteWorkoutClickHandler}>Delete</button>
-                </div>
-            )}
-
             <div className="workout-details">
                 <SubscribeStar
                     alreadySubscribed={isSubscribed}
@@ -153,6 +146,22 @@ export default function WorkoutDetails() {
                     className="workout-image"
                 />
                 <p className="workout-description">{workout.description}</p>
+                {isOwner && (
+                    <div className="workout-actions">
+                        <button
+                            onClick={editWorkoutClickHandler}
+                            className="edit-button"
+                        >
+                            Edit
+                        </button>
+                        <button
+                            onClick={deleteWorkoutClickHandler}
+                            className="delete-button"
+                        >
+                            Delete
+                        </button>
+                    </div>
+                )}
             </div>
             <h2>Exercises</h2>
             <div className="exercises-details">

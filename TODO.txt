@@ -21,18 +21,13 @@
 [] 
 
 //// must do ////
-
-[] add styling buttons for edit and delete
-[] add styling buttons for edit profile
-[] Like comment
-[] add styling to edit profile
 [] Error Handling (catch and handle each request)
 [] Add validation to forms !!!
 [] README
-
-//// low priority ////
 [] Add default avatar images
 [] Set default workout image
+
+//// low priority ////
 [] Remove AccessToken?
 [] Remove Vite icon
 [] Change tab names
@@ -61,6 +56,10 @@
 [X] hide/show edit and delete
 [X] Load user profile dynamically
 [X] Edit user profile
+[X] Like comment
+[X] add styling buttons for edit and delete
+[X] add styling buttons for edit profile
+[X] add styling to edit profile
 
 '''''''''''''''
 [] posts page

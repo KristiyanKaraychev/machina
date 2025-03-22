@@ -81,8 +81,13 @@ export default function Profile() {
                         </div>
                     </div>
 
-                    <div>
-                        <button onClick={editProfileClickHandler}>Edit</button>
+                    <div className="profile-actions">
+                        <button
+                            onClick={editProfileClickHandler}
+                            className="edit-button"
+                        >
+                            Edit
+                        </button>
                     </div>
                 </div>
             </div>
