@@ -27,7 +27,13 @@ export default function WorkoutListItem({
                         workoutId={_id}
                     />
                     <h3>{workoutName}</h3>
-                    <img src={imgURL} alt={workoutName}></img>
+                    <img
+                        src={
+                            imgURL ||
+                            "https://cdn.vectorstock.com/i/2000v/02/13/dumbbell-icon-in-flat-style-workout-gym-tool-vector-54560213.avif"
+                        }
+                        alt={workoutName}
+                    ></img>
                     <p>
                         {length} min | {difficulty}
                     </p>

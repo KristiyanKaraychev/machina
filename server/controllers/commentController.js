@@ -7,7 +7,7 @@ function newComment(text, userId, workoutId) {
                 { _id: userId },
                 {
                     $push: { comments: comment._id },
-                    $addToSet: { workouts: workoutId },
+                    // $addToSet: { workouts: workoutId },
                 }
             ),
             workoutModel

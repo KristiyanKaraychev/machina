@@ -47,7 +47,7 @@ export default function Profile() {
                         <img
                             src={
                                 profile.avatarImgURL ||
-                                "https://i.imgur.com/CzXTtJV.jpg"
+                                "https://upload.wikimedia.org/wikipedia/commons/a/ac/Default_pfp.jpg"
                             }
                             alt={profile.username}
                             className="profile-avatar"

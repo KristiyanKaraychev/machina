@@ -69,13 +69,6 @@ export default function CreateWorkout({ onClose, onSave }) {
         setImgURL(e.target.value);
     };
 
-    const workoutDeleteHandler = async (userId) => {
-        //set userId
-        await workoutService.delete(userId);
-
-        //delete from local state?
-    };
-
     const onSubmitHandler = async (e) => {
         e.preventDefault();
         const formData = new FormData(e.target);
@@ -210,7 +203,9 @@ export default function CreateWorkout({ onClose, onSave }) {
                             </div>
 
                             <div className="form-group">
-                                <label htmlFor="imgURL">Workout Image</label>
+                                <label htmlFor="imgURL">
+                                    Workout Image (optional)
+                                </label>
                                 <input
                                     id="imgURL"
                                     name="imgURL"

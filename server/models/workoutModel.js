@@ -28,7 +28,7 @@ const workoutSchema = new mongoose.Schema(
         imgURL: {
             type: String,
             default: "",
-            required: true,
+            required: false,
         },
         subscribers: [
             {

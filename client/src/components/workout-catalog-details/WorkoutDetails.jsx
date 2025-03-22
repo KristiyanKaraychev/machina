@@ -141,7 +141,10 @@ export default function WorkoutDetails() {
                     <strong>Length:</strong> {workout.length} min
                 </p>
                 <img
-                    src={workout.imgURL}
+                    src={
+                        workout.imgURL ||
+                        "https://cdn.vectorstock.com/i/2000v/02/13/dumbbell-icon-in-flat-style-workout-gym-tool-vector-54560213.avif"
+                    }
                     alt={workout.workoutName}
                     className="workout-image"
                 />
@@ -251,7 +254,7 @@ export default function WorkoutDetails() {
                                         <Avatar
                                             src={
                                                 item.userId.avatarImgURL ||
-                                                "default"
+                                                "https://upload.wikimedia.org/wikipedia/commons/a/ac/Default_pfp.jpg"
                                             }
                                         />
                                     }

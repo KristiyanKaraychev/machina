@@ -37,6 +37,10 @@ export default {
 
         const result = await response.json();
 
+        if (!response.ok) {
+            throw new Error(result.message || "Invalid data!");
+        }
+
         return result;
     },
     async edit(workoutId, workoutData) {
