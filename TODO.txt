@@ -24,18 +24,16 @@
 [] Error Handling (catch and handle each request)
 [] Add validation to forms !!!
 [] README
-[] Add default avatar images
-[] Set default workout image
+[] re-order css
 
 //// low priority ////
 [] Remove AccessToken?
-[] Remove Vite icon
-[] Change tab names
 [] clear console logs
-[] re-order css
 [] add owner of posts?
 [?] Check issue: catalog not updating when new workout is created (find better solution?)
 [] add validation for when non-owner tries to delete?
+[] loader?
+[] clear localhost when cookie expires
 
 ////bonus
 [] Mobile friendly?
@@ -60,6 +58,11 @@
 [X] add styling buttons for edit and delete
 [X] add styling buttons for edit profile
 [X] add styling to edit profile
+[X] Add default avatar images
+[X] Set default workout image
+[X] Remove Vite icon
+[X] Change tab names (helmet provider?)
+
 
 '''''''''''''''
 [] posts page

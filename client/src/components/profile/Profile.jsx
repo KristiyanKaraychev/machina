@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Helmet } from "react-helmet-async";
 
 import userService from "../../services/userService.js";
 
@@ -39,6 +40,10 @@ export default function Profile() {
                     setProfile={setProfile}
                 />
             )}
+
+            <Helmet>
+                <title>Profile - Machina</title>
+            </Helmet>
 
             <div className="profile-wrapper">
                 <h1>Your Profile</h1>

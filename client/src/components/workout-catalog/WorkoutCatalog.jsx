@@ -1,8 +1,12 @@
+import { ChevronDownIcon } from "@heroicons/react/solid";
+
 import { useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router";
+import { Helmet } from "react-helmet-async";
+
 import workoutService from "../../services/workoutService.js";
+
 import WorkoutList from "../workout-list/WorkoutList.jsx";
-import { ChevronDownIcon } from "@heroicons/react/solid";
 
 export default function WorkoutCatalog() {
     const [searchParams] = useSearchParams();
@@ -79,6 +83,10 @@ export default function WorkoutCatalog() {
 
     return (
         <>
+            <Helmet>
+                <title>Workouts - Machina</title>
+            </Helmet>
+
             <div className="menu-container">
                 <button
                     className="menu-button"

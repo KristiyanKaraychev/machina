@@ -1,8 +1,9 @@
-import React, { useActionState, useContext } from "react";
-
 import "../Auth.css";
 
+import React, { useActionState, useContext } from "react";
 import { Link, useNavigate } from "react-router";
+import { Helmet } from "react-helmet-async";
+
 import { useLogin } from "../../../api/userApi.js";
 import { UserContext } from "../../../contexts/UserContext.js";
 
@@ -55,42 +56,52 @@ const LoginForm = () => {
     });
 
     return (
-        <div className="auth-wrapper">
-            <div className="auth-container">
-                <h2>Login</h2>
-                <form action={loginAction}>
-                    <label htmlFor="email">Email</label>
-                    <input
-                        id="email"
-                        name="email"
-                        type="email"
-                        // value={email}
-                        // onChange={emailChangeHandler}
-                        required
-                    />
+        <>
+            <Helmet>
+                <title>Login - Machina</title>
+            </Helmet>
 
-                    <label htmlFor="password">Password</label>
-                    <input
-                        id="password"
-                        name="password"
-                        type="password"
-                        // value={password}
-                        // onChange={passwordChangeHandler}
-                        required
-                    />
+            <div className="auth-wrapper">
+                <div className="auth-container">
+                    <h2>Login</h2>
+                    <form action={loginAction}>
+                        <label htmlFor="email">Email</label>
+                        <input
+                            id="email"
+                            name="email"
+                            type="email"
+                            // value={email}
+                            // onChange={emailChangeHandler}
+                            required
+                        />
 
-                    <button type="submit" className="btn" disabled={isPending}>
-                        Login
-                    </button>
-                </form>
-                <p className="auth-footer">
-                    Don't have an account?{" "}
-                    <Link key="Register" to="/register">
-                        Sign Up
-                    </Link>
-                </p>
+                        <label htmlFor="password">Password</label>
+                        <input
+                            id="password"
+                            name="password"
+                            type="password"
+                            // value={password}
+                            // onChange={passwordChangeHandler}
+                            required
+                        />
+
+                        <button
+                            type="submit"
+                            className="btn"
+                            disabled={isPending}
+                        >
+                            Login
+                        </button>
+                    </form>
+                    <p className="auth-footer">
+                        Don't have an account?{" "}
+                        <Link key="Register" to="/register">
+                            Sign Up
+                        </Link>
+                    </p>
+                </div>
             </div>
-        </div>
+        </>
     );
 };
 

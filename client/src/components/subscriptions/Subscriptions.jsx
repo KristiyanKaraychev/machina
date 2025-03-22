@@ -1,5 +1,7 @@
-import { useContext, useEffect, useState } from "react";
 import "./Subscriptions.css";
+
+import { useContext, useEffect, useState } from "react";
+import { Helmet } from "react-helmet-async";
 
 import workoutService from "../../services/workoutService.js";
 
@@ -28,6 +30,10 @@ export default function Subscriptions() {
     }, [userId]);
     return (
         <>
+            <Helmet>
+                <title>Subscriptions - Machina</title>
+            </Helmet>
+
             <div className="subscriptions-wrapper">
                 <h1>Your Subscriptions</h1>
                 <WorkoutList workouts={workouts} />

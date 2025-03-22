@@ -2,6 +2,7 @@ import "../Auth.css";
 
 import React, { useActionState, useContext } from "react";
 import { Link, useNavigate } from "react-router";
+import { Helmet } from "react-helmet-async";
 
 import { useRegister } from "../../../api/userApi.js";
 import { UserContext } from "../../../contexts/UserContext.js";
@@ -44,45 +45,62 @@ const RegisterForm = () => {
     });
 
     return (
-        <div className="auth-wrapper">
-            <div className="auth-container">
-                <h2>Sign Up</h2>
-                <p>Create your account.</p>
-                <form action={registerAction}>
-                    <label htmlFor="username">Username</label>
-                    <input id="username" name="username" type="text" required />
+        <>
+            <Helmet>
+                <title>Register - Machina</title>
+            </Helmet>
 
-                    <label htmlFor="email">Email</label>
-                    <input id="email" name="email" type="email" required />
+            <div className="auth-wrapper">
+                <div className="auth-container">
+                    <h2>Sign Up</h2>
+                    <p>Create your account.</p>
+                    <form action={registerAction}>
+                        <label htmlFor="username">Username</label>
+                        <input
+                            id="username"
+                            name="username"
+                            type="text"
+                            required
+                        />
 
-                    <label htmlFor="password">Password</label>
-                    <input
-                        id="password"
-                        name="password"
-                        type="password"
-                        required
-                    />
+                        <label htmlFor="email">Email</label>
+                        <input id="email" name="email" type="email" required />
 
-                    <label htmlFor="confirmPassword">Confirm Password</label>
-                    <input
-                        id="confirmPassword"
-                        name="confirmPassword"
-                        type="password"
-                        required
-                    />
+                        <label htmlFor="password">Password</label>
+                        <input
+                            id="password"
+                            name="password"
+                            type="password"
+                            required
+                        />
 
-                    <button type="submit" className="btn" disabled={isPending}>
-                        Sign Up
-                    </button>
-                </form>
-                <p className="auth-footer">
-                    Already have an account?{" "}
-                    <Link key="Login" to="/login">
-                        Login
-                    </Link>
-                </p>
+                        <label htmlFor="confirmPassword">
+                            Confirm Password
+                        </label>
+                        <input
+                            id="confirmPassword"
+                            name="confirmPassword"
+                            type="password"
+                            required
+                        />
+
+                        <button
+                            type="submit"
+                            className="btn"
+                            disabled={isPending}
+                        >
+                            Sign Up
+                        </button>
+                    </form>
+                    <p className="auth-footer">
+                        Already have an account?{" "}
+                        <Link key="Login" to="/login">
+                            Login
+                        </Link>
+                    </p>
+                </div>
             </div>
-        </div>
+        </>
     );
 };
 

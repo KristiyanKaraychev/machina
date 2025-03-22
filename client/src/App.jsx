@@ -2,6 +2,7 @@ import "./App.css";
 
 import { useEffect, useState } from "react";
 import { Route, Routes } from "react-router";
+import { HelmetProvider } from "react-helmet-async";
 
 import { UserContext } from "./contexts/UserContext.js";
 
@@ -60,55 +61,60 @@ function App() {
                 <Header />
 
                 <main>
-                    <Routes>
-                        <Route path="/" element={<Home />} />
-                        <Route path="/workouts" element={<WorkoutCatalog />} />
-                        <Route
-                            path="/workouts/:workoutId"
-                            element={<WorkoutDetails />}
-                        />
-                        <Route
-                            path="/subscriptions"
-                            element={
-                                <AuthGuard>
-                                    <Subscriptions />
-                                </AuthGuard>
-                            }
-                        />
-                        <Route
-                            path="/profile"
-                            element={
-                                <AuthGuard>
-                                    <Profile />
-                                </AuthGuard>
-                            }
-                        />
-                        <Route
-                            path="/login"
-                            element={
-                                <GuestGuard>
-                                    <Login />
-                                </GuestGuard>
-                            }
-                        />
-                        <Route
-                            path="/register"
-                            element={
-                                <GuestGuard>
-                                    <Register />
-                                </GuestGuard>
-                            }
-                        />
-                        <Route
-                            path="/logout"
-                            element={
-                                <AuthGuard>
-                                    <Logout />
-                                </AuthGuard>
-                            }
-                        />
-                        <Route path="/*" element={<NotFound />} />
-                    </Routes>
+                    <HelmetProvider>
+                        <Routes>
+                            <Route path="/" element={<Home />} />
+                            <Route
+                                path="/workouts"
+                                element={<WorkoutCatalog />}
+                            />
+                            <Route
+                                path="/workouts/:workoutId"
+                                element={<WorkoutDetails />}
+                            />
+                            <Route
+                                path="/subscriptions"
+                                element={
+                                    <AuthGuard>
+                                        <Subscriptions />
+                                    </AuthGuard>
+                                }
+                            />
+                            <Route
+                                path="/profile"
+                                element={
+                                    <AuthGuard>
+                                        <Profile />
+                                    </AuthGuard>
+                                }
+                            />
+                            <Route
+                                path="/login"
+                                element={
+                                    <GuestGuard>
+                                        <Login />
+                                    </GuestGuard>
+                                }
+                            />
+                            <Route
+                                path="/register"
+                                element={
+                                    <GuestGuard>
+                                        <Register />
+                                    </GuestGuard>
+                                }
+                            />
+                            <Route
+                                path="/logout"
+                                element={
+                                    <AuthGuard>
+                                        <Logout />
+                                    </AuthGuard>
+                                }
+                            />
+                            <Route path="/*" element={<NotFound />} />
+                        </Routes>
+                    </HelmetProvider>
                 </main>
 
                 <Footer />

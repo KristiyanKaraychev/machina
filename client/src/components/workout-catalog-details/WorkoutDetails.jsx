@@ -1,16 +1,17 @@
 import "./WorkoutDetails.css";
 
-import React, { useContext, useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router";
-
 import { Avatar, List, Space, Input, Empty, Typography } from "antd";
 import { LikeFilled, LikeOutlined } from "@ant-design/icons";
 
+import React, { useContext, useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router";
+import { Helmet } from "react-helmet-async";
+
 import workoutService from "../../services/workoutService.js";
 import { UserContext } from "../../contexts/UserContext.js";
+import commentService from "../../services/commentService.js";
 
 import SubscribeStar from "../workout-catalog-subscribe-star/SubscribeStar.jsx";
-import commentService from "../../services/commentService.js";
 import EditWorkout from "../workout-catalog-edit/WorkoutEdit.jsx";
 
 export default function WorkoutDetails() {
@@ -129,6 +130,14 @@ export default function WorkoutDetails() {
                     setWorkout={setWorkout}
                 />
             )}
+
+            <Helmet>
+                <title>
+                    {workout
+                        ? `${workout.workoutName} - Machina`
+                        : "Details - Machina"}
+                </title>
+            </Helmet>
 
             <div className="workout-details">
                 <SubscribeStar

@@ -1,6 +1,9 @@
-import { Link } from "react-router";
-import WorkoutList from "../workout-list/WorkoutList.jsx";
 import { useEffect, useState } from "react";
+import { Link } from "react-router";
+import { Helmet } from "react-helmet-async";
+
+import WorkoutList from "../workout-list/WorkoutList.jsx";
+
 import workoutService from "../../services/workoutService.js";
 
 export default function Home() {
@@ -15,6 +18,10 @@ export default function Home() {
 
     return (
         <>
+            <Helmet>
+                <title>Machina</title>
+            </Helmet>
+
             <section className="home">
                 <h1>Elevate Your Training</h1>
                 <p>Discover and share workout routines</p>
