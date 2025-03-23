@@ -32,24 +32,14 @@ export const useRegister = () => {
 };
 
 export const useLogout = () => {
-    const { _id, accessToken, userLogoutHandler } = useContext(UserContext);
+    const { _id, userLogoutHandler } = useContext(UserContext);
 
     useEffect(() => {
-        // if (!accessToken) {
-        //     return;
-        // }
-
-        // const options = {
-        //     headers: {
-        //         "X-Authorization": accessToken,
-        //     },
-        // };
-
         request
             .post(`${environment.apiURL}/logout`, null)
             .then(userLogoutHandler);
     }, [userLogoutHandler]);
-    // accessToken,
+
     return {
         isLoggedOut: !!_id,
     };

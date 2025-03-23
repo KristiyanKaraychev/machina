@@ -18,22 +18,23 @@
         })();
     }.[])
 [] Comments: watch Workshop: Routing -> 2:52:00
-[] 
 
 //// must do ////
 [] Error Handling (catch and handle each request)
 [] Add validation to forms !!!
 [] README
-[] re-order css
+[] ??????????? Implement client-side routing to at least 5 pages (at least 2 with parameters)
+[] !!!!!!!!!!! Apply error handling and data validation to avoid crashes when invalid data is entered
+[] 
 
 //// low priority ////
-[] Remove AccessToken?
 [] clear console logs
 [] add owner of posts?
 [?] Check issue: catalog not updating when new workout is created (find better solution?)
 [] add validation for when non-owner tries to delete?
 [] loader?
-[] clear localhost when cookie expires
+[] clear localstorage when cookie expires
+[] add more exercises
 
 ////bonus
 [] Mobile friendly?
@@ -62,6 +63,8 @@
 [X] Set default workout image
 [X] Remove Vite icon
 [X] Change tab names (helmet provider?)
+[X] re-order css
+[X] Remove AccessToken?
 
 
 '''''''''''''''
