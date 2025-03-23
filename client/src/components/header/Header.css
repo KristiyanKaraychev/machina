@@ -1,0 +1,21 @@
+nav {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.nav-left {
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+    gap: 3vw;
+}
+
+.nav-left .btn {
+    color: white;
+}
+
+.nav-right {
+    justify-content: flex-end;
+    gap: 3vw;
+}

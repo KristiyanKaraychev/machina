@@ -1,0 +1,25 @@
+.workout-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 28px;
+    width: 90%;
+    margin: 0px auto 50px auto;
+}
+
+@media (min-width: 320px) {
+    .workout-list {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+@media (min-width: 640px) {
+    .workout-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1120px) {
+    .workout-list {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}

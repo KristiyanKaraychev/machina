@@ -1,3 +1,5 @@
+import "./WorkoutCatalog.css";
+
 import { ChevronDownIcon } from "@heroicons/react/solid";
 
 import { useEffect, useState } from "react";

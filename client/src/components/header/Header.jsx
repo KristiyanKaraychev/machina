@@ -1,3 +1,5 @@
+import "./Header.css";
+
 import { useContext, useState } from "react";
 import { Link, NavLink } from "react-router";
 

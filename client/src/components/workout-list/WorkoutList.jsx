@@ -1,3 +1,5 @@
+import "./WorkoutList.css";
+
 import WorkoutListItem from "./workout-catalog-item/WorkoutListItem.jsx";
 
 export default function WorkoutList({ workouts }) {

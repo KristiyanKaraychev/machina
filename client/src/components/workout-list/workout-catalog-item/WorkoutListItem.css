@@ -1,0 +1,46 @@
+.workout-item {
+    display: flex;
+    flex-direction: column;
+    border-radius: 12px;
+    border: 1px solid #ccc;
+    overflow: hidden;
+    transition: transform 0.2s ease-in-out;
+    height: 100%;
+    background-color: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.workout-item:hover {
+    transform: scale(1.03);
+}
+
+.workout-item a {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    height: 40vh;
+    gap: 5px;
+    padding: 5px 0px;
+    position: relative;
+}
+
+.workout-item img {
+    object-fit: cover;
+    width: 100%;
+    min-height: 70%;
+    max-height: 70%;
+    height: auto;
+}
+
+.workout-item h3 {
+    margin-top: 0px;
+    font-size: 1.5rem;
+    padding: 12px;
+}
+
+.workout-item p {
+    padding: 12px;
+    font-size: 20px;
+    color: #444;
+}

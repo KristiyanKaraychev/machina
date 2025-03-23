@@ -1,3 +1,5 @@
+import "./Home.css";
+
 import { useEffect, useState } from "react";
 import { Link } from "react-router";
 import { Helmet } from "react-helmet-async";
