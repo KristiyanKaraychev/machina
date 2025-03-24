@@ -66,7 +66,7 @@ The server will start and listen for requests on `http://localhost:3000` by defa
 
 ### 2. Start the Angular Front-End:
 
-Navigate to the `p-pals` folder and run:
+Navigate to the `client` folder and run:
 
 ```bash
 npm run dev

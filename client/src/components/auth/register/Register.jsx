@@ -1,6 +1,6 @@
 import "../Auth.css";
 
-import React, { useActionState, useContext } from "react";
+import React, { useActionState, useContext, useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { Helmet } from "react-helmet-async";
 
@@ -11,13 +11,48 @@ const RegisterForm = () => {
     const navigate = useNavigate();
     const { register } = useRegister();
     const { userLoginHandler } = useContext(UserContext);
+    const [errors, setErrors] = useState({});
+
+    const validateForm = (formData) => {
+        const newErrors = {};
+        const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+
+        if (!formData.username.trim()) {
+            newErrors.username = "Username is required!";
+        } else if (formData.username.trim().length < 5) {
+            newErrors.username = "Username must be at least 5 characters long!";
+        } else if (formData.username.trim().length > 20) {
+            newErrors.username = "Username must not exceed 20 characters!";
+        }
+
+        if (!formData.email.trim()) {
+            newErrors.email = "Email is required!";
+        } else if (!emailRegex.test(formData.email)) {
+            newErrors.email = "Please enter a valid email!";
+        }
+
+        if (!formData.password) {
+            newErrors.password = "Password is required!";
+        } else if (formData.password.length < 6) {
+            newErrors.password =
+                "Password should be at least 6 characters long!";
+        }
+
+        if (!formData.confirmPassword) {
+            newErrors.confirmPassword = "Confirm Password is required!";
+        } else if (formData.password !== formData.confirmPassword) {
+            newErrors.password = "Password miss-match!";
+        }
+
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
+    };
 
     const registerHandler = async (_, formData) => {
         const { username, email, password, confirmPassword } =
             Object.fromEntries(formData);
 
-        if (password !== confirmPassword) {
-            console.log("Password miss-match!");
+        if (!validateForm({ username, email, password, confirmPassword })) {
             return;
         }
 
@@ -62,9 +97,15 @@ const RegisterForm = () => {
                             type="text"
                             required
                         />
+                        {errors.username && (
+                            <p className="error">{errors.username}</p>
+                        )}
 
                         <label htmlFor="email">Email</label>
                         <input id="email" name="email" type="email" required />
+                        {errors.email && (
+                            <p className="error">{errors.email}</p>
+                        )}
 
                         <label htmlFor="password">Password</label>
                         <input
@@ -73,6 +114,9 @@ const RegisterForm = () => {
                             type="password"
                             required
                         />
+                        {errors.password && (
+                            <p className="error">{errors.password}</p>
+                        )}
 
                         <label htmlFor="confirmPassword">
                             Confirm Password
@@ -83,6 +127,9 @@ const RegisterForm = () => {
                             type="password"
                             required
                         />
+                        {errors.confirmPassword && (
+                            <p className="error">{errors.confirmPassword}</p>
+                        )}
 
                         <button
                             type="submit"

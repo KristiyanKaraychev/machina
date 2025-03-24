@@ -21,6 +21,7 @@ export default function WorkoutDetails() {
     const [isSubscribed, setIsSubscribed] = useState(false);
     const [showEditWorkout, setShowEditWorkout] = useState(false);
     const [likeAction, setLikeAction] = useState(false);
+    const [errors, setErrors] = useState({});
 
     const { isLoggedIn, _id: userId } = useContext(UserContext);
     const isOwner = userId === workout.userId;
@@ -50,6 +51,20 @@ export default function WorkoutDetails() {
 
     const commentChangeHandler = (e) => {
         setComment(e.target.value);
+
+        if (e.target.value.length > 0 && e.target.value.trim().length < 1) {
+            setErrors((prev) => ({
+                ...prev,
+                comment: "Comment must be at least 1 character long!",
+            }));
+        } else if (e.target.value.trim().length > 200) {
+            setErrors((prev) => ({
+                ...prev,
+                comment: "Comment must not exceed 200 characters!",
+            }));
+        } else {
+            setErrors((prev) => ({ ...prev, comment: null }));
+        }
     };
 
     const likeCommentClickHandler = (commentId) => {
@@ -69,6 +84,21 @@ export default function WorkoutDetails() {
         const commentText = formData.get("comment");
 
         console.log(commentText);
+
+        let newErrors = {};
+
+        if (comment.length > 0 && comment.trim().length < 1) {
+            newErrors.comment = "Comment must be at least 1 character long!";
+        }
+
+        if (comment.trim().length > 200) {
+            newErrors.comment = "Comment must not exceed 200 characters!";
+        }
+
+        if (Object.keys(newErrors).length > 0) {
+            setErrors(newErrors);
+            return;
+        }
 
         //implement POST
         try {
@@ -302,6 +332,9 @@ export default function WorkoutDetails() {
                                 onChange={commentChangeHandler}
                                 required
                             />
+                            {errors.comment && (
+                                <p className="error">{errors.comment}</p>
+                            )}
                             <button type="submit" className="btn ">
                                 Comment
                             </button>
