@@ -1,10 +1,10 @@
 import "./App.css";
 
-import { useEffect, useState } from "react";
 import { Route, Routes } from "react-router";
 import { HelmetProvider } from "react-helmet-async";
 
 import { UserContext } from "./contexts/UserContext.js";
+import usePersistedState from "./hooks/usePersistedState.js";
 
 import Header from "./components/header/Header.jsx";
 import Footer from "./components/footer/Footer.jsx";
@@ -22,29 +22,29 @@ import AuthGuard from "./guards/AuthGuard.jsx";
 import GuestGuard from "./guards/GuestGuard.jsx";
 
 function App() {
-    const [authData, setAuthData] = useState(null);
-    const userKey = "[user]";
+    const [authData, setAuthData] = usePersistedState("[user]", {});
+    // const userKey = "[user]";
 
     //check local storage for user
-    useEffect(() => {
-        console.log("Initial load.");
+    // useEffect(() => {
+    //     console.log("Initial load.");
 
-        const storedUserData = localStorage.getItem(userKey) || "";
+    //     const storedUserData = localStorage.getItem(userKey) || "";
 
-        if (storedUserData) {
-            setAuthData(JSON.parse(storedUserData));
-        }
-    }, []);
+    //     if (storedUserData) {
+    //         setAuthData(JSON.parse(storedUserData));
+    //     }
+    // }, []);
 
     const isLoggedIn = () => !!authData?._id;
 
     const userLoginHandler = (resultData) => {
-        localStorage.setItem(userKey, JSON.stringify(resultData));
+        // localStorage.setItem(userKey, JSON.stringify(resultData));
         setAuthData(resultData);
     };
 
     const userLogoutHandler = () => {
-        localStorage.removeItem(userKey);
+        // localStorage.removeItem(userKey);
         setAuthData({});
     };
 

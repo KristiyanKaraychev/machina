@@ -21,7 +21,6 @@
 
 //// must do ////
 [] Error Handling (catch and handle each request)
-[] Add validation to forms !!!
 [] ??????????? Implement client-side routing to at least 5 pages (at least 2 with parameters)
 [] !!!!!!!!!!! Apply error handling and data validation to avoid crashes when invalid data is entered
 
@@ -64,6 +63,7 @@
 [X] re-order css
 [X] Remove AccessToken?
 [X] README
+[X] Add validation to forms !!!
 
 
 '''''''''''''''
