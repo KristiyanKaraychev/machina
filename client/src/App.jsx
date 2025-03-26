@@ -54,46 +54,24 @@ function App() {
                                 path="/workouts/:workoutId"
                                 element={<WorkoutDetails />}
                             />
-                            <Route
-                                path="/subscriptions"
-                                element={
-                                    <AuthGuard>
-                                        <Subscriptions />
-                                    </AuthGuard>
-                                }
-                            />
-                            <Route
-                                path="/profile"
-                                element={
-                                    <AuthGuard>
-                                        <Profile />
-                                    </AuthGuard>
-                                }
-                            />
-                            <Route
-                                path="/login"
-                                element={
-                                    <GuestGuard>
-                                        <Login />
-                                    </GuestGuard>
-                                }
-                            />
-                            <Route
-                                path="/register"
-                                element={
-                                    <GuestGuard>
-                                        <Register />
-                                    </GuestGuard>
-                                }
-                            />
-                            <Route
-                                path="/logout"
-                                element={
-                                    <AuthGuard>
-                                        <Logout />
-                                    </AuthGuard>
-                                }
-                            />
+
+                            <Route element={<AuthGuard />}>
+                                <Route
+                                    path="/subscriptions"
+                                    element={<Subscriptions />}
+                                />
+                                <Route path="/profile" element={<Profile />} />
+                                <Route path="/logout" element={<Logout />} />
+                            </Route>
+
+                            <Route element={<GuestGuard />}>
+                                <Route path="/login" element={<Login />} />
+                                <Route
+                                    path="/register"
+                                    element={<Register />}
+                                />
+                            </Route>
+
                             <Route path="/*" element={<NotFound />} />
                         </Routes>
                     </HelmetProvider>

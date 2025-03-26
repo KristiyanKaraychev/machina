@@ -1,9 +1,9 @@
-import { Navigate } from "react-router";
+import { Navigate, Outlet } from "react-router";
 import { useContext } from "react";
 
 import { UserContext } from "../contexts/UserContext.jsx";
 
-export default function AuthGuard({ children }) {
+export default function AuthGuard() {
     const { _id } = useContext(UserContext);
 
     if (!_id) {
@@ -11,5 +11,5 @@ export default function AuthGuard({ children }) {
         return <Navigate to="/login" replace />;
     }
 
-    return children;
+    return <Outlet />;
 }
