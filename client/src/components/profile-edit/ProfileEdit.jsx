@@ -264,7 +264,9 @@ export default function ProfileEdit({ onClose, onSave, setProfile }) {
                             </div>
 
                             <div className="form-group">
-                                <label htmlFor="description">Bio</label>
+                                <label htmlFor="description">
+                                    Bio (optional)
+                                </label>
                                 <textarea
                                     id="description"
                                     name="description"
@@ -279,7 +281,9 @@ export default function ProfileEdit({ onClose, onSave, setProfile }) {
                             </div>
 
                             <div className="form-group">
-                                <label htmlFor="location">Location</label>
+                                <label htmlFor="location">
+                                    Location (optional)
+                                </label>
                                 <input
                                     id="location"
                                     name="location"
@@ -293,7 +297,9 @@ export default function ProfileEdit({ onClose, onSave, setProfile }) {
                             </div>
 
                             <div className="form-group">
-                                <label htmlFor="tel">Telephone Number</label>
+                                <label htmlFor="tel">
+                                    Telephone Number (optional)
+                                </label>
                                 <input
                                     id="tel"
                                     name="tel"
@@ -308,7 +314,7 @@ export default function ProfileEdit({ onClose, onSave, setProfile }) {
 
                             <div className="form-group">
                                 <label htmlFor="avatarImgURL">
-                                    Profile Picture
+                                    Profile Picture (optional)
                                 </label>
                                 <input
                                     id="avatarImgURL"

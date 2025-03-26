@@ -20,15 +20,10 @@
 [] Comments: watch Workshop: Routing -> 2:52:00
 
 //// must do ////
-[] Error Handling (catch and handle each request)
-    [X] implement for login/register
-    [] implement for create/edit/delete workout
-    [] implement for comments/likes?/subscriptions?
-    [] implement for editing profile
+[] Mobile friendly?
 [] clear console logs
 [] add owner of posts?
-[] improve footer
-[] Mobile friendly?
+[] add more exercises
 [] ??????????? Implement client-side routing to at least 5 pages (at least 2 with parameters)
 [] !!!!!!!!!!! Apply error handling and data validation to avoid crashes when invalid data is entered
 
@@ -37,7 +32,7 @@
 [] add validation for when non-owner tries to delete?
 [] loader?
 [] clear localstorage when cookie expires
-[] add more exercises
+
 
 ////bonus
 [] Add difficulty to workout cards
@@ -69,7 +64,12 @@
 [X] Remove AccessToken?
 [X] README
 [X] Add validation to forms !!!
-
+[X] Error Handling (catch and handle each request)
+    [X] implement for login/register
+    [X] implement for create/edit/delete workout
+    [X] implement for comments/likes?/subscriptions?
+    [X] implement for editing profile
+[X] improve footer
 
 '''''''''''''''
 [] posts page

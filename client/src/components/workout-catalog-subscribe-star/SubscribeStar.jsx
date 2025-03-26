@@ -11,6 +11,7 @@ import workoutService from "../../services/workoutService.js";
 
 export default function SubscribeStar({ alreadySubscribed, workoutId }) {
     const [isSubscribed, setIsSubscribed] = useState(alreadySubscribed);
+    const [isPending, setIsPending] = useState(false);
     const { isLoggedIn } = useContext(UserContext);
     const { showError } = useContext(ErrorContext);
 
@@ -22,15 +23,17 @@ export default function SubscribeStar({ alreadySubscribed, workoutId }) {
         e.preventDefault();
 
         if (!isSubscribed) {
+            setIsPending(true);
+
             try {
                 await workoutService.subscribe(workoutId).then((data) => {
                     console.log(data);
-                    // setWorkout(data);
-                    // setComments(data.comments);
                     setIsSubscribed(true);
                 });
             } catch (error) {
                 showError(error.message);
+            } finally {
+                setIsPending(false);
             }
         }
     };
@@ -41,7 +44,10 @@ export default function SubscribeStar({ alreadySubscribed, workoutId }) {
                 <FaStar
                     className="favorite-icon"
                     color={isSubscribed ? "gold" : "lightgray"}
-                    onClick={handleSubscribeClick}
+                    onClick={(e) => {
+                        if (isPending) return;
+                        handleSubscribeClick(e);
+                    }}
                 />
             )}
         </>

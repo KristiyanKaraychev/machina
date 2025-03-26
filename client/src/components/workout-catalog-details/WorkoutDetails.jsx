@@ -22,6 +22,7 @@ export default function WorkoutDetails() {
     const [isSubscribed, setIsSubscribed] = useState(false);
     const [showEditWorkout, setShowEditWorkout] = useState(false);
     const [likeAction, setLikeAction] = useState(false);
+    const [isPending, setIsPending] = useState(false);
     const [errors, setErrors] = useState({});
     const { showError } = useContext(ErrorContext);
 
@@ -70,13 +71,18 @@ export default function WorkoutDetails() {
     };
 
     const likeCommentClickHandler = (commentId) => {
+        setIsPending(true);
+
         commentService
             .likeComment(commentId)
             .then((data) => {
                 console.log(data);
                 setLikeAction((prev) => !prev);
             })
-            .catch((err) => showError(err.message));
+            .catch((err) => {
+                showError(err.message);
+                setIsPending(false);
+            });
     };
 
     const onSubmitHandler = async (e) => {
@@ -102,12 +108,15 @@ export default function WorkoutDetails() {
             return;
         }
 
+        setIsPending(true);
+
         //implement POST
         try {
             const updatedWorkout = await commentService.createComment(
                 commentText,
                 workoutId
             );
+
             console.log(updatedWorkout);
             //update comment state
             setWorkout(updatedWorkout);
@@ -115,6 +124,8 @@ export default function WorkoutDetails() {
             setComment("");
         } catch (error) {
             showError(error.message);
+        } finally {
+            setIsPending(false);
         }
     };
 
@@ -146,12 +157,15 @@ export default function WorkoutDetails() {
             })
             .catch(() => {
                 navigate("/404");
+            })
+            .finally(() => {
+                setIsPending(false);
             });
 
         return () => {
             abortController.abort();
         };
-    }, [workoutId, likeAction, showError, navigate]);
+    }, [workoutId, likeAction, navigate]);
 
     useEffect(() => {
         setIsSubscribed(workout.subscribers?.includes(userId));
@@ -262,15 +276,15 @@ export default function WorkoutDetails() {
                             <List.Item
                                 actions={[
                                     <a
-                                        onClick={
-                                            isLoggedIn() &&
-                                            !item.likes.includes(userId)
-                                                ? () =>
-                                                      likeCommentClickHandler(
-                                                          item._id
-                                                      )
-                                                : undefined
-                                        }
+                                        onClick={() => {
+                                            if (
+                                                isPending ||
+                                                !isLoggedIn() ||
+                                                item.likes.includes(userId)
+                                            )
+                                                return;
+                                            likeCommentClickHandler(item._id);
+                                        }}
                                         className={`like-button ${
                                             !isLoggedIn() ||
                                             item.likes.includes(userId)
@@ -341,7 +355,11 @@ export default function WorkoutDetails() {
                             {errors.comment && (
                                 <p className="error">{errors.comment}</p>
                             )}
-                            <button type="submit" className="btn ">
+                            <button
+                                type="submit"
+                                className="btn"
+                                disabled={isPending}
+                            >
                                 Comment
                             </button>
                         </form>
