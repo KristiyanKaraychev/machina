@@ -21,12 +21,18 @@
 
 //// must do ////
 [] Error Handling (catch and handle each request)
+    [X] implement for login/register
+    [] implement for create/edit/delete workout
+    [] implement for comments/likes?/subscriptions?
+    [] implement for editing profile
+[] clear console logs
+[] add owner of posts?
+[] improve footer
+[] Mobile friendly?
 [] ??????????? Implement client-side routing to at least 5 pages (at least 2 with parameters)
 [] !!!!!!!!!!! Apply error handling and data validation to avoid crashes when invalid data is entered
 
 //// low priority ////
-[] clear console logs
-[] add owner of posts?
 [?] Check issue: catalog not updating when new workout is created (find better solution?)
 [] add validation for when non-owner tries to delete?
 [] loader?
@@ -34,7 +40,6 @@
 [] add more exercises
 
 ////bonus
-[] Mobile friendly?
 [] Add difficulty to workout cards
 [] Delete comment
 

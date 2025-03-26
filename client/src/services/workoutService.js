@@ -5,11 +5,21 @@ export default {
         const response = await fetch(`${environment.apiURL}/workouts`, signal);
         const result = await response.json();
 
+        if (!response.ok) {
+            const errorMessage = result.message;
+            throw new Error(errorMessage);
+        }
+
         return result;
     },
     async getLastThree() {
         const response = await fetch(`${environment.apiURL}/workouts`);
         const result = await response.json();
+
+        if (!response.ok) {
+            const errorMessage = result.message;
+            throw new Error(errorMessage);
+        }
 
         result.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
 
@@ -22,6 +32,11 @@ export default {
         );
 
         const result = await response.json();
+
+        if (!response.ok) {
+            const errorMessage = result.message;
+            throw new Error(errorMessage);
+        }
 
         return result;
     },
@@ -98,6 +113,11 @@ export default {
         );
 
         const result = await response.json();
+
+        if (!response.ok) {
+            const errorMessage = result.message;
+            throw new Error(errorMessage);
+        }
 
         return result;
     },

@@ -8,11 +8,12 @@ import { useNavigate, useParams } from "react-router";
 import { Helmet } from "react-helmet-async";
 
 import workoutService from "../../services/workoutService.js";
-import { UserContext } from "../../contexts/UserContext.js";
+import { UserContext } from "../../contexts/UserContext.jsx";
 import commentService from "../../services/commentService.js";
 
 import SubscribeStar from "../workout-catalog-subscribe-star/SubscribeStar.jsx";
 import EditWorkout from "../workout-catalog-edit/WorkoutEdit.jsx";
+import { ErrorContext } from "../../contexts/ErrorContext.jsx";
 
 export default function WorkoutDetails() {
     const { workoutId } = useParams();
@@ -22,6 +23,7 @@ export default function WorkoutDetails() {
     const [showEditWorkout, setShowEditWorkout] = useState(false);
     const [likeAction, setLikeAction] = useState(false);
     const [errors, setErrors] = useState({});
+    const { showError } = useContext(ErrorContext);
 
     const { isLoggedIn, _id: userId } = useContext(UserContext);
     const isOwner = userId === workout.userId;
@@ -136,15 +138,18 @@ export default function WorkoutDetails() {
     useEffect(() => {
         const abortController = new AbortController();
 
-        workoutService.getOne(workoutId, abortController).then((data) => {
-            console.log(data);
-            setWorkout(data);
-        });
+        workoutService
+            .getOne(workoutId, abortController)
+            .then((data) => {
+                console.log(data);
+                setWorkout(data);
+            })
+            .catch((error) => showError(error.message));
 
         return () => {
             abortController.abort();
         };
-    }, [workoutId, likeAction]);
+    }, [workoutId, likeAction, showError]);
 
     useEffect(() => {
         setIsSubscribed(workout.subscribers?.includes(userId));

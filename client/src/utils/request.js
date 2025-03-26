@@ -26,6 +26,11 @@ const request = async (method, url, data, options = {}) => {
 
     const result = await response.json();
 
+    if (!response.ok) {
+        const errorMessage = result.message;
+        throw new Error(errorMessage);
+    }
+
     return result;
 };
 

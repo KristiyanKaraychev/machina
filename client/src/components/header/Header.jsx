@@ -5,7 +5,7 @@ import { Link, NavLink } from "react-router";
 
 import CreateWorkout from "../workout-catalog-create/CreateWorkout.jsx";
 
-import { UserContext } from "../../contexts/UserContext.js";
+import { UserContext } from "../../contexts/UserContext.jsx";
 
 export default function Header() {
     const [showCreateWorkout, setShowCreateWorkout] = useState(false);

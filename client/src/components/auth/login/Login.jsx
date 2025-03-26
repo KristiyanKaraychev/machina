@@ -5,7 +5,8 @@ import { Link, useNavigate } from "react-router";
 import { Helmet } from "react-helmet-async";
 
 import { useLogin } from "../../../api/userApi.js";
-import { UserContext } from "../../../contexts/UserContext.js";
+import { UserContext } from "../../../contexts/UserContext.jsx";
+import { ErrorContext } from "../../../contexts/ErrorContext.jsx";
 
 const LoginForm = () => {
     // const [email, setEmail] = useState("");
@@ -32,6 +33,7 @@ const LoginForm = () => {
     const { login } = useLogin();
     const { userLoginHandler } = useContext(UserContext);
     const [errors, setErrors] = useState({});
+    const { showError } = useContext(ErrorContext);
 
     const validateForm = (formData) => {
         const newErrors = {};
@@ -57,23 +59,17 @@ const LoginForm = () => {
     const loginHandler = async (_, formData) => {
         const fromValues = Object.fromEntries(formData);
 
-        console.log("Logging in with:", fromValues);
-
         if (!validateForm(fromValues)) {
             return;
         }
 
-        const authData = await login(fromValues.email, fromValues.password);
-
-        console.log(authData);
-
-        if (authData.message) {
-            console.log(authData.message);
-            return;
+        try {
+            const authData = await login(fromValues.email, fromValues.password);
+            navigate("/");
+            userLoginHandler(authData);
+        } catch (error) {
+            showError(error.message);
         }
-
-        userLoginHandler(authData);
-        navigate("/");
     };
 
     const [_, loginAction, isPending] = useActionState(loginHandler, {

@@ -5,7 +5,7 @@ import { Link } from "react-router";
 
 import SubscribeStar from "../../workout-catalog-subscribe-star/SubscribeStar.jsx";
 
-import { UserContext } from "../../../contexts/UserContext.js";
+import { UserContext } from "../../../contexts/UserContext.jsx";
 
 export default function WorkoutListItem({
     _id,

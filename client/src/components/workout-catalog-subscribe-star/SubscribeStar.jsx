@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { FaStar } from "react-icons/fa";
 import "./SubscribeStar.css";
-import { UserContext } from "../../contexts/UserContext.js";
+import { UserContext } from "../../contexts/UserContext.jsx";
 import workoutService from "../../services/workoutService.js";
 
 export default function SubscribeStar({ alreadySubscribed, workoutId }) {

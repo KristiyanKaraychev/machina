@@ -5,13 +5,15 @@ import { Link, useNavigate } from "react-router";
 import { Helmet } from "react-helmet-async";
 
 import { useRegister } from "../../../api/userApi.js";
-import { UserContext } from "../../../contexts/UserContext.js";
+import { UserContext } from "../../../contexts/UserContext.jsx";
+import { ErrorContext } from "../../../contexts/ErrorContext.jsx";
 
 const RegisterForm = () => {
     const navigate = useNavigate();
     const { register } = useRegister();
     const { userLoginHandler } = useContext(UserContext);
     const [errors, setErrors] = useState({});
+    const { showError } = useContext(ErrorContext);
 
     const validateForm = (formData) => {
         const newErrors = {};
@@ -56,22 +58,36 @@ const RegisterForm = () => {
             return;
         }
 
-        const authData = await register(
-            username,
-            email,
-            password,
-            confirmPassword
-        );
+        try {
+            const authData = await register(
+                username,
+                email,
+                password,
+                confirmPassword
+            );
 
-        console.log(authData);
-
-        if (authData.message) {
-            console.log(authData.message);
-            return;
+            userLoginHandler(authData);
+            navigate("/");
+        } catch (error) {
+            showError(error.message);
         }
 
-        userLoginHandler(authData);
-        navigate("/");
+        // const authData = await register(
+        //     username,
+        //     email,
+        //     password,
+        //     confirmPassword
+        // );
+
+        // console.log(authData);
+
+        // if (authData.message) {
+        //     console.log(authData.message);
+        //     return;
+        // }
+
+        // userLoginHandler(authData);
+        // navigate("/");
     };
 
     const [_, registerAction, isPending] = useActionState(registerHandler, {

@@ -2,7 +2,7 @@ import request from "../utils/request.js";
 import { useContext, useEffect } from "react";
 
 import { environment } from "../environment/environment.js";
-import { UserContext } from "../contexts/UserContext.js";
+import { UserContext } from "../contexts/UserContext.jsx";
 
 export const useLogin = () => {
     const login = async (email, password) => {

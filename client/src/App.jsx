@@ -1,10 +1,8 @@
 import "./App.css";
 
-import { Route, Routes } from "react-router";
+import { useContext, useEffect, useRef } from "react";
+import { Route, Routes, useLocation } from "react-router";
 import { HelmetProvider } from "react-helmet-async";
-
-import { UserContext } from "./contexts/UserContext.js";
-import usePersistedState from "./hooks/usePersistedState.js";
 
 import Header from "./components/header/Header.jsx";
 import Footer from "./components/footer/Footer.jsx";
@@ -21,45 +19,29 @@ import Logout from "./components/auth/logout/Logout.jsx";
 import AuthGuard from "./guards/AuthGuard.jsx";
 import GuestGuard from "./guards/GuestGuard.jsx";
 
+import ErrorMsg from "./components/error-msg/ErrorMsg.jsx";
+
+import { ErrorContext } from "./contexts/ErrorContext.jsx";
+import UserProvider from "./providers/UserProvider.jsx";
+
 function App() {
-    const [authData, setAuthData] = usePersistedState("[user]", {});
-    // const userKey = "[user]";
+    const { showError } = useContext(ErrorContext);
+    const showErrorRef = useRef(showError);
+    const location = useLocation();
 
-    //check local storage for user
-    // useEffect(() => {
-    //     console.log("Initial load.");
+    useEffect(() => {
+        showErrorRef.current = showError;
+    }, [showError]);
 
-    //     const storedUserData = localStorage.getItem(userKey) || "";
-
-    //     if (storedUserData) {
-    //         setAuthData(JSON.parse(storedUserData));
-    //     }
-    // }, []);
-
-    const isLoggedIn = () => !!authData?._id;
-
-    const userLoginHandler = (resultData) => {
-        // localStorage.setItem(userKey, JSON.stringify(resultData));
-        setAuthData(resultData);
-    };
-
-    const userLogoutHandler = () => {
-        // localStorage.removeItem(userKey);
-        setAuthData({});
-    };
+    useEffect(() => {
+        showErrorRef.current(null);
+    }, [location.pathname]);
 
     return (
         <>
-            <UserContext.Provider
-                value={{
-                    ...authData,
-                    userLoginHandler,
-                    userLogoutHandler,
-                    isLoggedIn,
-                }}
-            >
+            <UserProvider>
+                <ErrorMsg />
                 <Header />
-
                 <main>
                     <HelmetProvider>
                         <Routes>
@@ -116,9 +98,8 @@ function App() {
                         </Routes>
                     </HelmetProvider>
                 </main>
-
                 <Footer />
-            </UserContext.Provider>
+            </UserProvider>
         </>
     );
 }

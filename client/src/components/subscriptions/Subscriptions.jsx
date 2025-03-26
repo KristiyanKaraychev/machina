@@ -6,7 +6,7 @@ import { Helmet } from "react-helmet-async";
 import workoutService from "../../services/workoutService.js";
 
 import WorkoutList from "../workout-list/WorkoutList.jsx";
-import { UserContext } from "../../contexts/UserContext.js";
+import { UserContext } from "../../contexts/UserContext.jsx";
 
 export default function Subscriptions() {
     const [workouts, setWorkouts] = useState([]);
