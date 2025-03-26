@@ -76,7 +76,7 @@ export default function WorkoutDetails() {
                 console.log(data);
                 setLikeAction((prev) => !prev);
             })
-            .catch((err) => console.log(err));
+            .catch((err) => showError(err.message));
     };
 
     const onSubmitHandler = async (e) => {
@@ -114,7 +114,7 @@ export default function WorkoutDetails() {
             //clear formData
             setComment("");
         } catch (error) {
-            console.log(error);
+            showError(error.message);
         }
     };
 
@@ -131,7 +131,7 @@ export default function WorkoutDetails() {
             await workoutService.delete(workoutId);
             navigate("/workouts");
         } catch (error) {
-            console.log(error.message);
+            showError(error.message);
         }
     };
 
@@ -144,12 +144,14 @@ export default function WorkoutDetails() {
                 console.log(data);
                 setWorkout(data);
             })
-            .catch((error) => showError(error.message));
+            .catch(() => {
+                navigate("/404");
+            });
 
         return () => {
             abortController.abort();
         };
-    }, [workoutId, likeAction, showError]);
+    }, [workoutId, likeAction, showError, navigate]);
 
     useEffect(() => {
         setIsSubscribed(workout.subscribers?.includes(userId));
@@ -290,7 +292,6 @@ export default function WorkoutDetails() {
                                             key="list-vertical-like-o"
                                         />
                                     </a>,
-                                    // <a key="list-loadmore-delete">delete</a>,
                                 ]}
                             >
                                 <List.Item.Meta

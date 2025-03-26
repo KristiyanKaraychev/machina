@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from "react";
-
 import "./WorkoutEdit.css";
+
+import React, { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router";
+
 import exerciseService from "../../services/exerciseService.js";
 import workoutService from "../../services/workoutService.js";
-import { useNavigate } from "react-router";
+
+import { ErrorContext } from "../../contexts/ErrorContext.jsx";
 
 export default function EditWorkout({
     workoutId,
@@ -20,6 +23,7 @@ export default function EditWorkout({
     const [searchTerm, setSearchTerm] = useState("");
     const [selectedExercises, setSelectedExercises] = useState([]);
     const [errors, setErrors] = useState({});
+    const { showError } = useContext(ErrorContext);
 
     const navigate = useNavigate();
 
@@ -62,6 +66,7 @@ export default function EditWorkout({
                 setExercises(filteredExercises1);
             } catch (error) {
                 console.error("Error fetching workout data:", error);
+                showError(error.message);
             }
         }
 
@@ -241,7 +246,7 @@ export default function EditWorkout({
             navigate(`/workouts/${workoutId}`);
             onSave();
         } catch (error) {
-            console.log(error.message);
+            showError(error.message);
         }
 
         //     console.log("Workout Data:");

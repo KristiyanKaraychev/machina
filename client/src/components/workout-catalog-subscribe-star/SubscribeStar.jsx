@@ -1,12 +1,18 @@
-import { useContext, useEffect, useState } from "react";
-import { FaStar } from "react-icons/fa";
 import "./SubscribeStar.css";
+
+import { FaStar } from "react-icons/fa";
+
+import { useContext, useEffect, useState } from "react";
+
 import { UserContext } from "../../contexts/UserContext.jsx";
+import { ErrorContext } from "../../contexts/ErrorContext.jsx";
+
 import workoutService from "../../services/workoutService.js";
 
 export default function SubscribeStar({ alreadySubscribed, workoutId }) {
     const [isSubscribed, setIsSubscribed] = useState(alreadySubscribed);
     const { isLoggedIn } = useContext(UserContext);
+    const { showError } = useContext(ErrorContext);
 
     useEffect(() => {
         setIsSubscribed(alreadySubscribed);
@@ -16,12 +22,16 @@ export default function SubscribeStar({ alreadySubscribed, workoutId }) {
         e.preventDefault();
 
         if (!isSubscribed) {
-            await workoutService.subscribe(workoutId).then((data) => {
-                console.log(data);
-                // setWorkout(data);
-                // setComments(data.comments);
-                setIsSubscribed(true);
-            });
+            try {
+                await workoutService.subscribe(workoutId).then((data) => {
+                    console.log(data);
+                    // setWorkout(data);
+                    // setComments(data.comments);
+                    setIsSubscribed(true);
+                });
+            } catch (error) {
+                showError(error.message);
+            }
         }
     };
 

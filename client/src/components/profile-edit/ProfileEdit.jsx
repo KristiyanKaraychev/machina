@@ -1,9 +1,10 @@
 import "./ProfileEdit.css";
 
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
-import { useNavigate } from "react-router";
 import userService from "../../services/userService.js";
+
+import { ErrorContext } from "../../contexts/ErrorContext.jsx";
 
 export default function ProfileEdit({ onClose, onSave, setProfile }) {
     const [username, setUsername] = useState("");
@@ -13,8 +14,7 @@ export default function ProfileEdit({ onClose, onSave, setProfile }) {
     const [tel, setTel] = useState("");
     const [avatarImgURL, setAvatarImgURL] = useState("");
     const [errors, setErrors] = useState({});
-
-    const navigate = useNavigate();
+    const { showError } = useContext(ErrorContext);
 
     useEffect(() => {
         userService
@@ -42,10 +42,10 @@ export default function ProfileEdit({ onClose, onSave, setProfile }) {
                 ...prev,
                 username: "Username is required!",
             }));
-        } else if (username_val.trim().length < 3) {
+        } else if (username_val.trim().length < 5) {
             setErrors((prev) => ({
                 ...prev,
-                username: "Username must be at least 3 characters long!",
+                username: "Username must be at least 5 characters long!",
             }));
         } else if (username_val.trim().length > 20) {
             setErrors((prev) => ({
@@ -213,13 +213,12 @@ export default function ProfileEdit({ onClose, onSave, setProfile }) {
                 ...profileData,
             });
 
-            console.log(editedProfile);
-
             setProfile(editedProfile);
-            navigate(`/profile`);
+            showError("");
             onSave();
         } catch (error) {
-            console.log(error.message);
+            showError(error.message);
+            onClose();
         }
     };
 

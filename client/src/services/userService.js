@@ -7,6 +7,11 @@ export default {
         });
         const result = await response.json();
 
+        if (!response.ok) {
+            const errorMessage = result.message;
+            throw new Error(errorMessage);
+        }
+
         return result;
     },
 
@@ -23,9 +28,7 @@ export default {
         const result = await response.json();
 
         if (!response.ok) {
-            throw new Error(
-                result.message || "You don't have permission to edit this!"
-            );
+            throw new Error("Email already registered!");
         }
 
         return result;

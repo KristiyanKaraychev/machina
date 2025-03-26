@@ -5,6 +5,11 @@ export default {
         const response = await fetch(`${environment.apiURL}/comments`, {});
         const result = await response.json();
 
+        if (!response.ok) {
+            const errorMessage = result.message;
+            throw new Error(errorMessage);
+        }
+
         return result;
     },
     async createComment(commentText, workoutId) {
@@ -22,6 +27,11 @@ export default {
 
         const result = await response.json();
 
+        if (!response.ok) {
+            const errorMessage = result.message;
+            throw new Error(errorMessage);
+        }
+
         return result;
     },
     async likeComment(workoutId) {
@@ -37,6 +47,11 @@ export default {
         );
 
         const result = await response.json();
+
+        if (!response.ok) {
+            const errorMessage = result.message;
+            throw new Error(errorMessage);
+        }
 
         return result;
     },

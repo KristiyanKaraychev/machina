@@ -1,10 +1,12 @@
 import "./CreateWorkout.css";
 
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 
 import exerciseService from "../../services/exerciseService.js";
 import workoutService from "../../services/workoutService.js";
+
+import { ErrorContext } from "../../contexts/ErrorContext.jsx";
 
 export default function CreateWorkout({ onClose, onSave }) {
     const [workoutName, setWorkoutName] = useState("");
@@ -16,6 +18,7 @@ export default function CreateWorkout({ onClose, onSave }) {
     const [searchTerm, setSearchTerm] = useState("");
     const [selectedExercises, setSelectedExercises] = useState([]);
     const [errors, setErrors] = useState({});
+    const { showError } = useContext(ErrorContext);
 
     const navigate = useNavigate();
 
@@ -211,7 +214,7 @@ export default function CreateWorkout({ onClose, onSave }) {
             navigate(`/workouts/${newWorkout._id}`);
             onSave();
         } catch (error) {
-            console.log(error);
+            showError(error.message);
         }
     };
 
