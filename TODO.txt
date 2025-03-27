@@ -20,9 +20,7 @@
 [] Comments: watch Workshop: Routing -> 2:52:00
 
 //// must do ////
-[] Mobile friendly?
 [] clear console logs
-[] add owner of posts?
 [] add more exercises
 [] ??????????? Implement client-side routing to at least 5 pages (at least 2 with parameters)
 [] !!!!!!!!!!! Apply error handling and data validation to avoid crashes when invalid data is entered
@@ -70,6 +68,8 @@
     [X] implement for comments/likes?/subscriptions?
     [X] implement for editing profile
 [X] improve footer
+[X] Mobile friendly?
+[X] add owner of posts?
 
 '''''''''''''''
 [] posts page

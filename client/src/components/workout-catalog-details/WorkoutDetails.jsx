@@ -195,7 +195,10 @@ export default function WorkoutDetails() {
                     alreadySubscribed={isSubscribed}
                     workoutId={workoutId}
                 />
-                <h1 className="workout-title">{workout.workoutName}</h1>{" "}
+                <h1 className="workout-title">{workout.workoutName}</h1>
+                <p className="workout-meta">
+                    <strong>By:</strong> {workout.userId?.username}
+                </p>
                 <p className="workout-meta">
                     <strong>Difficulty:</strong> {workout.difficulty} |{" "}
                     <strong>Length:</strong> {workout.length} min

@@ -104,7 +104,7 @@ export default function Header() {
                                     key={"Create"}
                                     onClick={createWorkoutClickHandler}
                                 >
-                                    + Create Workout
+                                    Create Workout
                                 </NavLink>
                             </>
                         )}

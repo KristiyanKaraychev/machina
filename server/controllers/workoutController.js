@@ -25,6 +25,9 @@ function getWorkout(req, res, next) {
             path: "exercises",
             model: "Exercise",
         })
+        .populate({
+            path: "userId",
+        })
         .then((workout) => res.json(workout))
         .catch(next);
 }
