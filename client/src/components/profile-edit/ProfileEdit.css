@@ -17,68 +17,6 @@ h3 {
     opacity: 0.7;
 }
 
-.profile-wrapper {
-    height: 85vh;
-    display: flex;
-    flex-direction: column;
-}
-
-.profile-wrapper h1 {
-    margin-top: 60px;
-    margin-bottom: 40px;
-}
-
-.profile-container {
-    width: 500px;
-    margin: auto;
-    margin-top: 0px;
-    padding: 30px;
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    overflow-wrap: break-word;
-}
-
-.profile-header {
-    margin-bottom: 15px;
-}
-
-.profile-avatar {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid #eee;
-}
-
-.profile-username {
-    font-size: 1.8rem;
-    color: #333;
-    margin-top: 10px;
-}
-
-.profile-email {
-    font-size: 1rem;
-    color: #666;
-}
-
-.profile-info .description {
-    margin-bottom: 20px;
-}
-
-.profile-info p {
-    font-size: 1.1rem;
-    color: #444;
-    margin: 5px 0;
-}
-
-.profile-stats {
-    display: flex;
-    justify-content: space-around;
-    margin-top: 20px;
-}
-
 .workout-box {
     background: #f8f8f8;
     padding: 15px;
@@ -97,41 +35,4 @@ h3 {
     font-size: 1rem;
     color: #666;
     margin: 5px 0 0;
-}
-
-.profile-actions {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 15px;
-}
-
-.profile-actions button {
-    padding: 10px 15px;
-    font-size: 0.9rem;
-    font-weight: bold;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.edit-button {
-    background-color: #007bff;
-    color: white;
-}
-
-.edit-button:hover {
-    background-color: #0056b3;
-    transform: translateY(-2px);
-}
-
-.delete-button {
-    background-color: #dc3545;
-    color: white;
-}
-
-.delete-button:hover {
-    background-color: #b02a37;
-    transform: translateY(-2px);
 }

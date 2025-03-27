@@ -1,5 +1,7 @@
 import "./Header.css";
 
+import { FaBars, FaTimes } from "react-icons/fa";
+
 import { useContext, useState } from "react";
 import { Link, NavLink } from "react-router";
 
@@ -9,6 +11,7 @@ import { UserContext } from "../../contexts/UserContext.jsx";
 
 export default function Header() {
     const [showCreateWorkout, setShowCreateWorkout] = useState(false);
+    const [menuOpen, setMenuOpen] = useState(false);
     const { isLoggedIn } = useContext(UserContext);
 
     const navigation = isLoggedIn()
@@ -27,6 +30,7 @@ export default function Header() {
 
     const createWorkoutClickHandler = () => {
         setShowCreateWorkout(true);
+        setMenuOpen(false);
     };
 
     const closeCreateWorkoutClickHandler = () => {
@@ -35,6 +39,10 @@ export default function Header() {
 
     const saveCreateWorkoutClickHandler = async () => {
         setShowCreateWorkout(false);
+    };
+
+    const toggleMenu = () => {
+        setMenuOpen(!menuOpen);
     };
 
     return (
@@ -52,6 +60,68 @@ export default function Header() {
                         MACHINA
                     </Link>
                 </h1>
+
+                <button
+                    className="nav-menu-btn"
+                    onClick={() => setMenuOpen(true)}
+                >
+                    {menuOpen ? "" : <FaBars />}
+                </button>
+
+                <div className={`nav-overlay ${menuOpen ? "open" : ""}`}>
+                    <div className="nav-overlay-content">
+                        <button
+                            className="nav-close-btn"
+                            onClick={() => setMenuOpen(false)}
+                        >
+                            ✕
+                        </button>
+                        {navigation.slice(0, 2).map((item) => (
+                            <NavLink
+                                key={item.name}
+                                to={item.path}
+                                style={({ isActive }) =>
+                                    isActive ? { color: "#007bff" } : {}
+                                }
+                                onClick={toggleMenu}
+                            >
+                                {item.name}
+                            </NavLink>
+                        ))}
+                        {isLoggedIn() && (
+                            <>
+                                <NavLink
+                                    key={"Subscriptions"}
+                                    to={"/subscriptions"}
+                                    style={({ isActive }) =>
+                                        isActive ? { color: "#007bff" } : {}
+                                    }
+                                    onClick={toggleMenu}
+                                >
+                                    Subscriptions
+                                </NavLink>
+                                <NavLink
+                                    key={"Create"}
+                                    onClick={createWorkoutClickHandler}
+                                >
+                                    + Create Workout
+                                </NavLink>
+                            </>
+                        )}
+                        {navigation.slice(2).map((item) => (
+                            <NavLink
+                                key={item.name}
+                                to={item.path}
+                                style={({ isActive }) =>
+                                    isActive ? { color: "#007bff" } : {}
+                                }
+                                onClick={toggleMenu}
+                            >
+                                {item.name}
+                            </NavLink>
+                        ))}
+                    </div>
+                </div>
 
                 <nav className="nav-left">
                     {navigation.slice(0, 2).map((item) => (

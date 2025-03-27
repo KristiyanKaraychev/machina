@@ -1,5 +1,3 @@
-/* Details Card */
-
 .workout-details {
     max-width: 800px;
     margin: 20px auto;
@@ -150,8 +148,6 @@
     padding: 20px;
 }
 
-/* Comments */
-
 .comment-list {
     text-align: left;
 }
@@ -179,8 +175,6 @@
 .like-button.liked .ant-space-item:nth-child(1) {
     color: #007bff;
 }
-
-/* Edit Delete */
 
 .workout-actions {
     display: flex;
@@ -217,4 +211,16 @@
 .delete-button:hover {
     background-color: #b02a37;
     transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+    .workout-details {
+        width: 90vw;
+    }
+    .exercises-details {
+        width: 90vw;
+    }
+    .workout-details {
+        width: 90vw;
+    }
 }
