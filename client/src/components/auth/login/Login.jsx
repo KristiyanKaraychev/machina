@@ -9,26 +9,6 @@ import { UserContext } from "../../../contexts/UserContext.jsx";
 import { ErrorContext } from "../../../contexts/ErrorContext.jsx";
 
 const LoginForm = () => {
-    // const [email, setEmail] = useState("");
-    // const [password, setPassword] = useState("");
-
-    // const emailChangeHandler = (e) => {
-    //     setEmail(e.target.value);
-    // };
-
-    // const passwordChangeHandler = (e) => {
-    //     setPassword(e.target.value);
-    // };
-
-    // const loginSubmitHandler = (e) => {
-    //     e.preventDefault();
-    //     console.log("Logging in with:", { email, password });
-    //     // Handle authentication logic here
-
-    //     onLogin({ email, password });
-    //     navigate("/workouts");
-    // };
-
     const navigate = useNavigate();
     const { login } = useLogin();
     const { userLoginHandler } = useContext(UserContext);
@@ -88,14 +68,7 @@ const LoginForm = () => {
                     <h2>Login</h2>
                     <form action={loginAction}>
                         <label htmlFor="email">Email</label>
-                        <input
-                            id="email"
-                            name="email"
-                            type="email"
-                            // value={email}
-                            // onChange={emailChangeHandler}
-                            required
-                        />
+                        <input id="email" name="email" type="email" required />
                         {errors.email && (
                             <p className="error">{errors.email}</p>
                         )}
@@ -105,8 +78,6 @@ const LoginForm = () => {
                             id="password"
                             name="password"
                             type="password"
-                            // value={password}
-                            // onChange={passwordChangeHandler}
                             required
                         />
                         {errors.password && (

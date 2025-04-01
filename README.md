@@ -36,7 +36,7 @@ The repository contains the following folders:
 
 2. Install dependencies for both the front-end and the back-end:
 
-    ### For the Angular Front-End:
+    ### For the React Front-End:
 
     ```bash
     cd client
@@ -64,7 +64,7 @@ npm start
 
 The server will start and listen for requests on `http://localhost:3000` by default.
 
-### 2. Start the Angular Front-End:
+### 2. Start the React Front-End:
 
 Navigate to the `client` folder and run:
 
@@ -72,7 +72,7 @@ Navigate to the `client` folder and run:
 npm run dev
 ```
 
-The Angular application will start and be accessible at `http://localhost:5173` by default.
+The React application will start and be accessible at `http://localhost:5173` by default.
 
 ## Folder Details
 

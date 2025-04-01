@@ -20,8 +20,6 @@ export default function ProfileEdit({ onClose, onSave, setProfile }) {
         userService
             .getProfile()
             .then((profileData) => {
-                console.log(profileData);
-
                 setUsername(profileData.username);
                 setEmail(profileData.email);
                 setDescription(profileData.description || "");
@@ -29,8 +27,8 @@ export default function ProfileEdit({ onClose, onSave, setProfile }) {
                 setTel(profileData.tel || "");
                 setAvatarImgURL(profileData.avatarImgURL || "");
             })
-            .catch((err) => console.log(err.message));
-    }, []);
+            .catch((error) => showError(error.message));
+    }, [showError]);
 
     const usernameChangeHandler = (e) => {
         const username_val = e.target.value;

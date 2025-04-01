@@ -1,25 +1,26 @@
 import "./Profile.css";
 
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 
 import userService from "../../services/userService.js";
 
 import ProfileEdit from "../profile-edit/ProfileEdit.jsx";
+import { ErrorContext } from "../../contexts/ErrorContext.jsx";
 
 export default function Profile() {
     const [profile, setProfile] = useState({});
     const [showEditProfile, setShowEditProfile] = useState(false);
+    const { showError } = useContext(ErrorContext);
 
     useEffect(() => {
         userService
             .getProfile()
             .then((userData) => {
-                console.log(userData);
                 setProfile(userData);
             })
-            .catch((err) => console.log(err.message));
-    }, []);
+            .catch((error) => showError(error.message));
+    }, [showError]);
 
     const closeEditProfileClickHandler = () => {
         setShowEditProfile(false);

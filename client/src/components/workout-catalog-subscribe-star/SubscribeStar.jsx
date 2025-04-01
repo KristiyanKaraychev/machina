@@ -26,8 +26,7 @@ export default function SubscribeStar({ alreadySubscribed, workoutId }) {
             setIsPending(true);
 
             try {
-                await workoutService.subscribe(workoutId).then((data) => {
-                    console.log(data);
+                await workoutService.subscribe(workoutId).then(() => {
                     setIsSubscribed(true);
                 });
             } catch (error) {
@@ -44,6 +43,7 @@ export default function SubscribeStar({ alreadySubscribed, workoutId }) {
                 <FaStar
                     className="favorite-icon"
                     color={isSubscribed ? "gold" : "lightgray"}
+                    cursor={isSubscribed ? "mouse" : "pointer"}
                     onClick={(e) => {
                         if (isPending) return;
                         handleSubscribeClick(e);

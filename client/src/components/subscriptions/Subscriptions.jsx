@@ -6,11 +6,14 @@ import { Helmet } from "react-helmet-async";
 import workoutService from "../../services/workoutService.js";
 
 import WorkoutList from "../workout-list/WorkoutList.jsx";
+
 import { UserContext } from "../../contexts/UserContext.jsx";
+import { ErrorContext } from "../../contexts/ErrorContext.jsx";
 
 export default function Subscriptions() {
     const [workouts, setWorkouts] = useState([]);
     const { _id } = useContext(UserContext);
+    const { showError } = useContext(ErrorContext);
     const userId = _id;
 
     useEffect(() => {
@@ -23,11 +26,14 @@ export default function Subscriptions() {
 
             setWorkouts(filteredData);
         });
+        // .catch((error) => {
+        //     showError(error.message);
+        // });
 
         return () => {
             abortController.abort();
         };
-    }, [userId]);
+    }, [userId, showError]);
     return (
         <>
             <Helmet>

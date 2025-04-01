@@ -1,9 +1,6 @@
 .form-wrapper {
     background-color: white;
     padding: 20px;
-    /* border-radius: 10px; */
-    /* box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); */
-    /* width: 400px; */
 }
 
 .form-group {
@@ -17,7 +14,6 @@
     margin-top: 10px;
     max-height: 200px;
     overflow-y: auto;
-    /* border: 1px solid #ccc; */
     border-radius: 5px;
     background-color: #f9f9f9;
 }

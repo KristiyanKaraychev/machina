@@ -2,7 +2,7 @@
     position: relative;
     left: 5vw;
     text-align: left;
-    margin: 30px 0px 10px 0px;
+    padding-top: 30px;
     display: block;
     width: 200px;
 }
@@ -12,6 +12,7 @@
     align-items: center;
     background: none;
     border: none;
+    margin-bottom: 10px;
     font-size: 14px;
     font-weight: 500;
     color: #555;

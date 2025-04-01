@@ -44,7 +44,6 @@ export default function EditWorkout({
                     workoutId,
                     abortController
                 );
-                console.log(workoutData);
 
                 setWorkoutName(workoutData.workoutName);
                 setDescription(workoutData.description);
@@ -54,7 +53,6 @@ export default function EditWorkout({
                 setSelectedExercises(workoutData.exercises);
 
                 const exercisesData = await exerciseService.getExercise();
-                console.log("exercises:", exercisesData);
 
                 const filteredExercises1 = exercisesData.filter(
                     (exercise) =>
@@ -75,7 +73,7 @@ export default function EditWorkout({
         return () => {
             abortController.abort();
         };
-    }, [workoutId]);
+    }, [workoutId, showError]);
 
     const addExercise = (exercise) => {
         setSelectedExercises((prev) => [...prev, exercise]);
@@ -248,21 +246,6 @@ export default function EditWorkout({
         } catch (error) {
             showError(error.message);
         }
-
-        //     console.log("Workout Data:");
-        //     console.log(workoutData);
-
-        //     try {
-        //         const newWorkout = await workoutService.create({
-        //             ...workoutData,
-        //         });
-        //         console.log(newWorkout);
-
-        //         navigate(`/workouts/${newWorkout._id}`);
-        //         onSave();
-        //     } catch (error) {
-        //         console.log(error);
-        //     }
     };
 
     return (

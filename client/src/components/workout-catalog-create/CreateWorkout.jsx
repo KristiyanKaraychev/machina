@@ -32,9 +32,6 @@ export default function CreateWorkout({ onClose, onSave }) {
 
     useEffect(() => {
         exerciseService.getExercise().then((data) => {
-            console.log("exercises:");
-            console.log(data);
-
             setExercises(data);
         });
     }, []);
@@ -191,15 +188,10 @@ export default function CreateWorkout({ onClose, onSave }) {
 
         const formData = new FormData(e.target);
 
-        console.log(formData);
-
         const workoutData = {
             ...Object.fromEntries(formData),
             exercises: selectedExercises,
         };
-
-        console.log("Workout Data:");
-        console.log(workoutData);
 
         if (!validateForm()) {
             return;
@@ -209,7 +201,6 @@ export default function CreateWorkout({ onClose, onSave }) {
             const newWorkout = await workoutService.create({
                 ...workoutData,
             });
-            console.log(newWorkout);
 
             navigate(`/workouts/${newWorkout._id}`);
             onSave();

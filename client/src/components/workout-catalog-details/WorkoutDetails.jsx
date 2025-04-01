@@ -27,7 +27,7 @@ export default function WorkoutDetails() {
     const { showError } = useContext(ErrorContext);
 
     const { isLoggedIn, _id: userId } = useContext(UserContext);
-    const isOwner = userId === workout.userId;
+    const isOwner = userId === workout.userId?._id;
 
     const navigate = useNavigate();
 
@@ -75,8 +75,7 @@ export default function WorkoutDetails() {
 
         commentService
             .likeComment(commentId)
-            .then((data) => {
-                console.log(data);
+            .then(() => {
                 setLikeAction((prev) => !prev);
             })
             .catch((err) => {
@@ -90,8 +89,6 @@ export default function WorkoutDetails() {
 
         const formData = new FormData(e.target);
         const commentText = formData.get("comment");
-
-        console.log(commentText);
 
         let newErrors = {};
 
@@ -117,7 +114,6 @@ export default function WorkoutDetails() {
                 workoutId
             );
 
-            console.log(updatedWorkout);
             //update comment state
             setWorkout(updatedWorkout);
             //clear formData
@@ -152,7 +148,6 @@ export default function WorkoutDetails() {
         workoutService
             .getOne(workoutId, abortController)
             .then((data) => {
-                console.log(data);
                 setWorkout(data);
             })
             .catch(() => {

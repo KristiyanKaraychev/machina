@@ -1,6 +1,6 @@
 import "./Home.css";
 
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router";
 import { Helmet } from "react-helmet-async";
 
@@ -8,15 +8,22 @@ import WorkoutList from "../workout-list/WorkoutList.jsx";
 
 import workoutService from "../../services/workoutService.js";
 
+import { ErrorContext } from "../../contexts/ErrorContext.jsx";
+
 export default function Home() {
     const [workouts, setWorkouts] = useState([]);
+    const { showError } = useContext(ErrorContext);
 
     useEffect(() => {
-        workoutService.getLastThree().then((data) => {
-            console.log(data);
-            setWorkouts(data);
-        });
-    }, []);
+        workoutService
+            .getLastThree()
+            .then((data) => {
+                setWorkouts(data);
+            })
+            .catch((error) => {
+                showError(error.message);
+            });
+    }, [showError]);
 
     return (
         <>

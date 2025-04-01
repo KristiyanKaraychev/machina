@@ -28,7 +28,8 @@ export default {
         const result = await response.json();
 
         if (!response.ok) {
-            throw new Error("Email already registered!");
+            const errorMessage = result.err.message;
+            throw new Error(errorMessage || "Username/Email already taken!");
         }
 
         return result;

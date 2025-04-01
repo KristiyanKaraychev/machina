@@ -7,7 +7,6 @@ export default function AuthGuard() {
     const { _id } = useContext(UserContext);
 
     if (!_id) {
-        console.log("Route Guard: You need to be logged in!");
         return <Navigate to="/login" replace />;
     }
 

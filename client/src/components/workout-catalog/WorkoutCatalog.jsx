@@ -2,7 +2,7 @@ import "./WorkoutCatalog.css";
 
 import { ChevronDownIcon } from "@heroicons/react/solid";
 
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router";
 import { Helmet } from "react-helmet-async";
 
@@ -10,11 +10,14 @@ import workoutService from "../../services/workoutService.js";
 
 import WorkoutList from "../workout-list/WorkoutList.jsx";
 
+import { ErrorContext } from "../../contexts/ErrorContext.jsx";
+
 export default function WorkoutCatalog() {
     const [searchParams] = useSearchParams();
     const [workouts, setWorkouts] = useState([]);
     const [displayWorkouts, setDisplayWorkouts] = useState([]);
     const [isOpen, setIsOpen] = useState(false);
+    const { showError } = useContext(ErrorContext);
 
     const sortOptions = [
         {
@@ -39,14 +42,16 @@ export default function WorkoutCatalog() {
         const abortController = new AbortController();
 
         workoutService.getAll(abortController).then((data) => {
-            console.log(data);
             setWorkouts(data);
         });
+        // .catch((error) => {
+        //     showError(error.message);
+        // });
 
         return () => {
             abortController.abort();
         };
-    }, []);
+    }, [showError]);
 
     useEffect(() => {
         const filter = Object.fromEntries(searchParams);

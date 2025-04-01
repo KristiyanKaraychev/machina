@@ -71,23 +71,6 @@ const RegisterForm = () => {
         } catch (error) {
             showError(error.message);
         }
-
-        // const authData = await register(
-        //     username,
-        //     email,
-        //     password,
-        //     confirmPassword
-        // );
-
-        // console.log(authData);
-
-        // if (authData.message) {
-        //     console.log(authData.message);
-        //     return;
-        // }
-
-        // userLoginHandler(authData);
-        // navigate("/");
     };
 
     const [_, registerAction, isPending] = useActionState(registerHandler, {
